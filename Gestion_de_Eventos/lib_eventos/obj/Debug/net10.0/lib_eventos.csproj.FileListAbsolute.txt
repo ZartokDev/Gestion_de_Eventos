@@ -22,3 +22,16 @@ E:\ProyectosVisual\Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.dll
 E:\ProyectosVisual\Eventos\lib_eventos\obj\Debug\net10.0\refint\lib_eventos.dll
 E:\ProyectosVisual\Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.pdb
 E:\ProyectosVisual\Eventos\lib_eventos\obj\Debug\net10.0\ref\lib_eventos.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\bin\Debug\net10.0\lib_eventos.deps.json
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\bin\Debug\net10.0\lib_eventos.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\bin\Debug\net10.0\lib_eventos.pdb
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.csproj.AssemblyReference.cache
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.AssemblyInfoInputs.cache
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.AssemblyInfo.cs
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.csproj.CoreCompileInputs.cache
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.sourcelink.json
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\refint\lib_eventos.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\lib_eventos.pdb
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_eventos\obj\Debug\net10.0\ref\lib_eventos.dll
