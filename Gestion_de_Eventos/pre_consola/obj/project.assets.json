@@ -713,7 +713,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Newtonsoft.Json": "13.0.4"
+          "Newtonsoft.Json": "13.0.4",
+          "lib_eventos": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib_presentaciones.dll": {}
@@ -1743,8 +1744,8 @@
     },
     "lib_presentaciones/1.0.0": {
       "type": "project",
-      "path": "../presentaciones_libreria/lib_presentaciones.csproj",
-      "msbuildProject": "../presentaciones_libreria/lib_presentaciones.csproj"
+      "path": "../lib_presentaciones/lib_presentaciones.csproj",
+      "msbuildProject": "../lib_presentaciones/lib_presentaciones.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1789,8 +1790,8 @@
             "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj": {
               "projectPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj"
             },
-            "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\lib_presentaciones.csproj": {
-              "projectPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\lib_presentaciones.csproj"
+            "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\lib_presentaciones.csproj": {
+              "projectPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\lib_presentaciones.csproj"
             }
           }
         }

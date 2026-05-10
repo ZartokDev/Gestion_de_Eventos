@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\lib_eventos\lib_eventos.csproj" />
-    <ProjectReference Include="..\presentaciones_libreria\lib_presentaciones.csproj" />
+    <ProjectReference Include="..\lib_presentaciones\lib_presentaciones.csproj" />
   </ItemGroup>
 
 </Project>

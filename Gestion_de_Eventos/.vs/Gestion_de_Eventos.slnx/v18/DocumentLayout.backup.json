@@ -3,40 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_servicios\\asp_servicios.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|solutionrelative:asp_servicios\\asp_servicios.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{1F94E2F1-33E5-A500-8770-99E1CE2F5823}|lib_presentaciones\\lib_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_presentaciones\\implementaciones\\eventosnegociop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F94E2F1-33E5-A500-8770-99E1CE2F5823}|lib_presentaciones\\lib_presentaciones.csproj|solutionrelative:lib_presentaciones\\implementaciones\\eventosnegociop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2959B5D7-2828-4B5D-AD07-931AFDBBE138}|presentaciones_libreria\\lib_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\presentaciones_libreria\\implementaciones\\comunicaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2959B5D7-2828-4B5D-AD07-931AFDBBE138}|presentaciones_libreria\\lib_presentaciones.csproj|solutionrelative:presentaciones_libreria\\implementaciones\\comunicaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CFCD107-7E95-8D2D-EB6B-26020EEB097E}|pre_consola\\pre_consola.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\pre_consola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CFCD107-7E95-8D2D-EB6B-26020EEB097E}|pre_consola\\pre_consola.csproj|solutionrelative:pre_consola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1F94E2F1-33E5-A500-8770-99E1CE2F5823}|lib_presentaciones\\lib_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_presentaciones\\interfaces\\icomunicaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F94E2F1-33E5-A500-8770-99E1CE2F5823}|lib_presentaciones\\lib_presentaciones.csproj|solutionrelative:lib_presentaciones\\interfaces\\icomunicaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2959B5D7-2828-4B5D-AD07-931AFDBBE138}|presentaciones_libreria\\lib_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\presentaciones_libreria\\lib_presentaciones.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{2959B5D7-2828-4B5D-AD07-931AFDBBE138}|presentaciones_libreria\\lib_presentaciones.csproj|solutionrelative:presentaciones_libreria\\lib_presentaciones.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{1F94E2F1-33E5-A500-8770-99E1CE2F5823}|lib_presentaciones\\lib_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_presentaciones\\implementaciones\\comunicaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F94E2F1-33E5-A500-8770-99E1CE2F5823}|lib_presentaciones\\lib_presentaciones.csproj|solutionrelative:lib_presentaciones\\implementaciones\\comunicaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2959B5D7-2828-4B5D-AD07-931AFDBBE138}|presentaciones_libreria\\lib_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\presentaciones_libreria\\lib_presentaciones.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{2959B5D7-2828-4B5D-AD07-931AFDBBE138}|presentaciones_libreria\\lib_presentaciones.csproj|solutionrelative:presentaciones_libreria\\lib_presentaciones.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\pages\\ventanas\\eventos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\pages\\ventanas\\eventos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_servicios\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|solutionrelative:asp_servicios\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_servicios\\controllers\\eventoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|solutionrelative:asp_servicios\\controllers\\eventoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_eventos\\nucleo\\configuraciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|solutionrelative:lib_eventos\\nucleo\\configuraciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_eventos\\interfaces\\ifacturasnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|solutionrelative:lib_eventos\\interfaces\\ifacturasnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\users\\zarto\\documents\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\pages\\ventanas\\eventos.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\pages\\ventanas\\eventos.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,117 +58,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "asp_servicios.http",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\asp_servicios.http",
-              "RelativeDocumentMoniker": "asp_servicios\\asp_servicios.http",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\asp_servicios.http",
-              "RelativeToolTip": "asp_servicios\\asp_servicios.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-05-10T15:05:23.948Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Comunicaciones.cs",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\Implementaciones\\Comunicaciones.cs",
-              "RelativeDocumentMoniker": "presentaciones_libreria\\Implementaciones\\Comunicaciones.cs",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\Implementaciones\\Comunicaciones.cs",
-              "RelativeToolTip": "presentaciones_libreria\\Implementaciones\\Comunicaciones.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Program.cs",
+              "RelativeDocumentMoniker": "asp_presentaciones\\Program.cs",
+              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Program.cs",
+              "RelativeToolTip": "asp_presentaciones\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAMwBAAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:57:08.835Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "lib_presentaciones.csproj",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\lib_presentaciones.csproj",
-              "RelativeDocumentMoniker": "presentaciones_libreria\\lib_presentaciones.csproj",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\lib_presentaciones.csproj",
-              "RelativeToolTip": "presentaciones_libreria\\lib_presentaciones.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-10T06:30:25.33Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "lib_presentaciones",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\lib_presentaciones.csproj",
-              "RelativeDocumentMoniker": "presentaciones_libreria\\lib_presentaciones.csproj",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\presentaciones_libreria\\lib_presentaciones.csproj",
-              "RelativeToolTip": "presentaciones_libreria\\lib_presentaciones.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-10T06:24:24.865Z",
+              "WhenOpened": "2026-05-10T18:50:58.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pre_consola\\Program.cs",
-              "RelativeDocumentMoniker": "pre_consola\\Program.cs",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pre_consola\\Program.cs",
-              "RelativeToolTip": "pre_consola\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Title": "IComunicaciones.cs",
+              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\Interfaces\\IComunicaciones.cs",
+              "RelativeDocumentMoniker": "lib_presentaciones\\Interfaces\\IComunicaciones.cs",
+              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\Interfaces\\IComunicaciones.cs",
+              "RelativeToolTip": "lib_presentaciones\\Interfaces\\IComunicaciones.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T06:19:44.159Z",
+              "WhenOpened": "2026-05-10T18:48:40.423Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IFacturasNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\interfaces\\IFacturasNegocio.cs",
-              "RelativeDocumentMoniker": "lib_eventos\\interfaces\\IFacturasNegocio.cs",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\interfaces\\IFacturasNegocio.cs",
-              "RelativeToolTip": "lib_eventos\\interfaces\\IFacturasNegocio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T05:47:36.671Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EventosController.cs",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\Controllers\\EventosController.cs",
-              "RelativeDocumentMoniker": "asp_servicios\\Controllers\\EventosController.cs",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\Controllers\\EventosController.cs",
-              "RelativeToolTip": "asp_servicios\\Controllers\\EventosController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T05:47:16.262Z",
+              "DocumentIndex": 4,
+              "Title": "Eventos.cshtml",
+              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml",
+              "RelativeDocumentMoniker": "asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml",
+              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml",
+              "RelativeToolTip": "asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-10T18:47:27.663Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\Program.cs",
-              "RelativeDocumentMoniker": "asp_servicios\\Program.cs",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\Program.cs",
-              "RelativeToolTip": "asp_servicios\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Title": "Eventos.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml.cs",
+              "RelativeDocumentMoniker": "asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml.cs",
+              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml.cs",
+              "RelativeToolTip": "asp_presentaciones\\Pages\\Ventanas\\Eventos.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T05:47:14.327Z",
+              "WhenOpened": "2026-05-10T18:47:21.762Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Configuraciones.cs",
-              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\nucleo\\Configuraciones.cs",
-              "RelativeDocumentMoniker": "lib_eventos\\nucleo\\Configuraciones.cs",
-              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\nucleo\\Configuraciones.cs",
-              "RelativeToolTip": "lib_eventos\\nucleo\\Configuraciones.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Comunicaciones.cs",
+              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\Implementaciones\\Comunicaciones.cs",
+              "RelativeDocumentMoniker": "lib_presentaciones\\Implementaciones\\Comunicaciones.cs",
+              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\Implementaciones\\Comunicaciones.cs",
+              "RelativeToolTip": "lib_presentaciones\\Implementaciones\\Comunicaciones.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T05:34:09.668Z"
+              "WhenOpened": "2026-05-10T18:47:03.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EventosNegocioP.cs",
+              "DocumentMoniker": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\Implementaciones\\EventosNegocioP.cs",
+              "RelativeDocumentMoniker": "lib_presentaciones\\Implementaciones\\EventosNegocioP.cs",
+              "ToolTip": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_presentaciones\\Implementaciones\\EventosNegocioP.cs",
+              "RelativeToolTip": "lib_presentaciones\\Implementaciones\\EventosNegocioP.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T18:26:57.253Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "asp_presentaciones\\asp_presentaciones.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "pre_consola\\pre_consola.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "Nuevo perfil (1)",
+    "Projects": []
+  }
+]

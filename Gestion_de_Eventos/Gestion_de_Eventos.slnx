@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/1.presentaciones/">
-    <Project Path="presentaciones_libreria/lib_presentaciones.csproj" Id="2959b5d7-2828-4b5d-ad07-931afdbbe138" />
+    <Project Path="asp_presentaciones/asp_presentaciones.csproj" Id="199ea147-ad3e-42b3-a573-988377a83ef1" />
+    <Project Path="lib_presentaciones/lib_presentaciones.csproj" />
     <Project Path="pre_consola/pre_consola.csproj" />
   </Folder>
   <Folder Name="/2.servicios/">
