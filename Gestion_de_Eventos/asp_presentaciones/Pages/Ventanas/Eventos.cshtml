@@ -1,0 +1,127 @@
+﻿@page
+@model EventosModel
+@{
+    ViewData["Title"] = "Eventos";
+}
+<center>
+    <div>
+        <form method="POST"
+            enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Arboles</h3>
+            </div>
+
+            <table class="tb_data table table-striped table-bordered table-hover">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                         Fecha
+                    </th>
+                    <th>
+                        Descripcion
+                    </th>
+                    <th>
+                        CantPersonas
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                        GrupoTrabajador
+                    </th>
+                    <th>
+                        Inventario
+                    </th>
+                    <th>
+                        Horario
+                    </th>
+                    <th>
+                        Administrador
+                    </th>
+                    <th>
+                        TipoEvento
+                    </th>
+                    <th>
+                        Patrocinador
+                    </th>
+                    <th>
+                        Lugar
+                    </th>
+                    <th>
+                        Reserva
+                    </th>
+                    <th>
+                        Cliente
+                    </th>
+                </tr>
+                @if (Model != null && Model.Lista != null)
+                {
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>
+                                @elemento.Nombre
+                            </th>
+                            <th>
+                                @elemento.Fecha
+                            </th>
+                            <th>
+                                @elemento.Descripcion
+                            </th>
+                            <th>
+                                @elemento.CantPersonas
+                            </th>
+                            <th>
+                                @elemento.Estado
+                            </th>
+                            <th>
+                                @elemento.GrupoTrabajador
+                            </th>
+                            <th>
+                                @elemento.Inventario
+                            </th>
+                            <th>
+                                @elemento.Horario
+                            </th>
+                            <th>
+                                Administrador
+                            </th>
+                            <th>
+                                @elemento.TipoEvento
+                            </th>
+                            <th>
+                                @elemento.Patrocinador
+                            </th>
+                            <th>
+                                @elemento.Lugar
+                            </th>
+                            <th>
+                                @elemento.Reserva
+                            </th>
+                            <th>
+                                @elemento.Cliente
+                            </th>
+
+                            <td>
+                                <input type="submit"
+                                    value="Modicar"
+                                    asp-page-handler="BtModificar"
+                                    class="btn btn-secondary"
+                                    asp-route-data="@elemento.Id" />
+                                <input type="submit"
+                                    value="Borrar"
+                                    asp-page-handler="BtBorrarVal"
+                                    class="btn btn-secondary"
+                                    asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </form>
+    </div>
+</center>

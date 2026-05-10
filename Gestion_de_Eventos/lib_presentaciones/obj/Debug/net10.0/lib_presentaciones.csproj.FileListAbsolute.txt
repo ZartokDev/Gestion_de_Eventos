@@ -1,0 +1,16 @@
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\bin\Debug\net10.0\lib_presentaciones.deps.json
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\bin\Debug\net10.0\lib_presentaciones.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\bin\Debug\net10.0\lib_presentaciones.pdb
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\bin\Debug\net10.0\lib_eventos.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\bin\Debug\net10.0\lib_eventos.pdb
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.csproj.AssemblyReference.cache
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.AssemblyInfoInputs.cache
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.AssemblyInfo.cs
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.csproj.CoreCompileInputs.cache
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.sourcelink.json
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_pres.F3664F89.Up2Date
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\refint\lib_presentaciones.dll
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\lib_presentaciones.pdb
+C:\Users\zarto\Documents\ProyectosGIT\Gestion_de_Eventos\Gestion_de_Eventos\lib_presentaciones\obj\Debug\net10.0\ref\lib_presentaciones.dll
