@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace asp_servicios.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class EventosController : ControllerBase
     {
         private IEventosNegocio? IEventosNegocio;

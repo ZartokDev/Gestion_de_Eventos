@@ -1,11 +1,12 @@
-﻿using lib_eventos.implementaciones;
-using lib_eventos.interfaces;
+﻿using lib_eventos.entidades;
+using lib_presentaciones.Implementaciones;
 
-Console.WriteLine("cns_presentacion");
-Console.WriteLine("Conexion de Base de datos");
+Console.WriteLine("pre_consola");
 
-IConexion conexion = new Conexion();
-conexion.StringConexion = "server=localhost\\DEV;Integrated Security=True;TrustServerCertificate=true;database=DBeventos;";
-var lista_eventos = conexion.Eventos!.ToList();
+var datos = new Dictionary<string, object>();
+datos["Url"] = "http://localhost:5013/Eventos/Consultar";
 
-Console.WriteLine("Final");
+var comunicaciones = new Comunicaciones();
+var task = comunicaciones.Ejecutar<List<Eventos>>(datos)!;
+task.Wait();
+var respuesta = task.Result;

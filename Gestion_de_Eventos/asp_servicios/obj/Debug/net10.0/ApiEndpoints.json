@@ -2,7 +2,7 @@
   {
     "ContainingType": "asp_servicios.Controllers.EventosController",
     "Method": "Consultar",
-    "RelativePath": "Eventos",
+    "RelativePath": "Eventos/Consultar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -22,7 +22,7 @@
   {
     "ContainingType": "asp_servicios.Controllers.EventosController",
     "Method": "Guardar",
-    "RelativePath": "Eventos",
+    "RelativePath": "Eventos/Guardar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
