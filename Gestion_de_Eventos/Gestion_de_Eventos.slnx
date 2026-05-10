@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/1.presentaciones/">
+    <Project Path="pre_consola/pre_consola.csproj" />
+  </Folder>
+  <Folder Name="/2.servicios/">
+    <Project Path="asp_servicios/asp_servicios.csproj" />
+    <Project Path="lib_eventos/lib_eventos.csproj" />
+  </Folder>
+  <Folder Name="/3.pruebas unitarias/">
+    <Project Path="pruebas_unitarias/pruebas_unitarias.csproj" />
+  </Folder>
+</Solution>
