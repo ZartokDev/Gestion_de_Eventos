@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj": {}
+    "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj": {
+    "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj",
+        "projectUniqueName": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj",
         "projectName": "lib_eventos",
-        "projectPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj",
-        "packagesPath": "C:\\Users\\zarto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\obj\\",
+        "projectPath": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj",
+        "packagesPath": "C:\\Users\\Arturo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zarto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Arturo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -31,6 +31,7 @@
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -45,10 +46,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
@@ -72,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -350,20 +352,20 @@
         }
       }
     },
-    "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj": {
+    "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj",
+        "projectUniqueName": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj",
         "projectName": "pruebas_unitarias",
-        "projectPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj",
-        "packagesPath": "C:\\Users\\zarto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\obj\\",
+        "projectPath": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\pruebas_unitarias.csproj",
+        "packagesPath": "C:\\Users\\Arturo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\pruebas_unitarias\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zarto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Arturo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -377,10 +379,11 @@
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj": {
-                "projectPath": "C:\\Users\\zarto\\Documents\\ProyectosGIT\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj"
+              "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj": {
+                "projectPath": "C:\\Users\\Arturo\\Desktop\\github\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\lib_eventos.csproj"
               }
             }
           }
@@ -395,10 +398,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "MSTest": {
@@ -422,7 +426,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
