@@ -111,6 +111,14 @@ CREATE TABLE Administradores (
 );
 
 -- Tablas con una FK
+CREATE TABLE Auditorias (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    TipoAccion NVARCHAR(255),
+    Descripcion NVARCHAR(500),
+    Fecha DATETIME,
+    Usuario int,
+    FOREIGN KEY () REFERENCES TipoTrabajadores(Id)
+);
 
 CREATE TABLE Trabajadores (
     Id INT PRIMARY KEY IDENTITY(1,1),

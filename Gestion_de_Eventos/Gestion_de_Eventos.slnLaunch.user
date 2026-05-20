@@ -7,7 +7,7 @@
         "Action": "Start"
       },
       {
-        "Path": "pre_consola\\pre_consola.csproj",
+        "Path": "asp_servicios\\asp_servicios.csproj",
         "Action": "Start"
       }
     ]
