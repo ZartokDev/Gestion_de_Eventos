@@ -1,0 +1,22 @@
+## Visual Studio / .NET Core ##
+# Carpetas de compilación (Binarios)
+**/bin/
+**/obj/
+
+# Configuración interna de Visual Studio
+.vs/
+**/.vs/
+*.suo
+*.user
+*.useroscs
+*.sln.docstates
+*.slnLaunch.user
+
+# Herramientas de diagnóstico y Rider/VS Code si aplica
+.idea/
+.vscode/
+
+# Archivos temporales del sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
