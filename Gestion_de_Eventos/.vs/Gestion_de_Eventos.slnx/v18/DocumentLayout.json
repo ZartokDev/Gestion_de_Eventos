@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\asp_presentaciones.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\asp_presentaciones.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_eventos\\script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|solutionrelative:lib_eventos\\script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\asp_presentaciones.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\asp_presentaciones.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\asp_presentaciones.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_servicios\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{5FBF2E51-FAE3-6181-CEED-4AB4CAED5F07}|asp_servicios\\asp_servicios.csproj|solutionrelative:asp_servicios\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_eventos\\script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|solutionrelative:lib_eventos\\script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_eventos\\nucleo\\configuraciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -77,6 +77,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\asp_presentaciones\\pages\\ventanas\\eventos.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{199EA147-AD3E-42B3-A573-988377A83EF1}|asp_presentaciones\\asp_presentaciones.csproj|solutionrelative:asp_presentaciones\\pages\\ventanas\\eventos.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|c:\\proyectosgit\\gestion_de_eventos\\gestion_de_eventos\\lib_eventos\\script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{C721EAFA-1723-C0EE-20FB-9C15EBFAC4E0}|lib_eventos\\lib_eventos.csproj|solutionrelative:lib_eventos\\script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "asp_presentaciones.http",
               "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\asp_presentaciones.http",
               "RelativeDocumentMoniker": "asp_presentaciones\\asp_presentaciones.http",
@@ -122,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\appsettings.json",
               "RelativeDocumentMoniker": "asp_presentaciones\\appsettings.json",
@@ -134,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "asp_presentaciones\\Properties\\launchSettings.json",
@@ -146,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_servicios\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "asp_servicios\\Properties\\launchSettings.json",
@@ -164,21 +168,34 @@
               "RelativeDocumentMoniker": "asp_presentaciones\\Program.cs",
               "ToolTip": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\Program.cs",
               "RelativeToolTip": "asp_presentaciones\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T18:50:58.573Z"
+              "WhenOpened": "2026-05-10T18:50:58.573Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "asp_presentaciones.csproj",
               "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\asp_presentaciones.csproj",
               "RelativeDocumentMoniker": "asp_presentaciones\\asp_presentaciones.csproj",
               "ToolTip": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\asp_presentaciones\\asp_presentaciones.csproj",
               "RelativeToolTip": "asp_presentaciones\\asp_presentaciones.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2026-05-19T14:08:43.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Script.sql ",
+              "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\Script.sql",
+              "RelativeDocumentMoniker": "lib_eventos\\Script.sql",
+              "ToolTip": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\Script.sql",
+              "RelativeToolTip": "lib_eventos\\Script.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-05-19T15:24:16.194Z",
               "EditorCaption": ""
             },
             {
@@ -230,17 +247,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-17T16:29:01.896Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Script.sql",
-              "DocumentMoniker": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\Script.sql",
-              "RelativeDocumentMoniker": "lib_eventos\\Script.sql",
-              "ToolTip": "C:\\ProyectosGit\\Gestion_de_Eventos\\Gestion_de_Eventos\\lib_eventos\\Script.sql",
-              "RelativeToolTip": "lib_eventos\\Script.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-05-19T15:24:16.194Z"
             },
             {
               "$type": "Document",
