@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Grupos> Consultar();
         Grupos Guardar(Grupos entidad);
+        Grupos Modificar(Grupos entidad);
+        Grupos Eliminar(Grupos entidad);
     }
 }

@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Administradores> Consultar();
         Administradores Guardar(Administradores entidad);
+        Administradores Modificar(Administradores entidad);
+        Administradores Eliminar(Administradores entidad);
     }
 }

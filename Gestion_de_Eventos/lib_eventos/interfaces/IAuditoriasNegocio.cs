@@ -2,8 +2,8 @@
 
 namespace lib_eventos.interfaces
 {
-    public interface ITipoEventosNegocio
+    public interface IAuditoriasNegocio
     {
-        List<TipoEventos> Consultar();
+        List<Auditorias> Consultar();
     }
 }

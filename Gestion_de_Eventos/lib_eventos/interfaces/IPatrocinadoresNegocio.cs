@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Patrocinadores> Consultar();
         Patrocinadores Guardar(Patrocinadores entidad);
+        Patrocinadores Modificar(Patrocinadores entidad);
+        Patrocinadores Eliminar(Patrocinadores entidad);
     }
 }

@@ -11,22 +11,21 @@ namespace lib_eventos.implementaciones
         public List<TipoTrabajadores> Consultar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
+
+            var auditoria = new Auditorias()
+            {
+                TipoAccion = "Consultar Tipo de Trabajador",
+                Descripcion = $"Se consulto un Tipo de Trabajador",
+                Fecha = DateTime.Now,
+                Administrador = null
+            };
+
+            this.iConexion.Auditorias!.Add(auditoria!);
+            this.iConexion.SaveChanges();
 
             return this.iConexion.TipoTrabajadores!.ToList();
-        }
 
-        public TipoTrabajadores Guardar(TipoTrabajadores entidad)
-        {
-            if (entidad.Id != 0)
-                throw new Exception("Ya se guardo");
-
-            this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
-
-            this.iConexion.TipoTrabajadores!.Add(entidad!);
-            this.iConexion.SaveChanges();
-            return entidad;
         }
     }
 }

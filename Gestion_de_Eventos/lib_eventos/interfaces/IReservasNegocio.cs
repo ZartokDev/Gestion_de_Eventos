@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Reservas> Consultar();
         Reservas Guardar(Reservas entidad);
+        Reservas Modificar(Reservas entidad);
+        Reservas Eliminar(Reservas entidad);
     }
 }

@@ -4,19 +4,19 @@ using lib_eventos.nucleo;
 
 namespace lib_eventos.implementaciones
 {
-    public class TipoEventosNegocio : ITipoEventosNegocio
+    public class AuditoriasNegocio : IAuditoriasNegocio
     {
         private IConexion? iConexion;
 
-        public List<TipoEventos> Consultar()
+        public List<Auditorias> Consultar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
 
             var auditoria = new Auditorias()
             {
-                TipoAccion = "Consultar Tipo de Evento",
-                Descripcion = $"Se consulto un Tipo de Evento",
+                TipoAccion = "Consultar Auditoria",
+                Descripcion = $"Se consulto una Auditoria",
                 Fecha = DateTime.Now,
                 Administrador = null
             };
@@ -24,8 +24,7 @@ namespace lib_eventos.implementaciones
             this.iConexion.Auditorias!.Add(auditoria!);
             this.iConexion.SaveChanges();
 
-            return this.iConexion.TipoEventos!.ToList();
-
+            return this.iConexion.Auditorias!.ToList();
         }
     }
 }

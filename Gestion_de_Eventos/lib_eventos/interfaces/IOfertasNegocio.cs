@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Ofertas> Consultar();
         Ofertas Guardar(Ofertas entidad);
+        Ofertas Modificar(Ofertas entidad);
+        Ofertas Eliminar(Ofertas entidad);
     }
 }
