@@ -31,5 +31,20 @@ namespace asp_servicios.Controllers
                 throw new Exception("No implementado");
             return this.IEventosNegocio.Guardar(entidad);
         }
+        [HttpPatch]
+        public Eventos Modificar(Eventos entidad)
+        {
+            if (this.IEventosNegocio == null)
+                throw new Exception("No implementado");
+            return this.IEventosNegocio.Modificar(entidad);
+        }
+        [HttpDelete]
+
+        public Eventos Eliminar(Eventos entidad)
+        {
+            if (this.IEventosNegocio == null)
+                throw new Exception("No implementado");
+            return this.IEventosNegocio.Eliminar(entidad);
+        }
     }
 }
