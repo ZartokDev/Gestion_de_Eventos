@@ -12,7 +12,7 @@ namespace lib_presentaciones.Implementaciones
         public List<Eventos> Consultar()
         {
             var datos = new Dictionary<string, object>();
-            datos["Url"] = "http://localhost:5188/Eventos/Consultar";
+            datos["Url"] = "https://localhost:7256/Eventos/Consultar";
 
             this.iComunicaciones = new Comunicaciones();
             var task = this.iComunicaciones.Ejecutar(datos)!;
@@ -34,14 +34,61 @@ namespace lib_presentaciones.Implementaciones
             this.iComunicaciones = new Comunicaciones();
 
             var datos = new Dictionary<string, object>();
-            datos["Url"] = "http://localhost:5188/Eventos/Guardar";
+            datos["Url"] = "https://localhost:7256/Eventos/Guardar";
+            datos["Entidad"] = entidad;
 
             this.iComunicaciones = new Comunicaciones();
-            var task = this.iComunicaciones.Ejecutar(datos)!;
+            var task = this.iComunicaciones.EjecutarPost(datos)!;
             task.Wait();
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
+                return new Eventos();
+
+            return JsonConvert.DeserializeObject<Eventos>(
+                respuesta["Valor"].ToString()!)!;
+        }
+
+        public Eventos Modificar(Eventos entidad)
+        {
+            if (entidad.Id == 0)
+                throw new Exception("El Id es necesario para modificar");
+
+            this.iComunicaciones = new Comunicaciones();
+
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = "https://localhost:7256/Eventos/Modificar";
+            datos["Entidad"] = entidad;
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.EjecutarPatch(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (respuesta == null || !respuesta.ContainsKey("Valor"))
+                return new Eventos();
+
+            return JsonConvert.DeserializeObject<Eventos>(
+                respuesta["Valor"].ToString()!)!;
+        }
+
+        public Eventos Eliminar(Eventos entidad)
+        {
+            if (entidad.Id == 0)
+                throw new Exception("El Id es necesario para modificar");
+
+            this.iComunicaciones = new Comunicaciones();
+
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = "https://localhost:7256/Eventos/Eliminar";
+            datos["Entidad"] = entidad;
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.EjecutarDelete(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (respuesta == null || !respuesta.ContainsKey("Valor"))
                 return new Eventos();
 
             return JsonConvert.DeserializeObject<Eventos>(

@@ -8,120 +8,357 @@
         <form method="POST"
             enctype="multipart/form-data">
             @Html.AntiForgeryToken()
-
+           
             <div align="left">
-                <h3>Arboles</h3>
+                <h3>Eventos</h3>
             </div>
 
-            <table class="tb_data table table-striped table-bordered table-hover">
-                <tr>
-                    <th>
-                        Nombre
-                    </th>
-                    <th>
-                         Fecha
-                    </th>
-                    <th>
-                        Descripcion
-                    </th>
-                    <th>
-                        CantPersonas
-                    </th>
-                    <th>
-                        Estado
-                    </th>
-                    <th>
-                        GrupoTrabajador
-                    </th>
-                    <th>
-                        Inventario
-                    </th>
-                    <th>
-                        Horario
-                    </th>
-                    <th>
-                        Administrador
-                    </th>
-                    <th>
-                        TipoEvento
-                    </th>
-                    <th>
-                        Patrocinador
-                    </th>
-                    <th>
-                        Lugar
-                    </th>
-                    <th>
-                        Reserva
-                    </th>
-                    <th>
-                        Cliente
-                    </th>
-                </tr>
-                @if (Model != null && Model.Lista != null)
-                {
-                    @foreach (var elemento in Model.Lista)
-                    {
-                        <tr>
-                            <th>
-                                @elemento.Nombre
-                            </th>
-                            <th>
-                                @elemento.Fecha
-                            </th>
-                            <th>
-                                @elemento.Descripcion
-                            </th>
-                            <th>
-                                @elemento.CantPersonas
-                            </th>
-                            <th>
-                                @elemento.Estado
-                            </th>
-                            <th>
-                                @elemento.GrupoTrabajador
-                            </th>
-                            <th>
-                                @elemento.Inventario
-                            </th>
-                            <th>
-                                @elemento.Horario
-                            </th>
-                            <th>
-                                Administrador
-                            </th>
-                            <th>
-                                @elemento.TipoEvento
-                            </th>
-                            <th>
-                                @elemento.Patrocinador
-                            </th>
-                            <th>
-                                @elemento.Lugar
-                            </th>
-                            <th>
-                                @elemento.Reserva
-                            </th>
-                            <th>
-                                @elemento.Cliente
-                            </th>
+            <div>
+                <input type="submit" 
+                        value="Nuevo"
+                       class="btn btn-secondary"
+                    asp-page-handler="BtNuevo"
+                    disabled="@(Model.Evento != null)"/>
+                <input type="submit" 
+                        value="Refrescar"
+                       class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit"
+                       value="Guardar"
+                       class="btn btn-secondary"
+                       asp-page-handler="BtGuardar" 
+                       disabled="@(Model.Evento == null)" />
+              
+            </div>
 
-                            <td>
-                                <input type="submit"
-                                    value="Modicar"
-                                    asp-page-handler="BtModificar"
-                                    class="btn btn-secondary"
-                                    asp-route-data="@elemento.Id" />
-                                <input type="submit"
-                                    value="Borrar"
-                                    asp-page-handler="BtBorrarVal"
-                                    class="btn btn-secondary"
-                                    asp-route-data="@elemento.Id" />
-                            </td>
-                        </tr>
+            @if (Model.Evento != null){
+                <div>
+                    <div class="form-group">
+                        <label>
+                            Id
+                        </label>
+
+                        <div class="col-6">
+                            <input id="inId"
+                                   class="cts_forms form-control"
+                                   asp-for="@Model.Evento!.Id">
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Nombre
+                        </label>
+
+                        <div class="col-6">
+                            <input id="inNombre"
+                                   class="form-control"
+                                   asp-for="@Model.Evento!.Nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Fecha
+                        </label>
+
+                        <div class="col-6">
+                            <input id="inFecha"
+                                   class="cts_forms form-control"
+                                   asp-for="@Model.Evento!.Fecha">
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <label>
+                            Descripcion
+                            </label>
+
+                            <div class="col-6">
+                            <input id="inDescripcion"
+                                       class="form-control"
+                                       asp-for="@Model.Evento!.Descripcion">
+                                </div>
+                    </div>
+                    <div class="form-group">
+                                <label>
+                            CantPersonas
+                                </label>
+
+                                <div class="col-6">
+                                    <input id="inCantPersonas"
+                                           class="cts_forms form-control"
+                                   asp-for="@Model.Evento!.CantPersonas">
+                                    </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            Estado
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inEstado"
+                          asp-for="@Model.Evento!.Estado">
+                          </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label>
+                            GrupoTrabajador
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inGrupoTrabajador"
+                          asp-for="@Model.Evento!.GrupoTrabajador">
+                          </div>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Inventario
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inInventario"
+                          asp-for="@Model.Evento!.Inventario">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Horario
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inHorario"
+                          asp-for="@Model.Evento!.Horario">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Administrador
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inAdministrador"
+                          asp-for="@Model.Evento!.Administrador">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            TipoEvento
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inTipoEvento"
+                          asp-for="@Model.Evento!.TipoEvento">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Patrocinador
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inPatrocinador"
+                          asp-for="@Model.Evento!.Patrocinador">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Lugar
+                        </label>
+
+                        <div class="col-6">
+                         <input id="inLugar"
+                          asp-for="@Model.Evento!.Lugar">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Reserva
+                        </label>
+
+                        <div class="col-6">
+                            <input id="inReserva"
+                          asp-for="@Model.Evento!.Reserva">
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Cliente
+                        </label>
+
+                        <div class="col-6">
+                            <input id="inCliente"
+                          asp-for="@Model.Evento!.Cliente">
+                          </div>
+                    </div>
+
+                
+            }
+
+
+            
+            @if (ViewData.ContainsKey("Mensaje"))
+            {       
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.Evento != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">
+                                Mensaje
+                            </h2>
+
+                            <h6 align="Left" >
+                                Desea borrar el Evento?
+                            </h6>
+                            <h6 align="Left" >
+                                @Model.Evento!.Nombre
+                            </h6>
+
+                            <input type="submit"
+                                   value="Cerrar"
+                                   asp-page-handler="BtCerrar"
+                                   class="btn btn-secondary" />
+                            <input type="submit"
+                                   value="Borrar"
+                                   asp-page-handler="BtBorrar"
+                                   class="btn btn-secondary" />
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr> 
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Descripcion
+                        </th>
+                        <th>
+                            CantPersonas
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Grupo Trabajador
+                        </th>
+                        <th>
+                            Inventario
+                        </th>
+                        <th>
+                            Horario
+                        </th>
+                        <th>
+                            Administrador
+                        </th>
+                        <th>
+                            Tipo Evento
+                        </th>
+                        <th>
+                            Patrocinador
+                        </th>
+                        <th>
+                            Lugar    
+                        </th>
+                        <th>
+                            Reserva
+                        </th>
+                        <th>
+                            Cliente
+                        </th>
+                    </tr>
+                    @if (Model != null && Model.Lista != null)
+                    {
+                        @foreach (var elemento in Model.Lista)
+                        {
+                            <tr>
+                            
+                                <th>
+                                    @elemento.Id
+                                </th>
+                                <th>
+                                    @elemento.Nombre
+                                </th>
+                                <th>
+                                    @elemento.Fecha
+                                </th>
+                                <th>
+                                    @elemento.Descripcion
+                                </th>
+                                <th>
+                                    @elemento.CantPersonas
+                                </th>
+                                <th>
+                                    @elemento.Estado
+                                </th>
+                                <th>
+                                    @elemento.GrupoTrabajador
+                                </th>
+                                <th>
+                                    @elemento.Inventario
+                                </th>
+                                <th>
+                                    @elemento.Horario
+                                </th>
+                                <th>
+                                    @elemento.Administrador
+                                </th>
+                                <th>
+                                    @elemento.TipoEvento
+                                </th>
+                                <th>
+                                    @elemento.Patrocinador
+                                </th>
+                                <th>
+                                    @elemento.Lugar
+                                </th>
+                                <th>
+                                    @elemento.Reserva
+                                </th>
+                                <th>
+                                    @elemento.Cliente
+                                </th>
+
+
+                                <td>
+                                    <input type="submit"
+                                        value="Modicar"
+                                        asp-page-handler="BtModificar"
+                                        class="btn btn-secondary"
+                                        asp-route-data="@elemento.Id" />
+                                    <input type="submit"
+                                        value="Borrar"
+                                        asp-page-handler="BtBorrarVal"
+                                        class="btn btn-secondary"
+                                        asp-route-data="@elemento.Id" />
+                                </td>
+                            </tr>
+                        }
                     }
-                }
-            </table>
+                </table>
+                    
+            }
+
+
+
         </form>
     </div>
 </center>

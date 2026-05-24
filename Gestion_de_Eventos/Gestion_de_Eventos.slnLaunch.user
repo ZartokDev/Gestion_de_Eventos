@@ -3,11 +3,11 @@
     "Name": "Nuevo perfil",
     "Projects": [
       {
-        "Path": "asp_presentaciones\\asp_presentaciones.csproj",
+        "Path": "asp_servicios\\asp_servicios.csproj",
         "Action": "Start"
       },
       {
-        "Path": "asp_servicios\\asp_servicios.csproj",
+        "Path": "asp_presentaciones\\asp_presentaciones.csproj",
         "Action": "Start"
       }
     ]
