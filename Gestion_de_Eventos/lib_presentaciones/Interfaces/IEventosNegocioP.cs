@@ -6,5 +6,7 @@ namespace lib_presentaciones.Interfaces
     {
         List<Eventos> Consultar();
         Eventos Guardar(Eventos entidad);
+        Eventos Modificar(Eventos entidad);
+        Eventos Eliminar(Eventos entidad);
     }
 }
