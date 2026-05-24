@@ -20,6 +20,7 @@ namespace lib_eventos.interfaces
         DbSet<Clientes>? Clientes { get; set; }
         DbSet<Reservas>? Reservas { get; set; }
         DbSet<TipoEventos>? TipoEventos { get; set; }
+        DbSet<Auditorias>? Auditorias { get; set; }
         DbSet<Administradores>? Administradores{ get; set; }
         DbSet<Trabajadores>? Trabajadores{ get; set; }
         DbSet<Grupos>? Grupos { get; set; }

@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Inventarios> Consultar();
         Inventarios Guardar(Inventarios entidad);
+        Inventarios Modificar(Inventarios entidad);
+        Inventarios Eliminar(Inventarios entidad);
     }
 }

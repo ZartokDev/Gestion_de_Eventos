@@ -9,5 +9,6 @@
         public String? Contraseña { get; set; }
 
         public List<Eventos>? Eventos { get; set; }
+        public List<Auditorias>? Auditorias { get; set; }
     }
 }

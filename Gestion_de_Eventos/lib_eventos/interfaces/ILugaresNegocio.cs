@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Lugares> Consultar();
         Lugares Guardar(Lugares entidad);
+        Lugares Modificar(Lugares entidad);
+        Lugares Eliminar(Lugares entidad);
     }
 }

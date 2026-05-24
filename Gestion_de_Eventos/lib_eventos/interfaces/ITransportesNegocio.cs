@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Transportes> Consultar();
         Transportes Guardar(Transportes entidad);
+        Transportes Modificar(Transportes entidad);
+        Transportes Eliminar(Transportes entidad);
     }
 }

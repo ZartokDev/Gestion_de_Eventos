@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<PersonalApoyos> Consultar();
         PersonalApoyos Guardar(PersonalApoyos entidad);
+        PersonalApoyos Modificar(PersonalApoyos entidad);
+        PersonalApoyos Eliminar(PersonalApoyos entidad);
     }
 }

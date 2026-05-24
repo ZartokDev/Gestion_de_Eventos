@@ -116,8 +116,8 @@ CREATE TABLE Auditorias (
     TipoAccion NVARCHAR(255),
     Descripcion NVARCHAR(500),
     Fecha DATETIME,
-    Usuario int,
-    FOREIGN KEY () REFERENCES TipoTrabajadores(Id)
+    Administrador INT,
+    FOREIGN KEY (Administrador) REFERENCES Administradores(Id)
 );
 
 CREATE TABLE Trabajadores (

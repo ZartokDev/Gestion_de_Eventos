@@ -28,6 +28,7 @@ namespace lib_eventos.implementaciones
         public DbSet<Reservas>? Reservas { get; set; }
         public DbSet<TipoEventos>? TipoEventos { get; set; }
         public DbSet<Administradores>? Administradores { get; set; }
+        public DbSet<Auditorias>? Auditorias { get; set; }
         public DbSet<Trabajadores>? Trabajadores { get; set; }
         public DbSet<Grupos>? Grupos { get; set; }
         public DbSet<Inventarios>? Inventarios { get; set; }
