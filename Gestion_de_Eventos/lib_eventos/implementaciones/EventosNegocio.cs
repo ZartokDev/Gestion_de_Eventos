@@ -88,8 +88,20 @@ namespace lib_eventos.implementaciones
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
-            this.iConexion.Eventos!.Remove(entidad);
+            var eventoCompleto = this.iConexion.Eventos!
+            .Include(e => e.Facturas)
+            .FirstOrDefault(e => e.Id == entidad.Id);
+
+            if (eventoCompleto == null)
+                throw new Exception("El evento no existe");
+
+            if (eventoCompleto.Facturas != null && eventoCompleto.Facturas.Any())
+            this.iConexion.Facturas!.RemoveRange(eventoCompleto.Facturas);
+
+            this.iConexion.Eventos!.Remove(eventoCompleto);
             this.iConexion.SaveChanges();
+
+
 
             var auditoria = new Auditorias()
             {
@@ -101,6 +113,8 @@ namespace lib_eventos.implementaciones
 
             this.iConexion.Auditorias!.Add(auditoria!);
             this.iConexion.SaveChanges();
+
+
 
             return entidad;
         }
