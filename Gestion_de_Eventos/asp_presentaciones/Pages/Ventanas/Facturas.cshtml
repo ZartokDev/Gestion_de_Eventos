@@ -1,0 +1,136 @@
+@page
+@model FacturasModel
+@{
+    ViewData["Title"] = "Facturas";
+}
+<center>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Facturas</h3>
+            </div>
+
+            <div>
+                <input type="submit" value="Nuevo" class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.Factura != null)" />
+                <input type="submit" value="Refrescar" class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit" value="Guardar" class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.Factura == null)" />
+            </div>
+
+            @if (Model.Factura != null)
+            {
+                <div>
+                    <div class="form-group">
+                        <label>Id</label>
+                        <div class="col-6">
+                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Factura!.Id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>NumFactura</label>
+                        <div class="col-6">
+                            <input id="inNumFactura" class="form-control" asp-for="@Model.Factura!.NumFactura" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>FechaEmision</label>
+                        <div class="col-6">
+                            <input id="inFechaEmision" class="cts_forms form-control" asp-for="@Model.Factura!.FechaEmision" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Total</label>
+                        <div class="col-6">
+                            <input id="inTotal" class="cts_forms form-control" asp-for="@Model.Factura!.Total" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>EstadoPago</label>
+                        <div class="col-6">
+                            <input id="inEstadoPago" asp-for="@Model.Factura!.EstadoPago" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>TipoPago</label>
+                        <div class="col-6">
+                            <input id="inTipoPago" asp-for="@Model.Factura!.TipoPago" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Oferta</label>
+                        <div class="col-6">
+                            <input id="inOferta" asp-for="@Model.Factura!.Oferta" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Evento</label>
+                        <div class="col-6">
+                            <input id="inEvento" asp-for="@Model.Factura!.Evento" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.Factura != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">Mensaje</h2>
+                            <h6 align="Left">Desea borrar la Factura?</h6>
+                            <h6 align="Left">@Model.Factura!.NumFactura</h6>
+                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
+                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>NumFactura</th>
+                        <th>FechaEmision</th>
+                        <th>Total</th>
+                        <th>EstadoPago</th>
+                        <th>TipoPago</th>
+                        <th>Oferta</th>
+                        <th>Evento</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>@elemento.Id</th>
+                            <th>@elemento.NumFactura</th>
+                            <th>@elemento.FechaEmision</th>
+                            <th>@elemento.Total</th>
+                            <th>@elemento.EstadoPago</th>
+                            <th>@elemento.TipoPago</th>
+                            <th>@elemento.Oferta</th>
+                            <th>@elemento.Evento</th>
+                            <td>
+                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>

@@ -1,0 +1,112 @@
+@page
+@model AuditoriasModel
+@{
+    ViewData["Title"] = "Auditorias";
+}
+<center>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Auditorias</h3>
+            </div>
+
+            <div>
+                <input type="submit" value="Nuevo" class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.Auditoria != null)" />
+                <input type="submit" value="Refrescar" class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit" value="Guardar" class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.Auditoria == null)" />
+            </div>
+
+            @if (Model.Auditoria != null)
+            {
+                <div>
+                    <div class="form-group">
+                        <label>Id</label>
+                        <div class="col-6">
+                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Auditoria!.Id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>TipoAccion</label>
+                        <div class="col-6">
+                            <input id="inTipoAccion" class="form-control" asp-for="@Model.Auditoria!.TipoAccion" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <div class="col-6">
+                            <input id="inDescripcion" class="form-control" asp-for="@Model.Auditoria!.Descripcion" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <div class="col-6">
+                            <input id="inFecha" class="cts_forms form-control" asp-for="@Model.Auditoria!.Fecha" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Administrador</label>
+                        <div class="col-6">
+                            <input id="inAdministrador" asp-for="@Model.Auditoria!.Administrador" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.Auditoria != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">Mensaje</h2>
+                            <h6 align="Left">Desea borrar la Auditoria?</h6>
+                            <h6 align="Left">@Model.Auditoria!.TipoAccion</h6>
+                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
+                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>TipoAccion</th>
+                        <th>Descripcion</th>
+                        <th>Fecha</th>
+                        <th>Administrador</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>@elemento.Id</th>
+                            <th>@elemento.TipoAccion</th>
+                            <th>@elemento.Descripcion</th>
+                            <th>@elemento.Fecha</th>
+                            <th>@elemento.Administrador</th>
+                            <td>
+                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>

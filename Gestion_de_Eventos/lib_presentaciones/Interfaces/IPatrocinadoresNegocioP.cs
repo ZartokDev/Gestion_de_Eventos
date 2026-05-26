@@ -1,6 +1,6 @@
 ﻿using lib_eventos.entidades;
 
-namespace lib_eventos.interfaces
+namespace lib_presentaciones.Interfaces
 {
     public interface IPatrocinadoresNegocioP
     {

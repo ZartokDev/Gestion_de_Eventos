@@ -1,0 +1,128 @@
+@page
+@model GruposModel
+@{
+    ViewData["Title"] = "Grupos";
+}
+<center>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Grupos</h3>
+            </div>
+
+            <div>
+                <input type="submit" value="Nuevo" class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.Grupo != null)" />
+                <input type="submit" value="Refrescar" class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit" value="Guardar" class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.Grupo == null)" />
+            </div>
+
+            @if (Model.Grupo != null)
+            {
+                <div>
+                    <div class="form-group">
+                        <label>Id</label>
+                        <div class="col-6">
+                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Grupo!.Id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <div class="col-6">
+                            <input id="inNombre" class="form-control" asp-for="@Model.Grupo!.Nombre" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <div class="col-6">
+                            <input id="inCantidad" class="cts_forms form-control" asp-for="@Model.Grupo!.Cantidad" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>CantEventos</label>
+                        <div class="col-6">
+                            <input id="inCantEventos" class="cts_forms form-control" asp-for="@Model.Grupo!.CantEventos" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <div class="col-6">
+                            <input id="inEstado" asp-for="@Model.Grupo!.Estado" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>PersonalApoyo</label>
+                        <div class="col-6">
+                            <input id="inPersonalApoyo" asp-for="@Model.Grupo!.PersonalApoyo" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Transporte</label>
+                        <div class="col-6">
+                            <input id="inTransporte" asp-for="@Model.Grupo!.Transporte" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.Grupo != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">Mensaje</h2>
+                            <h6 align="Left">Desea borrar el Grupo?</h6>
+                            <h6 align="Left">@Model.Grupo!.Nombre</h6>
+                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
+                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>CantEventos</th>
+                        <th>Estado</th>
+                        <th>PersonalApoyo</th>
+                        <th>Transporte</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>@elemento.Id</th>
+                            <th>@elemento.Nombre</th>
+                            <th>@elemento.Cantidad</th>
+                            <th>@elemento.CantEventos</th>
+                            <th>@elemento.Estado</th>
+                            <th>@elemento.PersonalApoyo</th>
+                            <th>@elemento.Transporte</th>
+                            <td>
+                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>

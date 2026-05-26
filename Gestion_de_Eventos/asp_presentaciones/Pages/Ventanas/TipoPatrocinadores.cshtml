@@ -1,0 +1,112 @@
+@page
+@model TipoPatrocinadoresModel
+@{
+    ViewData["Title"] = "TipoPatrocinadores";
+}
+<center>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>TipoPatrocinadores</h3>
+            </div>
+
+            <div>
+                <input type="submit" value="Nuevo" class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.TipoPatrocinador != null)" />
+                <input type="submit" value="Refrescar" class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit" value="Guardar" class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.TipoPatrocinador == null)" />
+            </div>
+
+            @if (Model.TipoPatrocinador != null)
+            {
+                <div>
+                    <div class="form-group">
+                        <label>Id</label>
+                        <div class="col-6">
+                            <input id="inId" class="cts_forms form-control" asp-for="@Model.TipoPatrocinador!.Id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <div class="col-6">
+                            <input id="inNombre" class="form-control" asp-for="@Model.TipoPatrocinador!.Nombre" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <div class="col-6">
+                            <input id="inDescripcion" class="form-control" asp-for="@Model.TipoPatrocinador!.Descripcion" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>NivelAporte</label>
+                        <div class="col-6">
+                            <input id="inNivelAporte" class="form-control" asp-for="@Model.TipoPatrocinador!.NivelAporte" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Beneficios</label>
+                        <div class="col-6">
+                            <input id="inBeneficios" class="form-control" asp-for="@Model.TipoPatrocinador!.Beneficios" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.TipoPatrocinador != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">Mensaje</h2>
+                            <h6 align="Left">Desea borrar el TipoPatrocinador?</h6>
+                            <h6 align="Left">@Model.TipoPatrocinador!.Nombre</h6>
+                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
+                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>NivelAporte</th>
+                        <th>Beneficios</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>@elemento.Id</th>
+                            <th>@elemento.Nombre</th>
+                            <th>@elemento.Descripcion</th>
+                            <th>@elemento.NivelAporte</th>
+                            <th>@elemento.Beneficios</th>
+                            <td>
+                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>

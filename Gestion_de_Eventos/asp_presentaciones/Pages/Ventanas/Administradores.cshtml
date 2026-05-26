@@ -1,0 +1,112 @@
+@page
+@model AdministradoresModel
+@{
+    ViewData["Title"] = "Administradores";
+}
+<center>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Administradores</h3>
+            </div>
+
+            <div>
+                <input type="submit" value="Nuevo" class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.Administrador != null)" />
+                <input type="submit" value="Refrescar" class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit" value="Guardar" class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.Administrador == null)" />
+            </div>
+
+            @if (Model.Administrador != null)
+            {
+                <div>
+                    <div class="form-group">
+                        <label>Id</label>
+                        <div class="col-6">
+                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Administrador!.Id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <div class="col-6">
+                            <input id="inNombre" class="form-control" asp-for="@Model.Administrador!.Nombre" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono</label>
+                        <div class="col-6">
+                            <input id="inTelefono" class="form-control" asp-for="@Model.Administrador!.Telefono" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo</label>
+                        <div class="col-6">
+                            <input id="inCorreo" class="form-control" asp-for="@Model.Administrador!.Correo" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <div class="col-6">
+                            <input id="inContrasena" class="form-control" type="password" asp-for="@Model.Administrador!.Contraseña" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.Administrador != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">Mensaje</h2>
+                            <h6 align="Left">Desea borrar el Administrador?</h6>
+                            <h6 align="Left">@Model.Administrador!.Nombre</h6>
+                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
+                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>@elemento.Id</th>
+                            <th>@elemento.Nombre</th>
+                            <th>@elemento.Telefono</th>
+                            <th>@elemento.Correo</th>
+                            <th>***</th>
+                            <td>
+                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>
