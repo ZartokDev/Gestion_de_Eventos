@@ -1,0 +1,52 @@
+﻿using lib_presentaciones.Interfaces;
+using lib_eventos.entidades;
+using Newtonsoft.Json;
+
+
+namespace lib_presentaciones.Implementaciones
+{
+    public class FacturasNegocioP : IFacturasNegocioP
+    {
+        private IComunicaciones? iComunicaciones;
+
+        public List<Facturas> Consultar()
+        {
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = "https://localhost:7256/Facturas/Consultar";
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.Ejecutar(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (!respuesta.ContainsKey("Valor"))
+                return new List<Facturas>();
+
+            return JsonConvert.DeserializeObject<List<Facturas>>(
+                respuesta["Valor"].ToString()!)!;
+        }
+
+        public Facturas Guardar(Facturas entidad)
+        {
+            if (entidad.Id != 0)
+                throw new Exception("Ya se guardo");
+
+            this.iComunicaciones = new Comunicaciones();
+
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = "https://localhost:7256/Facturas/Guardar";
+            datos["Entidad"] = entidad;
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.EjecutarPost(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (!respuesta.ContainsKey("Valor"))
+                return new Facturas();
+
+            return JsonConvert.DeserializeObject<Facturas>(
+                respuesta["Valor"].ToString()!)!;
+        }
+    }
+}

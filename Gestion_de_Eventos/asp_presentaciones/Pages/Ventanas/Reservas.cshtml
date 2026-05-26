@@ -1,0 +1,112 @@
+@page
+@model ReservasModel
+@{
+    ViewData["Title"] = "Reservas";
+}
+<center>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Reservas</h3>
+            </div>
+
+            <div>
+                <input type="submit" value="Nuevo" class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.Reserva != null)" />
+                <input type="submit" value="Refrescar" class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit" value="Guardar" class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.Reserva == null)" />
+            </div>
+
+            @if (Model.Reserva != null)
+            {
+                <div>
+                    <div class="form-group">
+                        <label>Id</label>
+                        <div class="col-6">
+                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Reserva!.Id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>FechaReserva</label>
+                        <div class="col-6">
+                            <input id="inFechaReserva" class="cts_forms form-control" asp-for="@Model.Reserva!.FechaReserva" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ubicacion</label>
+                        <div class="col-6">
+                            <input id="inUbicacion" class="form-control" asp-for="@Model.Reserva!.Ubicacion" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        <div class="col-6">
+                            <input id="inObservaciones" class="form-control" asp-for="@Model.Reserva!.Observaciones" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <div class="col-6">
+                            <input id="inEstado" asp-for="@Model.Reserva!.Estado" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+            }
+
+            @if (Model.Reserva != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">Mensaje</h2>
+                            <h6 align="Left">Desea borrar la Reserva?</h6>
+                            <h6 align="Left">@Model.Reserva!.Ubicacion</h6>
+                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
+                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>FechaReserva</th>
+                        <th>Ubicacion</th>
+                        <th>Observaciones</th>
+                        <th>Estado</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <th>@elemento.Id</th>
+                            <th>@elemento.FechaReserva</th>
+                            <th>@elemento.Ubicacion</th>
+                            <th>@elemento.Observaciones</th>
+                            <th>@elemento.Estado</th>
+                            <td>
+                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>

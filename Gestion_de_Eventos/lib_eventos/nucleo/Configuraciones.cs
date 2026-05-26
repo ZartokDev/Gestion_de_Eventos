@@ -4,7 +4,7 @@
     {
         public static string? Obtener(string? clave)
         {
-            return "server=localhost;database=DBeventos;Integrated Security=True;TrustServerCertificate=true;";
+            return "server=localhost\\DEV;database=DBeventos;Integrated Security=True;TrustServerCertificate=true;";
         }
     }
 }
