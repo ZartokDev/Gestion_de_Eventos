@@ -7,6 +7,7 @@
         public String? Telefono { get; set; }
         public String? Correo { get; set; }
         public String? TipoProducto { get; set; }
+        public bool Estado { get; set; }
 
         public List<Inventarios>? Inventarios { get; set; }
 

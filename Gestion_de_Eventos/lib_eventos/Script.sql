@@ -13,14 +13,6 @@ CREATE TABLE TipoTrabajadores (
     Estado BIT NOT NULL
 );
 
-CREATE TABLE Transportes (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Vehiculo NVARCHAR(255),
-    Placa NVARCHAR(50),
-    Capacidad INT,
-    Estado BIT NOT NULL
-);
-
 CREATE TABLE PersonalApoyos (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(255),
@@ -50,7 +42,8 @@ CREATE TABLE Proveedores (
     Nombre NVARCHAR(255),
     Telefono NVARCHAR(50),
     Correo NVARCHAR(255),
-    TipoProducto NVARCHAR(255)
+    TipoProducto NVARCHAR(255),
+    Estado BIT NOT NULL
 );
 
 CREATE TABLE Horarios (
@@ -62,20 +55,13 @@ CREATE TABLE Horarios (
     Estado BIT NOT NULL
 );
 
-CREATE TABLE Lugares (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Nombre NVARCHAR(255),
-    Direccion NVARCHAR(500),
-    Capacidad INT,
-    Estado BIT NOT NULL
-);
-
 CREATE TABLE TipoPatrocinadores (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(255),
     Descripcion NVARCHAR(500),
     NivelAporte NVARCHAR(255),
-    Beneficios NVARCHAR(500)
+    Beneficios NVARCHAR(500),
+    Estado BIT NOT NULL
 );
 
 CREATE TABLE Clientes (
@@ -101,16 +87,70 @@ CREATE TABLE TipoEventos (
     Descripcion NVARCHAR(500),
     Estado BIT NOT NULL
 );
+CREATE TABLE TipoAdministradores(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(255),
+    Descripcion NVARCHAR(500),
+    NivelAcceso NVARCHAR(100),
+    Estado BIT NOT NULL
+);
+
+CREATE TABLE TipoInventarios(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(255),
+    Descripcion NVARCHAR(500),
+    Categoria NVARCHAR(255),
+    Estado BIT NOT NULL
+);
+
+CREATE TABLE TipoTransportes(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(255),
+    Capacidad INT,
+    Descripcion NVARCHAR(500),
+    Estado BIT NOT NULL
+);
+
+CREATE TABLE TipoLugares(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(255),
+    Capacidad INT,
+    Descripcion NVARCHAR(500),
+    Estado BIT NOT NULL
+);
+-- Tablas con una FK
+
+CREATE TABLE Lugares (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(255),
+    Direccion NVARCHAR(500),
+    Capacidad INT,
+    Estado BIT NOT NULL,
+    TipoLugar INT,
+    FOREIGN KEY (TipoLugar) REFERENCES TipoLugares(Id)
+);
+
+CREATE TABLE Transportes (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Vehiculo NVARCHAR(255),
+    Placa NVARCHAR(50),
+    Capacidad INT,
+    Estado BIT NOT NULL,
+    TipoTransporte INT,
+    FOREIGN KEY (TipoTransporte) REFERENCES TipoTransportes(Id)
+);
 
 CREATE TABLE Administradores (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(255),
     Telefono NVARCHAR(50),
     Correo NVARCHAR(255),
-    Contraseña NVARCHAR(255)
+    Contraseña NVARCHAR(255),
+    Estado BIT NOT NULL,
+    TipoAdministrador INT,
+    FOREIGN KEY (TipoAdministrador) REFERENCES TipoAdministradores(Id)
 );
 
--- Tablas con una FK
 CREATE TABLE Auditorias (
     Id INT PRIMARY KEY IDENTITY(1,1),
     TipoAccion NVARCHAR(255),
@@ -147,10 +187,11 @@ CREATE TABLE Inventarios (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(255),
     EstadoProducto BIT NOT NULL,
-    Tipo NVARCHAR(255),
     Cantidad INT,
     Proveedor INT,
-    FOREIGN KEY (Proveedor) REFERENCES Proveedores(Id)
+    TipoInventario INT,
+    FOREIGN KEY (Proveedor) REFERENCES Proveedores(Id),
+    FOREIGN KEY (TipoInventario) REFERENCES TipoInventarios(Id)
 );
 
 CREATE TABLE Patrocinadores (
@@ -159,6 +200,7 @@ CREATE TABLE Patrocinadores (
     Correo NVARCHAR(255),
     Telefono NVARCHAR(50),
     Direccion NVARCHAR(500),
+    Estado BIT NOT NULL,
     TipoPatrocinador INT,
     FOREIGN KEY (TipoPatrocinador) REFERENCES TipoPatrocinadores(Id)
 );
@@ -222,77 +264,198 @@ GO
 
 -- Tablas base (sin dependencias)
 
+-- =========================
+-- TipoTrabajadores
+-- =========================
 INSERT INTO TipoTrabajadores (Nombre, Salario, Descripcion, Estado)
-VALUES ('Coordinador de Eventos', 3500000, 'Encargado de coordinar todas las actividades del evento', 1);
+VALUES ('Mesero', 1200000, 'Atención de mesas y clientes', 1);
 
-INSERT INTO Transportes (Vehiculo, Placa, Capacidad, Estado)
-VALUES ('Bus Intermunicipal', 'ABC-123', 45, 1);
-
+-- =========================
+-- PersonalApoyos
+-- =========================
 INSERT INTO PersonalApoyos (Nombre, Cantidad, Horario, Estado)
-VALUES ('Equipo de Seguridad', 10, '2024-01-01', 1);
+VALUES ('Equipo A', 10, '2026-06-01', 1);
 
+-- =========================
+-- TipoPagos
+-- =========================
 INSERT INTO TipoPagos (Nombre, Descripcion, Comision, Estado)
-VALUES ('Transferencia Bancaria', 'Pago directo a cuenta bancaria de la empresa', 2, 1);
+VALUES ('Tarjeta Crédito', 'Pago con tarjeta', 5, 1);
 
+-- =========================
+-- Ofertas
+-- =========================
 INSERT INTO Ofertas (FechaLimite, Descuento, Nombre, Estado)
-VALUES ('2024-12-31', 15, 'Descuento Temporada Alta', 1);
+VALUES ('2026-12-31', 15, 'Oferta Premium', 1);
 
-INSERT INTO Proveedores (Nombre, Telefono, Correo, TipoProducto)
-VALUES ('Decoraciones El Éxito', '3001234567', 'contacto@decoraciones.com', 'Decoración y Mobiliario');
+-- =========================
+-- Proveedores
+-- =========================
+INSERT INTO Proveedores (Nombre, Telefono, Correo, TipoProducto, Estado)
+VALUES ('AudioTech', '3002223344', 'ventas@audiotech.com', 'Sonido', 1);
 
+-- =========================
+-- Horarios
+-- =========================
 INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
-VALUES ('08:00', '17:00', 'Diurno', 'Turno completo para eventos de día', 1);
+VALUES ('08:00', '12:00', 'Mañana', 'Jornada mañana', 1);
 
-INSERT INTO Lugares (Nombre, Direccion, Capacidad, Estado)
-VALUES ('Centro de Convenciones Medellín', 'Calle 100 #50-20, El Poblado', 500, 1);
+-- =========================
+-- TipoPatrocinadores
+-- =========================
+INSERT INTO TipoPatrocinadores (Nombre, Descripcion, NivelAporte, Beneficios, Estado)
+VALUES ('Oro', 'Patrocinador premium', 'Alto', 'Publicidad destacada', 1);
 
-INSERT INTO TipoPatrocinadores (Nombre, Descripcion, NivelAporte, Beneficios)
-VALUES ('Patrocinador Principal', 'Empresa con mayor aporte económico al evento', 'Platinum', 'Logo en banner principal, mención en todos los medios, stand VIP');
-
+-- =========================
+-- Clientes
+-- =========================
 INSERT INTO Clientes (Nombre, Telefono, Correo, Estado)
-VALUES ('Empresa Tecnológica S.A.S', '6044567890', 'eventos@empresatec.com', 1);
+VALUES ('Carlos Gómez', '3111111111', 'carlos@gmail.com', 1);
 
+-- =========================
+-- Reservas
+-- =========================
 INSERT INTO Reservas (FechaReserva, Ubicacion, Observaciones, Estado)
-VALUES ('2024-06-15', 'Salón Principal - Piso 2', 'Requiere montaje previo de 3 horas antes del evento', 1);
+VALUES ('2026-07-01', 'Salón Norte', 'Reserva empresarial', 1);
 
+-- =========================
+-- TipoEventos
+-- =========================
 INSERT INTO TipoEventos (Nombre, DuracionEstimada, Descripcion, Estado)
-VALUES ('Conferencia Corporativa', '8 horas', 'Evento formal para presentaciones empresariales y networking', 1);
+VALUES ('Concierto', '5 horas', 'Evento musical', 1);
 
-INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña)
-VALUES ('Carlos Martínez', '3157894561', 'carlos.martinez@eventosco.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
+-- =========================
+-- TipoAdministradores
+-- =========================
+INSERT INTO TipoAdministradores (Nombre, Descripcion, NivelAcceso, Estado)
+VALUES ('Super Admin', 'Control total sistema', 'Alto', 1);
 
--- Tablas con dependencias
+-- =========================
+-- TipoInventarios
+-- =========================
+INSERT INTO TipoInventarios (Nombre, Descripcion, Categoria, Estado)
+VALUES ('Sonido', 'Equipos de sonido', 'Audio', 1);
 
+-- =========================
+-- TipoTransportes
+-- =========================
+INSERT INTO TipoTransportes (Nombre, Capacidad, Descripcion, Estado)
+VALUES ('Bus', 40, 'Bus de pasajeros', 1);
+
+-- =========================
+-- TipoLugares
+-- =========================
+INSERT INTO TipoLugares (Nombre, Capacidad, Descripcion, Estado)
+VALUES ('Salón', 200, 'Salón cerrado', 1);
+
+-- =========================
+-- Lugares
+-- =========================
+INSERT INTO Lugares (Nombre, Direccion, Capacidad, Estado, TipoLugar)
+VALUES ('Centro Eventos Medellín', 'Calle 10 #20-30', 500, 1, 1);
+
+-- =========================
+-- Transportes
+-- =========================
+INSERT INTO Transportes (Vehiculo, Placa, Capacidad, Estado, TipoTransporte)
+VALUES ('Bus Mercedes', 'ABC123', 40, 1, 1);
+
+-- =========================
+-- Administradores
+-- =========================
+INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, TipoAdministrador)
+VALUES ('Admin Principal', '3005556677', 'admin@eventos.com', '123456', 1, 1);
+
+-- =========================
+-- Auditorias
+-- =========================
+INSERT INTO Auditorias (TipoAccion, Descripcion, Fecha, Administrador)
+VALUES ('INSERT', 'Creación de evento', GETDATE(), 1);
+
+-- =========================
+-- Trabajadores
+-- =========================
 INSERT INTO Trabajadores (Nombre, Telefono, Correo, FechaIngreso, Estado, TipoTrabajador)
-VALUES ('Ana Gómez', '3209876543', 'ana.gomez@eventosco.com', '2023-03-15', 1, 1);
+VALUES ('Juan Pérez', '3201112233', 'juan@correo.com', '2025-01-10', 1, 1);
 
+-- =========================
+-- Grupos
+-- =========================
 INSERT INTO Grupos (Nombre, Cantidad, CantEventos, Estado, PersonalApoyo, Transporte)
-VALUES ('Grupo Logística Norte', 12, 5, 1, 1, 1);
+VALUES ('Grupo Logístico A', 15, 3, 1, 1, 1);
 
-INSERT INTO Inventarios (Nombre, EstadoProducto, Tipo, Cantidad, Proveedor)
-VALUES ('Sillas Plásticas Blancas', 1, 'Mobiliario', 200, 1);
+-- =========================
+-- Inventarios
+-- =========================
+INSERT INTO Inventarios (Nombre, EstadoProducto, Cantidad, Proveedor, TipoInventario)
+VALUES ('Luces LED', 1, 20, 1, 1);
 
-INSERT INTO Patrocinadores (Nombre, Correo, Telefono, Direccion, TipoPatrocinador)
-VALUES ('Bancolombia', 'patrocinios@bancolombia.com', '6044444444', 'Carrera 48 #26-85, Medellín', 1);
+-- =========================
+-- Patrocinadores
+-- =========================
+INSERT INTO Patrocinadores (Nombre, Correo, Telefono, Direccion, Estado, TipoPatrocinador)
+VALUES ('Coca Cola', 'contacto@cocacola.com', '3004445566', 'Bogotá', 1, 1);
 
+-- =========================
+-- GruposTrabajadores
+-- =========================
 INSERT INTO GruposTrabajadores (Descripcion, Estado, Trabajador, Grupo)
-VALUES ('Ana es la líder del grupo de logística para eventos corporativos', 1, 1, 1);
+VALUES ('Equipo principal del evento', 1, 1, 1);
 
--- Tabla central
-
-INSERT INTO Eventos (Nombre, Fecha, Descripcion, CantPersonas, Estado,
-    GrupoTrabajador, Inventario, Horario, Administrador,
-    TipoEvento, Patrocinador, Lugar, Reserva, Cliente)
+-- =========================
+-- Eventos
+-- =========================
+INSERT INTO Eventos (
+    Nombre,
+    Fecha,
+    Descripcion,
+    CantPersonas,
+    Estado,
+    GrupoTrabajador,
+    Inventario,
+    Horario,
+    Administrador,
+    TipoEvento,
+    Patrocinador,
+    Lugar,
+    Reserva,
+    Cliente
+)
 VALUES (
-    'Cumbre de Innovación Tecnológica 2024',
-    '2024-09-20',
-    'Conferencia empresarial con speakers internacionales y zona de networking',
-    300, 1,
-    1, 1, 1, 1,
-    1, 1, 1, 1, 1
+    'Festival Música',
+    '2026-07-20',
+    'Evento masivo musical',
+    300,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
 );
 
--- Factura del evento
-
-INSERT INTO Facturas (NumFactura, FechaEmision, Total, EstadoPago, TipoPago, Oferta, Evento)
-VALUES ('FAC-2024-0001', '2024-09-01', 12500000, 1, 1, 1, 1);
+-- =========================
+-- Facturas
+-- =========================
+INSERT INTO Facturas (
+    NumFactura,
+    FechaEmision,
+    Total,
+    EstadoPago,
+    TipoPago,
+    Oferta,
+    Evento
+)
+VALUES (
+    'FAC-001',
+    '2026-05-26',
+    5000000,
+    1,
+    1,
+    1,
+    1
+);

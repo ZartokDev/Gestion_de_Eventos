@@ -9,7 +9,7 @@ namespace lib_eventos.entidades
         public String? Correo { get; set; }
         public String? Telefono { get; set; }
         public String? Direccion { get; set; }
-
+        public bool Estado { get; set; }
 
         public int TipoPatrocinador { get; set; }
         public List<Eventos>? Eventos { get; set; }

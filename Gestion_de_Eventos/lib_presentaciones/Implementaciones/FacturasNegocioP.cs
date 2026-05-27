@@ -48,5 +48,51 @@ namespace lib_presentaciones.Implementaciones
             return JsonConvert.DeserializeObject<Facturas>(
                 respuesta["Valor"].ToString()!)!;
         }
+
+        public Facturas Modificar(Facturas entidad)
+        {
+            if (entidad.Id == 0)
+                throw new Exception("El Id es necesario para modificar");
+
+            this.iComunicaciones = new Comunicaciones();
+
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = "https://localhost:7256/Facturas/Modificar";
+            datos["Entidad"] = entidad;
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.EjecutarPatch(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (respuesta == null || !respuesta.ContainsKey("Valor"))
+                return new Facturas();
+
+            return JsonConvert.DeserializeObject<Facturas>(
+                respuesta["Valor"].ToString()!)!;
+        }
+
+        public Facturas Eliminar(Facturas entidad)
+        {
+            if (entidad.Id == 0)
+                throw new Exception("El Id es necesario para modificar");
+
+            this.iComunicaciones = new Comunicaciones();
+
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = "https://localhost:7256/Facturas/Eliminar";
+            datos["Entidad"] = entidad;
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.EjecutarDelete(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (respuesta == null || !respuesta.ContainsKey("Valor"))
+                return new Facturas();
+
+            return JsonConvert.DeserializeObject<Facturas>(
+                respuesta["Valor"].ToString()!)!;
+        }
     }
 }

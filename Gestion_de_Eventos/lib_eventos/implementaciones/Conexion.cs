@@ -36,5 +36,9 @@ namespace lib_eventos.implementaciones
         public DbSet<Patrocinadores>? Patrocinadores { get; set; }
         public DbSet<GruposTrabajadores>? GruposTrabajadores { get; set; }
         public DbSet<Eventos>? Eventos { get; set; }
+        public DbSet<TipoAdministradores>? TipoAdministradores { get; set; }
+        public DbSet<TipoLugares>? TipoLugares { get; set; }
+        public DbSet<TipoInventarios>? TipoInventarios { get; set; }
+        public DbSet<TipoTransportes>? TipoTransportes { get; set; }
     }
 }

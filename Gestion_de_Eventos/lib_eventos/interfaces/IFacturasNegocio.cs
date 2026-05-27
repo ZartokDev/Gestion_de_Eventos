@@ -6,5 +6,7 @@ namespace lib_eventos.interfaces
     {
         List<Facturas> Consultar();
         Facturas Guardar(Facturas entidad);
+        Facturas Modificar(Facturas entidad);
+        Facturas Eliminar(Facturas entidad);
     }
 }

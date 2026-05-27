@@ -31,5 +31,22 @@ namespace asp_servicios.Controllers
                 throw new Exception("No implementado");
             return this.IFacturasNegocio.Guardar(entidad);
         }
+
+        [HttpPatch]
+        public Facturas Modificar(Facturas entidad)
+        {
+            if (this.IFacturasNegocio == null)
+                throw new Exception("No implementado");
+            return this.IFacturasNegocio.Modificar(entidad);
+        }
+        [HttpDelete]
+
+        public Facturas Eliminar(Facturas entidad)
+        {
+            if (this.IFacturasNegocio == null)
+                throw new Exception("No implementado");
+            return this.IFacturasNegocio.Eliminar(entidad);
+        }
+
     }
 }

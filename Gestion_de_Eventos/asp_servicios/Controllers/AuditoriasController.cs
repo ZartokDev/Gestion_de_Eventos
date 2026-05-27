@@ -23,5 +23,29 @@ namespace asp_servicios.Controllers
                 throw new Exception("No implementado");
             return this.IAuditoriasNegocio!.Consultar();
         }
+
+        [HttpPost]
+        public Auditorias Guardar(Auditorias entidad)
+        {
+            if (this.IAuditoriasNegocio == null)
+                throw new Exception("No implementado");
+            return this.IAuditoriasNegocio.Guardar(entidad);
+        }
+        [HttpPatch]
+        public Auditorias Modificar(Auditorias entidad)
+        {
+            if (this.IAuditoriasNegocio == null)
+                throw new Exception("No implementado");
+            return this.IAuditoriasNegocio.Modificar(entidad);
+        }
+        [HttpDelete]
+
+        public Auditorias Eliminar(Auditorias entidad)
+        {
+            if (this.IAuditoriasNegocio == null)
+                throw new Exception("No implementado");
+            return this.IAuditoriasNegocio.Eliminar(entidad);
+        }
+
     }
 }

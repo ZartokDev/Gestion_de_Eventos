@@ -1,4 +1,4 @@
-﻿namespace lib_eventos.entidades
+﻿ namespace lib_eventos.entidades
 {
     public class Clientes
     {

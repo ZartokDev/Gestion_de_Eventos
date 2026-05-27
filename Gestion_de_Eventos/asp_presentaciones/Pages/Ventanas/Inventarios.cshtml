@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label>Tipo</label>
                         <div class="col-6">
-                            <input id="inTipo" class="form-control" asp-for="@Model.Inventario!.Tipo" />
+                            <input id="inTipo" class="form-control" asp-for="@Model.Inventario!.TipoInventario" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,7 +102,7 @@
                             <th>@elemento.Id</th>
                             <th>@elemento.Nombre</th>
                             <th>@elemento.EstadoProducto</th>
-                            <th>@elemento.Tipo</th>
+                            <th>@elemento.TipoInventario</th>
                             <th>@elemento.Cantidad</th>
                             <th>@elemento.Proveedor</th>
                             <td>

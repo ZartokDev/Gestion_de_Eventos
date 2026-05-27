@@ -1,6 +1,7 @@
 ﻿using lib_eventos.entidades;
 using lib_eventos.interfaces;
 using lib_eventos.nucleo;
+using Microsoft.EntityFrameworkCore;
 
 namespace lib_eventos.implementaciones
 {
@@ -49,6 +50,58 @@ namespace lib_eventos.implementaciones
 
             this.iConexion.Auditorias!.Add(auditoria!);
             this.iConexion.SaveChanges();
+            return entidad;
+        }
+
+        public Facturas Modificar(Facturas entidad)
+        {
+            if (entidad.Id == 0)
+                throw new Exception("No se ha guardado ");
+
+            this.iConexion = new Conexion();
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
+
+            this.iConexion.Facturas.Attach(entidad);
+            var entry = this.iConexion!.Entry<Facturas>(entidad!);
+            entry.State = EntityState.Modified;
+            this.iConexion!.SaveChanges();
+
+            var auditoria = new Auditorias()
+            {
+                TipoAccion = "Modificar Cliente",
+                Fecha = DateTime.Now,
+                Administrador = null,
+                Descripcion = $"Se modifico una Factura con id: {entidad.Id} y numero de factura {entidad.NumFactura}"
+            };
+
+            this.iConexion.Auditorias!.Add(auditoria!);
+            this.iConexion.SaveChanges();
+
+            return entidad;
+        }
+
+        public Facturas Eliminar(Facturas entidad)
+        {
+            if (entidad.Id == 0)
+                throw new Exception("No se ha eliminado");
+
+            this.iConexion = new Conexion();
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
+
+            this.iConexion.Facturas!.Remove(entidad);
+            this.iConexion.SaveChanges();
+
+            var auditoria = new Auditorias()
+            {
+                TipoAccion = "Eliminar Cliente",
+                Fecha = DateTime.Now,
+                Administrador = null,
+                Descripcion = $"Se elimino una Factura con id: {entidad.Id} y numero de factura {entidad.NumFactura}"
+            };
+
+            this.iConexion.Auditorias!.Add(auditoria!);
+            this.iConexion.SaveChanges();
+
             return entidad;
         }
     }
