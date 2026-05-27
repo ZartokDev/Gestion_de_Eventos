@@ -1,364 +1,281 @@
 ﻿@page
 @model EventosModel
+
 @{
-    ViewData["Title"] = "Eventos";
+    ViewData["Title"] = "Gestión de Eventos";
 }
-<center>
-    <div>
-        <form method="POST"
-            enctype="multipart/form-data">
-            @Html.AntiForgeryToken()
-           
-            <div align="left">
-                <h3>Eventos</h3>
-            </div>
 
+<div class="container-fluid py-4">
+    <form method="POST" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <input type="submit" 
-                        value="Nuevo"
-                       class="btn btn-secondary"
-                    asp-page-handler="BtNuevo"
-                    disabled="@(Model.Evento != null)"/>
-                <input type="submit" 
-                        value="Refrescar"
-                       class="btn btn-secondary"
-                       asp-page-handler="BtRefrescar" />
-                <input type="submit"
-                       value="Guardar"
-                       class="btn btn-secondary"
-                       asp-page-handler="BtGuardar" 
-                       disabled="@(Model.Evento == null)" />
-              
+                <h2 class="text-secondary fw-bold mb-0">🎉 Panel de Gestión de Eventos</h2>
+                <p class="text-muted small">Crea, modifica y realiza el seguimiento de tus eventos institucionales y sociales.</p>
             </div>
+            <div class="btn-group gap-2 shadow-sm">
+                <button type="submit" asp-page-handler="BtNuevo" class="btn btn-primary px-4 rounded-pill" disabled="@(Model.Evento != null)">
+                    ➕ Nuevo Evento
+                </button>
+                <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-secondary px-3 rounded-pill">
+                    🔄 Sincronizar
+                </button>
+            </div>
+        </div>
 
-            @if (Model.Evento != null){
-                <div>
-                    <div class="form-group">
-                        <label>
-                            Id
-                        </label>
+        @if (Model.Evento != null)
+        {
+            <div class="card card-crud mb-5">
+                <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-primary fw-bold">
+                        @(Model.Evento.Id == 0 ? "✨ Registrar Nuevo Evento" : "📝 Modificar Evento ID: " + Model.Evento.Id)
+                    </h5>
+                    <button type="submit" asp-page-handler="BtGuardar" class="btn btn-success px-4 rounded-pill">
+                        💾 Guardar Cambios
+                    </button>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <input type="hidden" asp-for="@Model.Evento!.Id" />
 
-                        <div class="col-6">
-                            <input id="inId"
-                                   class="cts_forms form-control"
-                                   asp-for="@Model.Evento!.Id">
-                            </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            Nombre
-                        </label>
-
-                        <div class="col-6">
-                            <input id="inNombre"
-                                   class="form-control"
-                                   asp-for="@Model.Evento!.Nombre">
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Nombre del Evento</label>
+                            <input class="form-control" placeholder="Ej. Boda Corporativa" asp-for="@Model.Evento!.Nombre" required />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Fecha
-                        </label>
 
-                        <div class="col-6">
-                            <input id="inFecha"
-                                   class="cts_forms form-control"
-                                   asp-for="@Model.Evento!.Fecha">
-                            </div>
-                    </div>
-                    <div class="form-group">
-                            <label>
-                            Descripcion
-                            </label>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Fecha de Ejecución</label>
+                            <input type="date" class="form-control" asp-for="@Model.Evento!.Fecha" required />
+                        </div>
 
-                            <div class="col-6">
-                            <input id="inDescripcion"
-                                       class="form-control"
-                                       asp-for="@Model.Evento!.Descripcion">
-                                </div>
-                    </div>
-                    <div class="form-group">
-                                <label>
-                            CantPersonas
-                                </label>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Aforo (Cant. Personas)</label>
+                            <input type="number" class="form-control" placeholder="0" asp-for="@Model.Evento!.CantPersonas" required />
+                        </div>
 
-                                <div class="col-6">
-                                    <input id="inCantPersonas"
-                                           class="cts_forms form-control"
-                                   asp-for="@Model.Evento!.CantPersonas">
-                                    </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>
-                            Estado
-                        </label>
+                        <div class="col-md-12">
+                            <label class="form-label fw-semibold">Descripción del Evento</label>
+                            <textarea class="form-control" rows="2" placeholder="Detalles de logística..." asp-for="@Model.Evento!.Descripcion"></textarea>
+                        </div>
 
-                        <div class="col-6">
-                         <input id="inEstado"
-                          asp-for="@Model.Evento!.Estado">
-                          </div>
-                    </div>
-                   
-                    <div class="form-group">
-                        <label>
-                            GrupoTrabajador
-                        </label>
+                        <div class="col-12 mt-4">
+                            <h6 class="text-uppercase text-muted tracking-wider small border-bottom pb-2">Asignación de Tablas Relacionadas</h6>
+                        </div>
 
-                        <div class="col-6">
-                         <input id="inGrupoTrabajador"
-                          asp-for="@Model.Evento!.GrupoTrabajador">
-                          </div>
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Inventario
-                        </label>
-
-                        <div class="col-6">
-                         <input id="inInventario"
-                          asp-for="@Model.Evento!.Inventario">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Horario
-                        </label>
-
-                        <div class="col-6">
-                         <input id="inHorario"
-                          asp-for="@Model.Evento!.Horario">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Administrador
-                        </label>
-
-                        <div class="col-6">
-                         <input id="inAdministrador"
-                          asp-for="@Model.Evento!.Administrador">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            TipoEvento
-                        </label>
-
-                        <div class="col-6">
-                         <input id="inTipoEvento"
-                          asp-for="@Model.Evento!.TipoEvento">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Patrocinador
-                        </label>
-
-                        <div class="col-6">
-                         <input id="inPatrocinador"
-                          asp-for="@Model.Evento!.Patrocinador">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
+                        <div class="col-md-4">
+                        <label class="form-label fw-semibold text-indigo">
                             Lugar
                         </label>
-
-                        <div class="col-6">
-                         <input id="inLugar"
-                          asp-for="@Model.Evento!.Lugar">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Reserva
-                        </label>
-
-                        <div class="col-6">
-                            <input id="inReserva"
-                          asp-for="@Model.Evento!.Reserva">
-                          </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Cliente
-                        </label>
-
-                        <div class="col-6">
-                            <input id="inCliente"
-                          asp-for="@Model.Evento!.Cliente">
-                          </div>
-                    </div>
-
-                
-            }
-
-
-            
-            @if (ViewData.ContainsKey("Mensaje"))
-            {       
-                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
-            }
-
-            @if (Model.Evento != null && Model.Borrando)
-            {
-                <div class='popup'>
-                    <div class='pp_ms_inner'>
-                        <div style='width:95%'>
-                            <h2 align="left">
-                                Mensaje
-                            </h2>
-
-                            <h6 align="Left" >
-                                Desea borrar el Evento?
-                            </h6>
-                            <h6 align="Left" >
-                                @Model.Evento!.Nombre
-                            </h6>
-
-                            <input type="submit"
-                                   value="Cerrar"
-                                   asp-page-handler="BtCerrar"
-                                   class="btn btn-secondary" />
-                            <input type="submit"
-                                   value="Borrar"
-                                   asp-page-handler="BtBorrar"
-                                   class="btn btn-secondary" />
-
-
+                            @if (Model.ListaLugares != null)
+                            {
+                                    <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Lugar"
+                                            asp-items="@(new SelectList(Model.ListaLugares, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>  
+                                </select>
+                            }
                         </div>
+                       
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Cliente
+                            </label>
+                            @if (Model.ListaClientes != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Cliente"
+                                        asp-items="@(new SelectList(Model.ListaClientes, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Horario
+                            </label>
+                            @if (Model.ListaHorarios != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Horario"
+                                        asp-items="@(new SelectList(Model.ListaHorarios, "Id", "HoraInicio","HoraFin"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Tipo Evento
+                            </label>
+                            @if (Model.ListaTipoEventos != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.TipoEvento"
+                                        asp-items="@(new SelectList(Model.ListaTipoEventos, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Inventario
+                            </label>
+                            @if (Model.ListaInventarios != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Inventario"
+                                        asp-items="@(new SelectList(Model.ListaInventarios, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Grupo Trabajador
+                            </label>
+                            @if (Model.ListaGrupos != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Grupo"
+                                        asp-items="@(new SelectList(Model.ListaGrupos, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Patrocinador
+                            </label>
+                            @if (Model.ListaPatrocinadores != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Patrocinador"
+                                        asp-items="@(new SelectList(Model.ListaPatrocinadores, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Administrador
+                            </label>
+                            @if (Model.ListaAdministradores != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Administrador"
+                                        asp-items="@(new SelectList(Model.ListaAdministradores, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-indigo">
+                                Reserva
+                            </label>
+                            @if (Model.ListaReservas != null)
+                            {
+                                <select class="form-select border-primary"
+                                        asp-for="@Model.Evento!.Reserva"
+                                        asp-items="@(new SelectList(Model.ListaReservas, "Id", "Ubicacion"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div class="col-md-4 d-flex align-items-center mt-4">
+                            <div class="form-check form-switch ps-5">
+                                <input class="form-check-input scale-125" type="checkbox" id="estadoSwitch" asp-for="@Model.Evento!.Estado">
+                                <label class="form-check-label fw-semibold ms-2" for="estadoSwitch">Evento Activo / Habilitado</label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-
-            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
-            {
-                <table class="tb_data table table-striped table-bordered table-hover">
-                    <tr> 
-                        <th>
-                            Id
-                        </th>
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                        <th>
-                            Descripcion
-                        </th>
-                        <th>
-                            CantPersonas
-                        </th>
-                        <th>
-                            Estado
-                        </th>
-                        <th>
-                            Grupo Trabajador
-                        </th>
-                        <th>
-                            Inventario
-                        </th>
-                        <th>
-                            Horario
-                        </th>
-                        <th>
-                            Administrador
-                        </th>
-                        <th>
-                            Tipo Evento
-                        </th>
-                        <th>
-                            Patrocinador
-                        </th>
-                        <th>
-                            Lugar    
-                        </th>
-                        <th>
-                            Reserva
-                        </th>
-                        <th>
-                            Cliente
-                        </th>
-                    </tr>
-                    @if (Model != null && Model.Lista != null)
-                    {
-                        @foreach (var elemento in Model.Lista)
-                        {
+        @if (Model.Lista != null && Model.Lista.Count > 0)
+        {
+            <div class="card card-crud">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 text-dark fw-bold">📋 Registro General de Eventos</h5>
+                </div>
+                <div class="table-responsive table-responsive-custom">
+                    <table class="table table-custom table-hover mb-0">
+                        <thead>
                             <tr>
-                            
-                                <th>
-                                    @elemento.Id
-                                </th>
-                                <th>
-                                    @elemento.Nombre
-                                </th>
-                                <th>
-                                    @elemento.Fecha
-                                </th>
-                                <th>
-                                    @elemento.Descripcion
-                                </th>
-                                <th>
-                                    @elemento.CantPersonas
-                                </th>
-                                <th>
-                                    @elemento.Estado
-                                </th>
-                                <th>
-                                    @elemento.GrupoTrabajador
-                                </th>
-                                <th>
-                                    @elemento.Inventario
-                                </th>
-                                <th>
-                                    @elemento.Horario
-                                </th>
-                                <th>
-                                    @elemento.Administrador
-                                </th>
-                                <th>
-                                    @elemento.TipoEvento
-                                </th>
-                                <th>
-                                    @elemento.Patrocinador
-                                </th>
-                                <th>
-                                    @elemento.Lugar
-                                </th>
-                                <th>
-                                    @elemento.Reserva
-                                </th>
-                                <th>
-                                    @elemento.Cliente
-                                </th>
-
-
-                                <td>
-                                    <input type="submit"
-                                        value="Modicar"
-                                        asp-page-handler="BtModificar"
-                                        class="btn btn-secondary"
-                                        asp-route-data="@elemento.Id" />
-                                    <input type="submit"
-                                        value="Borrar"
-                                        asp-page-handler="BtBorrarVal"
-                                        class="btn btn-secondary"
-                                        asp-route-data="@elemento.Id" />
-                                </td>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Aforo</th>
+                                <th>Estado</th>
+                                <th class="text-center">Operaciones</th>
                             </tr>
-                        }
-                    }
-                </table>
-                    
-            }
+                        </thead>
+                        <tbody>
+                            @foreach (var elemento in Model.Lista)
+                            {
+                                <tr>
+                                    <td><strong class="text-muted">#@elemento.Id</strong></td>
+                                    <td class="fw-bold text-dark">@elemento.Nombre</td>
+                                    <td>@elemento.Fecha.ToString("dd/MM/yyyy")</td>
+                                    <td class="text-truncate" style="max-width: 200px;">@elemento.Descripcion</td>
+                                    <td><span class="badge bg-light text-dark border px-2 py-1">👥 @elemento.CantPersonas</span></td>
+                                    <td>
+                                        @if (elemento.Estado)
+                                        {
+                                            <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill">Inactivo</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            <button type="submit" asp-page-handler="BtModificar" asp-route-data="@elemento.Id" class="btn btn-warning text-white">
+                                                ✏️ Editar
+                                            </button>
+                                            <button type="submit" asp-page-handler="BtBorrarVal" asp-route-data="@elemento.Id" class="btn btn-danger">
+                                                🗑️ Borrar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
 
+        @if (ViewData.ContainsKey("Mensaje"))
+        {
+            @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+        }
 
+        @if (Model.Evento != null && Model.Borrando)
+        {
+            <div class="popup-overlay">
+                <div class="popup-card text-center">
+                    <div class="text-danger mb-3" style="font-size: 3rem;">⚠️</div>
+                    <h4 class="fw-bold text-dark mb-2">¿Confirmar Eliminación?</h4>
+                    <p class="text-muted mb-4">Está a punto de borrar permanentemente el evento: <br><strong class="text-dark">"@Model.Evento!.Nombre"</strong></p>
 
-        </form>
-    </div>
-</center>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="submit" asp-page-handler="BtCerrar" class="btn btn-light px-4 rounded-pill border">Cancelar</button>
+                        <button type="submit" asp-page-handler="BtBorrar" class="btn btn-danger px-4 rounded-pill">Sí, Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+</div>
