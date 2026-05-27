@@ -23,5 +23,29 @@ namespace asp_servicios.Controllers
                 throw new Exception("No implementado");
             return this.ITipoTrabajadoresNegocio!.Consultar();
         }
+
+        [HttpPost]
+        public TipoTrabajadores Guardar(TipoTrabajadores entidad)
+        {
+            if (this.ITipoTrabajadoresNegocio == null)
+                throw new Exception("No implementado");
+            return this.ITipoTrabajadoresNegocio.Guardar(entidad);
+        }
+        [HttpPatch]
+        public TipoTrabajadores Modificar(TipoTrabajadores entidad)
+        {
+            if (this.ITipoTrabajadoresNegocio == null)
+                throw new Exception("No implementado");
+            return this.ITipoTrabajadoresNegocio.Modificar(entidad);
+        }
+        [HttpDelete]
+
+        public TipoTrabajadores Eliminar(TipoTrabajadores entidad)
+        {
+            if (this.ITipoTrabajadoresNegocio == null)
+                throw new Exception("No implementado");
+            return this.ITipoTrabajadoresNegocio.Eliminar(entidad);
+        }
+
     }
 }

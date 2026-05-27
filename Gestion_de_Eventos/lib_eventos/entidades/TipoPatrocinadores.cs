@@ -7,7 +7,7 @@
         public String? Descripcion { get; set; }
         public String? NivelAporte { get; set; }
         public String? Beneficios { get; set; }
-
+        public bool Estado { get; set; }
         public List<Patrocinadores>? Patrocinadores { get; set; }
     }
 }

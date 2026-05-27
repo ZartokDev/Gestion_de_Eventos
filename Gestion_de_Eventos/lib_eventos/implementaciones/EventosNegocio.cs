@@ -61,7 +61,7 @@ namespace lib_eventos.implementaciones
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
-            this.iConexion.Eventos.Attach(entidad);
+             this.iConexion.Eventos.Attach(entidad);
             var entry = this.iConexion!.Entry<Eventos>(entidad!);
             entry.State = EntityState.Modified;
             this.iConexion!.SaveChanges();

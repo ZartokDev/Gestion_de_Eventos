@@ -34,13 +34,14 @@ namespace pruebas_unitarias.conexiones
         private void Guardar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad = new Lugares()
             {
                 Nombre = "UT-" + DateTime.Now.ToString(),
                 Direccion = "Calle 100 #50-20, El Poblado",
                 Capacidad = 500,
+                TipoLugar = 1,
                 Estado = true,
             };
             this.iConexion.Lugares!.Add(this.entidad!);
@@ -53,7 +54,7 @@ namespace pruebas_unitarias.conexiones
         private void Modificar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad!.Estado = false;
 
@@ -69,7 +70,7 @@ namespace pruebas_unitarias.conexiones
         private void Borrar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.iConexion.Lugares!.Remove(this.entidad!);
             this.iConexion.SaveChanges();

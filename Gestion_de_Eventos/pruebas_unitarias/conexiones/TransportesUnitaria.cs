@@ -42,6 +42,7 @@ namespace pruebas_unitarias.conexiones
                 Placa = "ABC-123",
                 Capacidad = 45,
                 Estado = true,
+                TipoTransporte = 1,
             };
             this.iConexion.Transportes!.Add(this.entidad!);
             this.iConexion.SaveChanges();

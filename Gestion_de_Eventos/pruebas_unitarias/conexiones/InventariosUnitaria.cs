@@ -34,13 +34,13 @@ namespace pruebas_unitarias.conexiones
         private void Guardar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad = new Inventarios()
             {
                 Nombre = "UT-" + DateTime.Now.ToString(),
                 EstadoProducto = true,
-                Tipo = "Mobiliario",
+                TipoInventario = 1,
                 Cantidad = 200,
                 Proveedor = 1,
             };
@@ -55,7 +55,7 @@ namespace pruebas_unitarias.conexiones
         private void Modificar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad!.EstadoProducto = false;
 
@@ -71,7 +71,7 @@ namespace pruebas_unitarias.conexiones
         private void Borrar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.iConexion.Inventarios!.Remove(this.entidad!);
             this.iConexion.SaveChanges();

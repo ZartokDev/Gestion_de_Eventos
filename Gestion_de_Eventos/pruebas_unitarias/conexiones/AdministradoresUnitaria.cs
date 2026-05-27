@@ -34,7 +34,7 @@ namespace pruebas_unitarias.conexiones
         private void Guardar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad = new Administradores()
             {
@@ -42,6 +42,8 @@ namespace pruebas_unitarias.conexiones
                 Telefono = "3157894561",
                 Correo = "carlos.martinez@eventosco.com",
                 Contraseña = "Admin123*",
+                Estado = true,
+                TipoAdministrador = 1
             };
             this.iConexion.Administradores!.Add(this.entidad!);
             this.iConexion.SaveChanges();
@@ -54,7 +56,7 @@ namespace pruebas_unitarias.conexiones
         private void Modificar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad!.Telefono = "0000000000";
 
@@ -70,7 +72,7 @@ namespace pruebas_unitarias.conexiones
         private void Borrar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.iConexion.Administradores!.Remove(this.entidad!);
             this.iConexion.SaveChanges();

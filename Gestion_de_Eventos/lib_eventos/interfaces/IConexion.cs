@@ -29,6 +29,11 @@ namespace lib_eventos.interfaces
         DbSet<Patrocinadores>? Patrocinadores { get; set; }
         DbSet<GruposTrabajadores>? GruposTrabajadores { get; set; }
         DbSet<Eventos>? Eventos { get; set; }
+        DbSet<TipoAdministradores>? TipoAdministradores { get; set; }
+        DbSet<TipoLugares>? TipoLugares { get; set; }
+        DbSet<TipoInventarios>? TipoInventarios { get; set; }
+        DbSet<TipoTransportes>? TipoTransportes{ get; set; }
+
 
         EntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();

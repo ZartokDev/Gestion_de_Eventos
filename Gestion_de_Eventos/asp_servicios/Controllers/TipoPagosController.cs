@@ -24,5 +24,28 @@ namespace asp_servicios.Controllers
             return this.ITipoPagosNegocio!.Consultar();
         }
 
+        [HttpPost]
+        public TipoPagos Guardar(TipoPagos entidad)
+        {
+            if (this.ITipoPagosNegocio == null)
+                throw new Exception("No implementado");
+            return this.ITipoPagosNegocio.Guardar(entidad);
+        }
+        [HttpPatch]
+        public TipoPagos Modificar(TipoPagos entidad)
+        {
+            if (this.ITipoPagosNegocio == null)
+                throw new Exception("No implementado");
+            return this.ITipoPagosNegocio.Modificar(entidad);
+        }
+        [HttpDelete]
+
+        public TipoPagos Eliminar(TipoPagos entidad)
+        {
+            if (this.ITipoPagosNegocio == null)
+                throw new Exception("No implementado");
+            return this.ITipoPagosNegocio.Eliminar(entidad);
+        }
+
     }
 }

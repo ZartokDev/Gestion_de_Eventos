@@ -37,7 +37,7 @@ namespace pruebas_unitarias.conexiones
         private void Guardar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad = new PersonalApoyos()
             {
@@ -57,7 +57,7 @@ namespace pruebas_unitarias.conexiones
         private void Modificar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad!.Estado = false;
 
@@ -73,7 +73,7 @@ namespace pruebas_unitarias.conexiones
         private void Borrar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.iConexion.PersonalApoyos!.Remove(this.entidad!);
             this.iConexion.SaveChanges();

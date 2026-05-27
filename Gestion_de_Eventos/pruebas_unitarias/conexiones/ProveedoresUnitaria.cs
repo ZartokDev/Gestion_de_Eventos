@@ -37,7 +37,7 @@ namespace pruebas_unitarias.conexiones
         private void Guardar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad = new Proveedores()
             {
@@ -45,6 +45,7 @@ namespace pruebas_unitarias.conexiones
                 Telefono = "3001234567",
                 Correo = "contacto@decoraciones.com",
                 TipoProducto = "Decoración y Mobiliario",
+                Estado = true
             };
             this.iConexion.Proveedores!.Add(this.entidad!);
             this.iConexion.SaveChanges();
@@ -57,7 +58,7 @@ namespace pruebas_unitarias.conexiones
         private void Modificar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.entidad!.Telefono = "000000000";
 
@@ -73,7 +74,7 @@ namespace pruebas_unitarias.conexiones
         private void Borrar()
         {
             this.iConexion = new Conexion();
-            this.iConexion.StringConexion = Configuraciones.Obtener("string_conexion");
+            this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
             this.iConexion.Proveedores!.Remove(this.entidad!);
             this.iConexion.SaveChanges();
