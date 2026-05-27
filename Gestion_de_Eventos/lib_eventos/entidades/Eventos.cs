@@ -7,13 +7,13 @@ namespace lib_eventos.entidades
     {
         public int Id { get; set; }
         public String? Nombre { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public String? Descripcion { get; set; }
         public int CantPersonas { get; set; }
         public bool Estado { get; set; }
 
 
-        public int GrupoTrabajador { get; set; }
+        public int Grupo { get; set; }
         public int Inventario { get; set; }
         public int Horario { get; set; }
         public int Administrador { get; set; }
@@ -24,15 +24,15 @@ namespace lib_eventos.entidades
         public int Cliente { get; set; }
 
         public List<Facturas>? Facturas { get; set; }
-        [ForeignKey("GrupoTrabajador")] [JsonIgnore]public GruposTrabajadores? _GrupoTrabajador { get; set; }
-        [ForeignKey("Inventario")][JsonIgnore] public Inventarios? _Inventario { get; set; }
-        [ForeignKey("Horario")][JsonIgnore] public Horarios? _Horario { get; set; }
-        [ForeignKey("Administrador")][JsonIgnore] public Administradores? _Administrador { get; set; }
-        [ForeignKey("TipoEvento")][JsonIgnore] public TipoEventos? _TipoEvento { get; set; }
-        [ForeignKey("Patrocinador")][JsonIgnore] public Patrocinadores? _Patrocinador { get; set; }
-        [ForeignKey("Lugar")][JsonIgnore] public Lugares? _Lugar { get; set; }
-        [ForeignKey("Reserva")][JsonIgnore] public Reservas? _Reserva { get; set; }
-        [ForeignKey("Cliente")][JsonIgnore] public Clientes? _Cliente { get; set; }
+        [ForeignKey("Grupo")] public Grupos? _Grupo { get; set; }
+        [ForeignKey("Inventario")] public Inventarios? _Inventario { get; set; }
+        [ForeignKey("Horario")] public Horarios? _Horario { get; set; }
+        [ForeignKey("Administrador")] public Administradores? _Administrador { get; set; }
+        [ForeignKey("TipoEvento")] public TipoEventos? _TipoEvento { get; set; }
+        [ForeignKey("Patrocinador")] public Patrocinadores? _Patrocinador { get; set; }
+        [ForeignKey("Lugar")] public Lugares? _Lugar { get; set; }
+        [ForeignKey("Reserva")] public Reservas? _Reserva { get; set; }
+        [ForeignKey("Cliente")] public Clientes? _Cliente { get; set; }
 
     }
 }

@@ -1,27 +1,22 @@
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
+/* ==========================================================================
+   1. VARIABLES GLOBALES (Tema moderno para Gestión de Eventos)
+   ========================================================================== */
+:root {
+    --primary-color: #4f46e5; /* Indigo moderno */
+    --primary-hover: #4338ca;
+    --secondary-color: #64748b; /* Slate gris */
+    --bg-light: #f8fafc; /* Fondo suave */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition-fast: all 0.2s ease-in-out;
 }
 
-a {
-    color: #0366d6;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
+/* ==========================================================================
+   2. CONFIGURACIÓN BASE Y RESET DE ASP.NET CORE
+   ========================================================================== */
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -30,12 +25,37 @@ html {
     }
 }
 
+body {
+    margin-bottom: 60px;
+    background-color: var(--bg-light);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+    a:hover {
+        color: var(--primary-hover);
+    }
+
+    a.navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+        font-weight: 700;
+    }
+
+/* Utilitarios nativos mantenidos */
 .border-top {
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e2e8f0;
 }
 
 .border-bottom {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .box-shadow {
@@ -47,33 +67,91 @@ button.accept-policy {
     line-height: inherit;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+    background-color: #ffffff;
 }
 
+/* ==========================================================================
+   3. CLASES PARA DISEÑO MODERNO (TARJETAS Y CAMPOS)
+   ========================================================================== */
+/* Tarjeta principal para formularios y tablas */
+.card-crud {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 2rem;
+}
+
+/* Estilo mejorado para inputs y selects */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    padding: 0.6rem 0.75rem;
+    transition: var(--transition-fast);
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+.form-label {
+    margin-bottom: 0.4rem;
+    color: #475569;
+}
+
+/* Switch de estado más estético */
+.scale-125 {
+    transform: scale(1.25);
+    cursor: pointer;
+}
+
+/* Subtítulos de secciones */
+.tracking-wider {
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   4. TUS CLASES ADAPTADAS (Tablas, Vistas y Contenedores)
+   ========================================================================== */
 .card_index {
     background-color: white;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
 }
 
-/* Screens --------------------- */
-.tb_data {
+.card-admin {
+    width: 250px;
+    height 100px;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    margin: 2%;
+    box-sizing: border-box;
+}
+
+/* Contenedores de ventanas */
+.containers_vn {
+    height: 70vh;
     width: 100%;
-    border-radius: 10px;
+    overflow: auto;
+    display: inline-block;
 }
 
+.containers_em {
+    height: 250px;
+    width: 100%;
+    overflow: auto;
+    display: inline-block;
+}
+
+/* Tu clase .cts_forms ahora es 100% compatible con Bootstrap */
 .cts_forms {
     width: 100%;
 }
@@ -83,7 +161,7 @@ body {
 }
 
 .cl_hidden {
-    display: normal;
+    display: block; /* Corregido 'normal' que no existe en CSS standard */
 }
 
 @media (max-width: 950px) {
@@ -92,22 +170,49 @@ body {
     }
 }
 
-.containers_vn {
-    height: 70vh;
-    width: 100%;
-    overflow: auto;
-    display: inline-block;
+/* ==========================================================================
+   5. TABLAS ESTILIZADAS CON TU CLASE (.tb_data)
+   ========================================================================== */
+.table-responsive-custom {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
 }
 
-/* Popups --------------------- */
-.containers_em {
-    height: 250px;
+/* Tu clase base de tabla con superpoderes visuales */
+.tb_data {
     width: 100%;
-    overflow: auto;
-    display: inline-block;
+    margin-bottom: 0;
+    background-color: #ffffff;
+    vertical-align: middle;
 }
 
+    .tb_data thead,
+    .tb_data tr:first-child {
+        background-color: #0f172a !important; /* Gris oscuro elegante */
+        color: #ffffff !important;
+    }
 
+    .tb_data th {
+        font-weight: 600;
+        padding: 14px 16px;
+        border: none !important;
+    }
+
+    .tb_data td {
+        padding: 12px 16px;
+        color: #334155;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .tb_data tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+/* ==========================================================================
+   6. VENTANAS EMERGENTES Y POPUPS (.popup y subtipos)
+   ========================================================================== */
+/* Fondo translúcido con desenfoque moderno */
 .popup {
     position: fixed;
     width: 100%;
@@ -116,32 +221,37 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    margin: auto;
-    background-color: rgba(0,0,0, 0.5);
+    z-index: 1060;
+    background-color: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px); /* Efecto Glassmorphism */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.pp_inner {
-    position: absolute;
-    left: 50px;
-    right: 50px;
-    top: 50px;
-    bottom: 25%;
-    min-width: 300px;
+/* Contenedor interno base actualizado */
+.pp_inner, .pp_del_inner, .pp_ms_inner {
+    position: relative; /* Cambiado de absolute a relative para mejor centrado flexible */
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 90%;
     max-width: 500px;
-    height: 440px;
+    height: auto; /* Permite que el contenido maneje la altura sin desbordarse */
     margin: auto;
-    background: white;
+    animation: popupScaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.pp_del_inner, .pp_ms_inner {
-    position: absolute;
-    left: 50px;
-    right: 50px;
-    top: 50px;
-    bottom: 25%;
-    min-width: 300px;
-    max-width: 500px;
-    height: 200px;
-    margin: auto;
-    background: white;
+/* Animación de entrada para los popups */
+@keyframes popupScaleUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
