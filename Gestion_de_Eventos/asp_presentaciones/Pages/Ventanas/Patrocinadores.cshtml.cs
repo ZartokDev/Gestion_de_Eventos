@@ -10,13 +10,16 @@ namespace asp_presentaciones.Pages
     public class PatrocinadoresModel : PageModel
     {
         private IPatrocinadoresNegocioP iPatrocinadoresNegocio;
+        private ITipoPatrocinadoresNegocioP iTipoPatrocinadoresNegocio;
         [BindProperty] public List<Patrocinadores>? Lista { get; set; }
         [BindProperty] public Patrocinadores? Patrocinador { get; set; }
+        [BindProperty] public List<TipoPatrocinadores>? ListaTipoPatrocinadores { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
         public PatrocinadoresModel() 
         {
             iPatrocinadoresNegocio = new PatrocinadoresNegocioP();
+            iTipoPatrocinadoresNegocio = new TipoPatrocinadoresNegocioP();
         }
 
         public void OnGet()
@@ -25,10 +28,16 @@ namespace asp_presentaciones.Pages
           
 
         }
+
+        public void CargarRelaciones()
+        {
+            ListaTipoPatrocinadores = iTipoPatrocinadoresNegocio.Consultar();
+        }
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iPatrocinadoresNegocio == null)
                     return;
                 Lista = iPatrocinadoresNegocio.Consultar();
@@ -43,6 +52,7 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarRelaciones();
             Borrando = false;
         }
 
@@ -100,6 +110,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
             

@@ -10,8 +10,10 @@ namespace asp_presentaciones.Pages
     public class OfertasModel : PageModel
     {
         private IOfertasNegocioP iOfertasNegocio;
+        
         [BindProperty] public List<Ofertas>? Lista { get; set; }
         [BindProperty] public Ofertas? Oferta { get; set; }
+        
         [BindProperty] public bool Borrando { get; set; }
  
         public OfertasModel() 

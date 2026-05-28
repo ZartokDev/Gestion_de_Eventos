@@ -10,25 +10,36 @@ namespace asp_presentaciones.Pages
     public class LugaresModel : PageModel
     {
         private ILugaresNegocioP iLugaresNegocio;
+        private ITipoLugaresNegocioP iTipoLugaresNegocio;
         [BindProperty] public List<Lugares>? Lista { get; set; }
         [BindProperty] public Lugares? Lugar { get; set; }
+        [BindProperty] public List<TipoLugares>? ListaTipoLugares { get; set; }
+
+
         [BindProperty] public bool Borrando { get; set; }
  
         public LugaresModel() 
         {
             iLugaresNegocio = new LugaresNegocioP();
+            iTipoLugaresNegocio = new TipoLugaresNegocioP();
         }
 
         public void OnGet()
         {
             OnPostBtRefrescar();
-          
 
+
+        }
+
+        public void CargarRelaciones()
+        {
+            ListaTipoLugares = iTipoLugaresNegocio.Consultar();
         }
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iLugaresNegocio == null)
                     return;
                 Lista = iLugaresNegocio.Consultar();
@@ -43,6 +54,7 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarRelaciones();
             Borrando = false;
         }
 
@@ -100,6 +112,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
             

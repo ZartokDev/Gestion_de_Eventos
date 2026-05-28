@@ -11,13 +11,16 @@ namespace asp_presentaciones.Pages
     public class AdministradoresModel : PageModel
     {
         private IAdministradoresNegocioP iAdministradoresNegocio;
+        private ITipoAdministradoresNegocioP iTipoAdministradoresNegocio;
         [BindProperty] public List<Administradores>? Lista { get; set; }
         [BindProperty] public Administradores? Administrador { get; set; }
+        [BindProperty] public List<TipoAdministradores>? ListaTipoAdministradores { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
         public AdministradoresModel() 
         {
             iAdministradoresNegocio = new AdministradoresNegocioP();
+            iTipoAdministradoresNegocio = new TipoAdministradoresNegocioP();
         }
 
         public void OnGet()
@@ -26,10 +29,17 @@ namespace asp_presentaciones.Pages
           
 
         }
+
+        public void CargarRelaciones(){ 
+        
+            ListaTipoAdministradores = iTipoAdministradoresNegocio.Consultar();
+        }
+
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iAdministradoresNegocio == null)
                     return;
                 Lista = iAdministradoresNegocio.Consultar();
@@ -44,6 +54,7 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarRelaciones();
             Borrando = false;
         }
 
@@ -101,6 +112,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
             

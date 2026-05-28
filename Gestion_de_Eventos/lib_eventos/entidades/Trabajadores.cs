@@ -8,7 +8,7 @@ namespace lib_eventos.entidades
         public String? Nombre { get; set; }
         public String? Telefono { get; set; }
         public String? Correo { get; set; }
-        public DateTime? FechaIngreso { get; set; }
+        public DateTime FechaIngreso { get; set; }
         public bool Estado { get; set; }
 
         public int TipoTrabajador { get; set; }

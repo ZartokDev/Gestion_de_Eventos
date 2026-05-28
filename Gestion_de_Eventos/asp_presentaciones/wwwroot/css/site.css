@@ -9,7 +9,7 @@
     --bg-dark-card: #1e293b; /* Fondo de tarjetas y contenedores (Slate 800) */
     --bg-dark-input: #334155; /* Fondo de inputs y campos (Slate 700) */
     --text-main: #f8fafc; /* Texto principal (Slate 50) */
-    --text-muted: #cbd5e1; /* Texto secundario o deshabilitado */
+    --text-muted: white; /* Texto secundario o deshabilitado */
     --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
     --border-color: #334155; /* Bordes sutiles oscuros */
     --transition-fast: all 0.2s ease-in-out;
@@ -42,6 +42,7 @@ a {
     text-decoration: none;
     transition: var(--transition-fast);
 }
+
 
 a:hover {
     color: var(--primary-hover);
@@ -142,6 +143,7 @@ button.accept-policy {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
+
 }
 
 .card-admin {
@@ -200,33 +202,32 @@ button.accept-policy {
 }
 
 /* Tu clase base de tabla con superpoderes visuales */
+/* Tu clase base de tabla con superpoderes visuales */
 .tb_data {
     width: 100%;
     margin-bottom: 0;
-    background-color: var(--bg-dark-card);
+    background-color: var(--bg-dark-card) !important; /* Forzar fondo oscuro */
     vertical-align: middle;
 }
 
     .tb_data thead,
     .tb_data tr:first-child {
-        background-color: #020617 !important; /* El color más oscuro (Slate 950) para la cabecera */
+        background-color: #020617 !important; /* Cabecera Slate 950 */
         color: var(--text-main) !important;
     }
 
-    .tb_data th {
-        font-weight: 600;
-        padding: 14px 16px;
-        border: none !important;
-    }
-
+    /* NUEVO: Forzar que las filas y celdas hereden el fondo oscuro */
+    .tb_data tr,
     .tb_data td {
-        padding: 12px 16px;
-        color: var(--text-muted);
-        border-bottom: 1px solid var(--border-color);
+        background-color: var(--bg-dark-card) !important;
+        color: var(--text-muted) !important;
+        border-bottom: 1px solid var(--border-color) !important;
     }
 
-    .tb_data tbody tr:hover {
-        background-color: rgba(255, 255, 255, 0.03); /* Efecto hover sutil para filas oscuras */
+    /* Controlar el hover en modo oscuro */
+    .tb_data tbody tr:hover td {
+        background-color: #334155 !important; /* Un gris un poco más claro (Slate 700) al pasar el mouse */
+        color: var(--text-main) !important;
     }
 
 /* ==========================================================================

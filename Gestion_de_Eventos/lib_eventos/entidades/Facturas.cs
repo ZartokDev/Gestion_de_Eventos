@@ -6,7 +6,7 @@ namespace lib_eventos.entidades
     {
         public int Id { get; set; }
         public String? NumFactura { get; set; }
-        public DateTime? FechaEmision { get; set; }
+        public DateTime FechaEmision { get; set; }
         public int Total { get; set; }
         public bool EstadoPago { get; set; }
 
