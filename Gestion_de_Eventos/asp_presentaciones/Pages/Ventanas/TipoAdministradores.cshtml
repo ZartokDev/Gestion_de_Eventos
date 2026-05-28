@@ -1,8 +1,8 @@
 @page
-@model AdministradoresModel
+@model TipoAdministradoresModel
 
 @{
-    ViewData["Title"] = "Gestión de Administradores";
+    ViewData["Title"] = "Gestión de Tipos de Administrador";
 }
 
 <div class="container-fluid py-4">
@@ -11,12 +11,12 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h2 class="text-white fw-bold mb-0">🛡️ Panel de Gestión de Administradores</h2>
-                <p class="text-white-50 small">Administra los registros de administradores del sistema.</p>
+                <h2 class="text-white fw-bold mb-0">🔑 Panel de Gestión de Tipos de Administrador</h2>
+                <p class="text-white-50 small">Administra los registros de tipos de administrador del sistema.</p>
             </div>
             <div class="btn-group gap-2 shadow-sm">
                 <button type="submit" asp-page-handler="BtNuevo" class="btn btn-primary px-4 rounded-pill"
-                        disabled="@(Model.Administrador != null)">
+                        disabled="@(Model.TipoAdministrador != null)">
                     ➕ Nuevo
                 </button>
                 <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-light px-3 rounded-pill">
@@ -25,12 +25,12 @@
             </div>
         </div>
 
-        @if (Model.Administrador != null)
+        @if (Model.TipoAdministrador != null)
         {
             <div class="card card-crud mb-5">
                 <div class="card-header py-3 border-bottom d-flex justify-content-between align-items-center">
                     <h5 class="mb-0 text-primary fw-bold">
-                        @(Model.Administrador.Id == 0 ? "✨ Registrar Nuevo Administrador" : "📝 Modificar Administrador ID: " + Model.Administrador.Id)
+                        @(Model.TipoAdministrador.Id == 0 ? "✨ Registrar Nuevo Tipo Administrador" : "📝 Modificar Tipo Administrador ID: " + Model.TipoAdministrador.Id)
                     </h5>
                     <button type="submit" asp-page-handler="BtGuardar" class="btn btn-success px-4 rounded-pill">
                         💾 Guardar Cambios
@@ -38,42 +38,25 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="row g-3">
-                        <input type="hidden" asp-for="@Model.Administrador!.Id" />
+                        <input type="hidden" asp-for="@Model.TipoAdministrador!.Id" />
 
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Nombre</label>
-                            <input class="form-control" asp-for="@Model.Administrador!.Nombre" />
+                            <input class="form-control" asp-for="@Model.TipoAdministrador!.Nombre" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label fw-semibold">Descripcion</label>
+                            <textarea class="form-control" rows="2" asp-for="@Model.TipoAdministrador!.Descripcion"></textarea>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold">Telefono</label>
-                            <input class="form-control" asp-for="@Model.Administrador!.Telefono" />
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Correo</label>
-                            <input class="form-control" asp-for="@Model.Administrador!.Correo" />
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Contraseña</label>
-                            <input type="password" class="form-control" asp-for="@Model.Administrador!.Contraseña" />
+                            <label class="form-label fw-semibold">Nivel Acceso</label>
+                            <input class="form-control" asp-for="@Model.TipoAdministrador!.NivelAcceso" />
                         </div>
                         <div class="col-md-4 d-flex align-items-center mt-2">
                             <div class="form-check form-switch ps-5">
-                                <input class="form-check-input scale-125" type="checkbox" asp-for="@Model.Administrador!.Estado" />
+                                <input class="form-check-input scale-125" type="checkbox" asp-for="@Model.TipoAdministrador!.Estado" />
                                 <label class="form-check-label fw-semibold text-muted ms-2">Estado Activo</label>
                             </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <h6 class="text-uppercase text-muted small border-bottom pb-2">Relaciones</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Tipo de Administrador</label>
-                            @if (Model.ListaTipoAdministradores != null)
-                            {
-                                <select class="form-select" asp-for="@Model.Administrador!.TipoAdministrador"
-                                        asp-items="@(new SelectList(Model.ListaTipoAdministradores, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Tipo --</option>
-                                </select>
-                            }
                         </div>
 
                     </div>
@@ -85,7 +68,7 @@
         {
             <div class="card card-crud">
                 <div class="card-header py-3">
-                    <h5 class="mb-0 text-white fw-bold">📋 Registro de Administradores</h5>
+                    <h5 class="mb-0 text-white fw-bold">📋 Registro de Tipos de Administrador</h5>
                 </div>
                 <div class="table-responsive table-responsive-custom">
                     <table class="tb_data mb-0">
@@ -93,11 +76,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Contraseña</th>
+                                <th>Descripcion</th>
+                                <th>Nivel Acceso</th>
                                 <th>Estado</th>
-                                <th>Tipo Administrador</th>
                                 <th class="text-center">Operaciones</th>
                             </tr>
                         </thead>
@@ -107,9 +88,8 @@
                                 <tr>
                                     <td><strong>#@elemento.Id</strong></td>
                                     <td>@elemento.Nombre</td>
-                                    <td>@elemento.Telefono</td>
-                                    <td>@elemento.Correo</td>
-                                    <td>***</td>
+                                    <td>@elemento.Descripcion</td>
+                                    <td>@elemento.NivelAcceso</td>
                                     <td>@if (elemento.Estado)
                                 {
                                     <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill">Activo</span>
@@ -118,7 +98,6 @@
                                 {
                                     <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill">Inactivo</span>
                                 }</td>
-                                    <td>@elemento.TipoAdministrador</td>
 
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
@@ -147,14 +126,14 @@
             @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
         }
 
-        @if (Model.Administrador != null && Model.Borrando)
+        @if (Model.TipoAdministrador != null && Model.Borrando)
         {
             <div class="popup">
                 <div class="pp_inner text-center">
                     <div class="text-danger mb-3" style="font-size: 3rem;">⚠️</div>
                     <h4 class="fw-bold text-white mb-2">¿Confirmar Eliminación?</h4>
                     <p class="text-muted mb-4">Está a punto de borrar permanentemente: <br>
-                        <strong class="text-white">"@Model.Administrador!.Nombre"</strong>
+                        <strong class="text-white">"@Model.TipoAdministrador!.Nombre"</strong>
                     </p>
                     <div class="d-flex justify-content-center gap-3">
                         <button type="submit" asp-page-handler="BtCerrar"

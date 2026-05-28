@@ -10,13 +10,23 @@ namespace asp_presentaciones.Pages
     public class FacturasModel : PageModel
     {
         private IFacturasNegocioP iFacturasNegocio;
+        private ITipoPagosNegocioP iTipoPagosNegocio;
+        private IOfertasNegocioP iOfertasNegocioP;
+        private IEventosNegocioP iEventosNegocioP;
+
         [BindProperty] public List<Facturas>? Lista { get; set; }
         [BindProperty] public Facturas? Factura { get; set; }
+        [BindProperty] public List<TipoPagos>? ListaTipoPagos { get; set; }
+        [BindProperty] public List<Ofertas>? ListaOfertas { get; set; }
+        [BindProperty] public List<Eventos>? ListaEventos { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
         public FacturasModel() 
         {
             iFacturasNegocio = new FacturasNegocioP();
+            iTipoPagosNegocio = new TipoPagosNegocioP();
+            iOfertasNegocioP = new OfertasNegocioP();
+            iEventosNegocioP = new EventosNegocioP();
         }
 
         public void OnGet()
@@ -25,10 +35,18 @@ namespace asp_presentaciones.Pages
           
 
         }
+
+        public void CargarRelaciones()
+        {
+            ListaTipoPagos = iTipoPagosNegocio.Consultar();
+            ListaOfertas = iOfertasNegocioP.Consultar();
+            ListaEventos = iEventosNegocioP.Consultar();
+        }
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iFacturasNegocio == null)
                     return;
                 Lista = iFacturasNegocio.Consultar();
@@ -43,10 +61,12 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarRelaciones();
             Factura = new Facturas()
             {
                 FechaEmision = DateTime.Now
             };
+
             Borrando = false;
         }
 

@@ -10,13 +10,16 @@ namespace asp_presentaciones.Pages
     public class TrabajadoresModel : PageModel
     {
         private ITrabajadoresNegocioP iTrabajadoresNegocio;
+        private ITipoTrabajadoresNegocioP iTipoTrabajadoresNegocio;
         [BindProperty] public List<Trabajadores>? Lista { get; set; }
         [BindProperty] public Trabajadores? Trabajador { get; set; }
+        [BindProperty] public List<TipoTrabajadores>? ListaTipoTrabajadores { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
         public TrabajadoresModel() 
         {
             iTrabajadoresNegocio = new TrabajadoresNegocioP();
+            iTipoTrabajadoresNegocio = new TipoTrabajadoresNegocioP();
         }
 
         public void OnGet()
@@ -25,10 +28,16 @@ namespace asp_presentaciones.Pages
           
 
         }
+
+        public void CargarRelaciones()
+        {
+            ListaTipoTrabajadores = iTipoTrabajadoresNegocio.Consultar();
+        }
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iTrabajadoresNegocio == null)
                     return;
                 Lista = iTrabajadoresNegocio.Consultar();
@@ -43,6 +52,7 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarRelaciones();
             Borrando = false;
         }
 
@@ -100,6 +110,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
             

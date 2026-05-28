@@ -10,13 +10,19 @@ namespace asp_presentaciones.Pages
     public class InventariosModel : PageModel
     {
         private IInventariosNegocioP iInventariosNegocio;
+        private IProveedoresNegocioP iProveedoresNegocio;
+        private ITipoInventariosNegocioP iTipoInventariosNegocio;
         [BindProperty] public List<Inventarios>? Lista { get; set; }
         [BindProperty] public Inventarios? Inventario { get; set; }
+        [BindProperty] public List<Proveedores>? ListaProveedores { get; set; }
+        [BindProperty] public List<TipoInventarios>? ListaTipoInventarios { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
         public InventariosModel() 
         {
             iInventariosNegocio = new InventariosNegocioP();
+            iProveedoresNegocio = new ProveedoresNegocioP();
+            iTipoInventariosNegocio = new TipoInventariosNegocioP();
         }
 
         public void OnGet()
@@ -25,10 +31,18 @@ namespace asp_presentaciones.Pages
           
 
         }
+
+        public virtual void CargarRelaciones()
+        {
+            ListaProveedores = iProveedoresNegocio.Consultar();
+            ListaTipoInventarios = iTipoInventariosNegocio.Consultar();
+        }
+
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iInventariosNegocio == null)
                     return;
                 Lista = iInventariosNegocio.Consultar();
@@ -43,6 +57,7 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarRelaciones();
             Borrando = false;
         }
 
@@ -100,6 +115,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
             

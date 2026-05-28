@@ -43,7 +43,7 @@ namespace pruebas_unitarias.conexiones
                 Descripcion = "Conferencia empresarial con speakers internacionales y zona de networking",
                 CantPersonas = 300,
                 Estado = true,
-                GrupoTrabajador = 1,
+                Grupo = 1,
                 Inventario = 1,
                 Horario = 1,
                 Administrador = 1,

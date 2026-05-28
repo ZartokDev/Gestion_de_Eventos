@@ -1,10 +1,8 @@
 using lib_eventos.entidades;
-using lib_eventos.interfaces;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace asp_presentaciones.Pages
 {

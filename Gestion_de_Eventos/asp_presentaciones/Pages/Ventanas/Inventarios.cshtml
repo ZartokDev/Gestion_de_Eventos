@@ -1,120 +1,170 @@
 @page
 @model InventariosModel
+
 @{
-    ViewData["Title"] = "Inventarios";
+    ViewData["Title"] = "Gestión de Inventarios";
 }
-<center>
-    <div>
-        <form method="POST" enctype="multipart/form-data">
-            @Html.AntiForgeryToken()
 
-            <div align="left">
-                <h3>Inventarios</h3>
-            </div>
+<div class="container-fluid py-4">
+    <form method="POST" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
 
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <input type="submit" value="Nuevo" class="btn btn-secondary"
-                       asp-page-handler="BtNuevo"
-                       disabled="@(Model.Inventario != null)" />
-                <input type="submit" value="Refrescar" class="btn btn-secondary"
-                       asp-page-handler="BtRefrescar" />
-                <input type="submit" value="Guardar" class="btn btn-secondary"
-                       asp-page-handler="BtGuardar"
-                       disabled="@(Model.Inventario == null)" />
+                <h2 class="text-white fw-bold mb-0">📋 Panel de Gestión de Inventarios</h2>
+                <p class="text-white-50 small">Administra los registros de inventarios del sistema.</p>
             </div>
+            <div class="btn-group gap-2 shadow-sm">
+                <button type="submit" asp-page-handler="BtNuevo" class="btn btn-primary px-4 rounded-pill"
+                        disabled="@(Model.Inventario != null)">
+                    ➕ Nuevo
+                </button>
+                <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-light px-3 rounded-pill">
+                    🔄 Sincronizar
+                </button>
+            </div>
+        </div>
 
-            @if (Model.Inventario != null)
-            {
-                <div>
-                    <div class="form-group">
-                        <label>Id</label>
-                        <div class="col-6">
-                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Inventario!.Id" />
+        @if (Model.Inventario != null)
+        {
+            <div class="card card-crud mb-5">
+                <div class="card-header py-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-primary fw-bold">  
+                        @(Model.Inventario.Id == 0 ? "✨ Registrar Nuevo Inventario" : "📝 Modificar Inventario ID: " + Model.Inventario.Id)
+                    </h5>
+                    <button type="submit" asp-page-handler="BtGuardar" class="btn btn-success px-4 rounded-pill">
+                        💾 Guardar Cambios
+                    </button>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <input type="hidden" asp-for="@Model.Inventario!.Id" />
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Nombre</label>
+                            <input class="form-control" asp-for="@Model.Inventario!.Nombre" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <div class="col-6">
-                            <input id="inNombre" class="form-control" asp-for="@Model.Inventario!.Nombre" />
+                        <div class="col-md-4 d-flex align-items-center mt-2">
+                            <div class="form-check form-switch ps-5">
+                                <input class="form-check-input scale-125" type="checkbox" asp-for="@Model.Inventario!.EstadoProducto" />
+                                <label class="form-check-label fw-semibold text-muted ms-2">EstadoProducto Activo</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>EstadoProducto</label>
-                        <div class="col-6">
-                            <input id="inEstadoProducto" asp-for="@Model.Inventario!.EstadoProducto" />
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Cantidad</label>
+                            <input type="number" class="form-control" placeholder="0" asp-for="@Model.Inventario!.Cantidad" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Tipo</label>
-                        <div class="col-6">
-                            <input id="inTipo" class="form-control" asp-for="@Model.Inventario!.TipoInventario" />
+                        <div class="col-12 mt-4">
+                            <h6 class="text-uppercase text-muted small border-bottom pb-2">Relaciones</h6>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cantidad</label>
-                        <div class="col-6">
-                            <input id="inCantidad" class="cts_forms form-control" asp-for="@Model.Inventario!.Cantidad" />
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Proveedor</label>
+                            @if (Model.ListaProveedores != null)
+                            {
+                                <select class="form-select" asp-for="@Model.Inventario!.Proveedor"
+                                        asp-items="@(new SelectList(Model.ListaProveedores, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Proveedor --</option>
+                                </select>
+                            }
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Proveedor</label>
-                        <div class="col-6">
-                            <input id="inProveedor" asp-for="@Model.Inventario!.Proveedor" />
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Tipo de Inventario</label>
+                            @if (Model.ListaTipoInventarios != null)
+                            {
+                                <select class="form-select" asp-for="@Model.Inventario!.TipoInventario"
+                                        asp-items="@(new SelectList(Model.ListaTipoInventarios, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Tipo --</option>
+                                </select>
+                            }
                         </div>
+
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-            @if (ViewData.ContainsKey("Mensaje"))
-            {
-                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
-            }
+        @if (Model.Lista != null && Model.Lista.Count > 0)
+        {
+            <div class="card card-crud">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-white fw-bold">📋 Registro de Inventarios</h5>
+                </div>
+                <div class="table-responsive table-responsive-custom">
+                    <table class="tb_data mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Estado Producto</th>
+                                <th>Cantidad</th>
+                                <th>Proveedor</th>
+                                <th>Tipo Inventario</th>
+                                <th class="text-center">Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var elemento in Model.Lista)
+                            {
+                                <tr>
+                                    <td><strong>#@elemento.Id</strong></td>
+                                    <td>@elemento.Nombre</td>
+                                    <td>@if (elemento.EstadoProducto)
+                                {
+                                    <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill">Inactivo</span>
+                                }</td>
+                                    <td>@elemento.Cantidad</td>
+                                    <td>@elemento.Proveedor</td>
+                                    <td>@elemento.TipoInventario</td>
 
-            @if (Model.Inventario != null && Model.Borrando)
-            {
-                <div class='popup'>
-                    <div class='pp_ms_inner'>
-                        <div style='width:95%'>
-                            <h2 align="left">Mensaje</h2>
-                            <h6 align="Left">Desea borrar el Inventario?</h6>
-                            <h6 align="Left">@Model.Inventario!.Nombre</h6>
-                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
-                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
-                        </div>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            <button type="submit" asp-page-handler="BtModificar"
+                                                    asp-route-data="@elemento.Id"
+                                                    class="btn btn-warning text-dark fw-semibold">
+                                                ✏️ Editar
+                                            </button>
+                                            <button type="submit" asp-page-handler="BtBorrarVal"
+                                                    asp-route-data="@elemento.Id"
+                                                    class="btn btn-danger">
+                                                🗑️ Borrar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        @if (ViewData.ContainsKey("Mensaje"))
+        {
+            @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+        }
+
+        @if (Model.Inventario != null && Model.Borrando)
+        {
+            <div class="popup">
+                <div class="pp_inner text-center">
+                    <div class="text-danger mb-3" style="font-size: 3rem;">⚠️</div>
+                    <h4 class="fw-bold text-white mb-2">¿Confirmar Eliminación?</h4>
+                    <p class="text-muted mb-4">Está a punto de borrar permanentemente: <br>
+                        <strong class="text-white">"@Model.Inventario!.Nombre"</strong>
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="submit" asp-page-handler="BtCerrar"
+                                class="btn btn-outline-light px-4 rounded-pill">Cancelar</button>
+                        <button type="submit" asp-page-handler="BtBorrar"
+                                class="btn btn-danger px-4 rounded-pill">Sí, Eliminar</button>
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
-            {
-                <table class="tb_data table table-striped table-bordered table-hover">
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>EstadoProducto</th>
-                        <th>Tipo</th>
-                        <th>Cantidad</th>
-                        <th>Proveedor</th>
-                    </tr>
-                    @foreach (var elemento in Model.Lista)
-                    {
-                        <tr>
-                            <th>@elemento.Id</th>
-                            <th>@elemento.Nombre</th>
-                            <th>@elemento.EstadoProducto</th>
-                            <th>@elemento.TipoInventario</th>
-                            <th>@elemento.Cantidad</th>
-                            <th>@elemento.Proveedor</th>
-                            <td>
-                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
-                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
-                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
-                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
-                            </td>
-                        </tr>
-                    }
-                </table>
-            }
-        </form>
-    </div>
-</center>
+    </form>
+</div>

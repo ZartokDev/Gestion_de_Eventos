@@ -1,112 +1,164 @@
 @page
 @model LugaresModel
+
 @{
-    ViewData["Title"] = "Lugares";
+    ViewData["Title"] = "Gestión de Lugares";
 }
-<center>
-    <div>
-        <form method="POST" enctype="multipart/form-data">
-            @Html.AntiForgeryToken()
 
-            <div align="left">
-                <h3>Lugares</h3>
-            </div>
+<div class="container-fluid py-4">
+    <form method="POST" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
 
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <input type="submit" value="Nuevo" class="btn btn-secondary"
-                       asp-page-handler="BtNuevo"
-                       disabled="@(Model.Lugar != null)" />
-                <input type="submit" value="Refrescar" class="btn btn-secondary"
-                       asp-page-handler="BtRefrescar" />
-                <input type="submit" value="Guardar" class="btn btn-secondary"
-                       asp-page-handler="BtGuardar"
-                       disabled="@(Model.Lugar == null)" />
+                <h2 class="text-white fw-bold mb-0">🏟️ Panel de Gestión de Lugares</h2>
+                <p class="text-white-50 small">Administra los registros de lugares del sistema.</p>
             </div>
+            <div class="btn-group gap-2 shadow-sm">
+                <button type="submit" asp-page-handler="BtNuevo" class="btn btn-primary px-4 rounded-pill"
+                        disabled="@(Model.Lugar != null)">
+                    ➕ Nuevo
+                </button>
+                <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-light px-3 rounded-pill">
+                    🔄 Sincronizar
+                </button>
+            </div>
+        </div>
 
-            @if (Model.Lugar != null)
-            {
-                <div>
-                    <div class="form-group">
-                        <label>Id</label>
-                        <div class="col-6">
-                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Lugar!.Id" />
+        @if (Model.Lugar != null)
+        {
+            <div class="card card-crud mb-5">
+                <div class="card-header py-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-primary fw-bold">
+                        @(Model.Lugar.Id == 0 ? "✨ Registrar Nuevo Lugar" : "📝 Modificar Lugar ID: " + Model.Lugar.Id)
+                    </h5>
+                    <button type="submit" asp-page-handler="BtGuardar" class="btn btn-success px-4 rounded-pill">
+                        💾 Guardar Cambios
+                    </button>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <input type="hidden" asp-for="@Model.Lugar!.Id" />
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Nombre</label>
+                            <input class="form-control" asp-for="@Model.Lugar!.Nombre" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <div class="col-6">
-                            <input id="inNombre" class="form-control" asp-for="@Model.Lugar!.Nombre" />
+                        <div class="col-md-12">
+                            <label class="form-label fw-semibold">Direccion</label>
+                            <textarea class="form-control" rows="2" asp-for="@Model.Lugar!.Direccion"></textarea>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Direccion</label>
-                        <div class="col-6">
-                            <input id="inDireccion" class="form-control" asp-for="@Model.Lugar!.Direccion" />
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Capacidad</label>
+                            <input type="number" class="form-control" placeholder="0" asp-for="@Model.Lugar!.Capacidad" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Capacidad</label>
-                        <div class="col-6">
-                            <input id="inCapacidad" class="cts_forms form-control" asp-for="@Model.Lugar!.Capacidad" />
+                        <div class="col-md-4 d-flex align-items-center mt-2">
+                            <div class="form-check form-switch ps-5">
+                                <input class="form-check-input scale-125" type="checkbox" asp-for="@Model.Lugar!.Estado" />
+                                <label class="form-check-label fw-semibold text-muted ms-2">Estado Activo</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Estado</label>
-                        <div class="col-6">
-                            <input id="inEstado" asp-for="@Model.Lugar!.Estado" />
+                        <div class="col-12 mt-4">
+                            <h6 class="text-uppercase text-muted small border-bottom pb-2">Relaciones</h6>
                         </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Tipo de Lugar</label>
+                            @if (Model.ListaTipoLugares != null)
+                            {
+                                <select class="form-select" asp-for="@Model.Lugar!.TipoLugar"
+                                        asp-items="@(new SelectList(Model.ListaTipoLugares, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Tipo --</option>
+                                </select>
+                            }
+                        </div>
+
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-            @if (ViewData.ContainsKey("Mensaje"))
-            {
-                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
-            }
+        @if (Model.Lista != null && Model.Lista.Count > 0)
+        {
+            <div class="card card-crud">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-white fw-bold">📋 Registro de Lugares</h5>
+                </div>
+                <div class="table-responsive table-responsive-custom">
+                    <table class="tb_data mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Direccion</th>
+                                <th>Capacidad</th>
+                                <th>Estado</th>
+                                <th>Tipo Lugar</th>
+                                <th class="text-center">Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var elemento in Model.Lista)
+                            {
+                                <tr>
+                                    <td><strong>#@elemento.Id</strong></td>
+                                    <td>@elemento.Nombre</td>
+                                    <td>@elemento.Direccion</td>
+                                    <td>@elemento.Capacidad</td>
+                                    <td>@if (elemento.Estado)
+                                {
+                                    <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill">Inactivo</span>
+                                }</td>
+                                    <td>@elemento.TipoLugar</td>
 
-            @if (Model.Lugar != null && Model.Borrando)
-            {
-                <div class='popup'>
-                    <div class='pp_ms_inner'>
-                        <div style='width:95%'>
-                            <h2 align="left">Mensaje</h2>
-                            <h6 align="Left">Desea borrar el Lugar?</h6>
-                            <h6 align="Left">@Model.Lugar!.Nombre</h6>
-                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
-                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
-                        </div>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            <button type="submit" asp-page-handler="BtModificar"
+                                                    asp-route-data="@elemento.Id"
+                                                    class="btn btn-warning text-dark fw-semibold">
+                                                ✏️ Editar
+                                            </button>
+                                            <button type="submit" asp-page-handler="BtBorrarVal"
+                                                    asp-route-data="@elemento.Id"
+                                                    class="btn btn-danger">
+                                                🗑️ Borrar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        @if (ViewData.ContainsKey("Mensaje"))
+        {
+            @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+        }
+
+        @if (Model.Lugar != null && Model.Borrando)
+        {
+            <div class="popup">
+                <div class="pp_inner text-center">
+                    <div class="text-danger mb-3" style="font-size: 3rem;">⚠️</div>
+                    <h4 class="fw-bold text-white mb-2">¿Confirmar Eliminación?</h4>
+                    <p class="text-muted mb-4">Está a punto de borrar permanentemente: <br>
+                        <strong class="text-white">"@Model.Lugar!.Nombre"</strong>
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="submit" asp-page-handler="BtCerrar"
+                                class="btn btn-outline-light px-4 rounded-pill">Cancelar</button>
+                        <button type="submit" asp-page-handler="BtBorrar"
+                                class="btn btn-danger px-4 rounded-pill">Sí, Eliminar</button>
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
-            {
-                <table class="tb_data table table-striped table-bordered table-hover">
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Direccion</th>
-                        <th>Capacidad</th>
-                        <th>Estado</th>
-                    </tr>
-                    @foreach (var elemento in Model.Lista)
-                    {
-                        <tr>
-                            <th>@elemento.Id</th>
-                            <th>@elemento.Nombre</th>
-                            <th>@elemento.Direccion</th>
-                            <th>@elemento.Capacidad</th>
-                            <th>@elemento.Estado</th>
-                            <td>
-                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
-                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
-                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
-                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
-                            </td>
-                        </tr>
-                    }
-                </table>
-            }
-        </form>
-    </div>
-</center>
+    </form>
+</div>

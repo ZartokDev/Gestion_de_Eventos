@@ -1,112 +1,149 @@
 @page
 @model AuditoriasModel
+
 @{
-    ViewData["Title"] = "Auditorias";
+    ViewData["Title"] = "Gestión de Auditorías";
 }
-<center>
-    <div>
-        <form method="POST" enctype="multipart/form-data">
-            @Html.AntiForgeryToken()
 
-            <div align="left">
-                <h3>Auditorias</h3>
-            </div>
+<div class="container-fluid py-4">
+    <form method="POST" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
 
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <input type="submit" value="Nuevo" class="btn btn-secondary"
-                       asp-page-handler="BtNuevo"
-                       disabled="@(Model.Auditoria != null)" />
-                <input type="submit" value="Refrescar" class="btn btn-secondary"
-                       asp-page-handler="BtRefrescar" />
-                <input type="submit" value="Guardar" class="btn btn-secondary"
-                       asp-page-handler="BtGuardar"
-                       disabled="@(Model.Auditoria == null)" />
+                <h2 class="text-white fw-bold mb-0">🔍 Panel de Gestión de Auditorías</h2>
+                <p class="text-white-50 small">Administra los registros de auditorías del sistema.</p>
             </div>
+            <div class="btn-group gap-2 shadow-sm">
+                <button type="submit" asp-page-handler="BtNuevo" class="btn btn-primary px-4 rounded-pill"
+                        disabled="@(Model.Auditoria != null)">
+                    ➕ Nuevo
+                </button>
+                <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-light px-3 rounded-pill">
+                    🔄 Sincronizar
+                </button>
+            </div>
+        </div>
 
-            @if (Model.Auditoria != null)
-            {
-                <div>
-                    <div class="form-group">
-                        <label>Id</label>
-                        <div class="col-6">
-                            <input id="inId" class="cts_forms form-control" asp-for="@Model.Auditoria!.Id" />
+        @if (Model.Auditoria != null)
+        {
+            <div class="card card-crud mb-5">
+                <div class="card-header py-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-primary fw-bold">
+                        @(Model.Auditoria.Id == 0 ? "✨ Registrar Nuevo Auditoria" : "📝 Modificar Auditoria ID: " + Model.Auditoria.Id)
+                    </h5>
+                    <button type="submit" asp-page-handler="BtGuardar" class="btn btn-success px-4 rounded-pill">
+                        💾 Guardar Cambios
+                    </button>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <input type="hidden" asp-for="@Model.Auditoria!.Id" />
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Tipo Accion</label>
+                            <input class="form-control" asp-for="@Model.Auditoria!.TipoAccion" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>TipoAccion</label>
-                        <div class="col-6">
-                            <input id="inTipoAccion" class="form-control" asp-for="@Model.Auditoria!.TipoAccion" />
+                        <div class="col-md-12">
+                            <label class="form-label fw-semibold">Descripcion</label>
+                            <textarea class="form-control" rows="2" asp-for="@Model.Auditoria!.Descripcion"></textarea>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Descripcion</label>
-                        <div class="col-6">
-                            <input id="inDescripcion" class="form-control" asp-for="@Model.Auditoria!.Descripcion" />
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Fecha</label>
+                            <input type="date" class="form-control" asp-for="@Model.Auditoria!.Fecha" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha</label>
-                        <div class="col-6">
-                            <input id="inFecha" class="cts_forms form-control" asp-for="@Model.Auditoria!.Fecha" />
+                        <div class="col-12 mt-4">
+                            <h6 class="text-uppercase text-muted small border-bottom pb-2">Relaciones</h6>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Administrador</label>
-                        <div class="col-6">
-                            <input id="inAdministrador" asp-for="@Model.Auditoria!.Administrador" />
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Administrador</label>
+                            @if (Model.ListaAdministradores != null)
+                            {
+                                <select class="form-select" asp-for="@Model.Auditoria!.Administrador"
+                                        asp-items="@(new SelectList(Model.ListaAdministradores, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Administrador --</option>
+                                </select>
+                            }
                         </div>
+
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-            @if (ViewData.ContainsKey("Mensaje"))
-            {
-                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
-            }
+        @if (Model.Lista != null && Model.Lista.Count > 0)
+        {
+            <div class="card card-crud">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-white fw-bold">📋 Registro de Auditorías</h5>
+                </div>
+                <div class="table-responsive table-responsive-custom">
+                    <table class="tb_data mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo Accion</th>
+                                <th>Descripcion</th>
+                                <th>Fecha</th>
+                                <th>Administrador</th>
+                                <th class="text-center">Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var elemento in Model.Lista)
+                            {
+                                <tr>
+                                    <td><strong>#@elemento.Id</strong></td>
+                                    <td>@elemento.TipoAccion</td>
+                                    <td>@elemento.Descripcion</td>
+                                    <td>@elemento.Fecha.ToString("dd/MM/yyyy")</td>
+                                    <td>@elemento.Administrador</td>
 
-            @if (Model.Auditoria != null && Model.Borrando)
-            {
-                <div class='popup'>
-                    <div class='pp_ms_inner'>
-                        <div style='width:95%'>
-                            <h2 align="left">Mensaje</h2>
-                            <h6 align="Left">Desea borrar la Auditoria?</h6>
-                            <h6 align="Left">@Model.Auditoria!.TipoAccion</h6>
-                            <input type="submit" value="Cerrar" asp-page-handler="BtCerrar" class="btn btn-secondary" />
-                            <input type="submit" value="Borrar" asp-page-handler="BtBorrar" class="btn btn-secondary" />
-                        </div>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm shadow-sm" role="group">
+                                            <button type="submit" asp-page-handler="BtModificar"
+                                                    asp-route-data="@elemento.Id"
+                                                    class="btn btn-warning text-dark fw-semibold">
+                                                ✏️ Editar
+                                            </button>
+                                            <button type="submit" asp-page-handler="BtBorrarVal"
+                                                    asp-route-data="@elemento.Id"
+                                                    class="btn btn-danger">
+                                                🗑️ Borrar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        @if (ViewData.ContainsKey("Mensaje"))
+        {
+            @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+        }
+
+        @if (Model.Auditoria != null && Model.Borrando)
+        {
+            <div class="popup">
+                <div class="pp_inner text-center">
+                    <div class="text-danger mb-3" style="font-size: 3rem;">⚠️</div>
+                    <h4 class="fw-bold text-white mb-2">¿Confirmar Eliminación?</h4>
+                    <p class="text-muted mb-4">Está a punto de borrar permanentemente: <br>
+                        <strong class="text-white">"@Model.Auditoria!.TipoAccion"</strong>
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="submit" asp-page-handler="BtCerrar"
+                                class="btn btn-outline-light px-4 rounded-pill">Cancelar</button>
+                        <button type="submit" asp-page-handler="BtBorrar"
+                                class="btn btn-danger px-4 rounded-pill">Sí, Eliminar</button>
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-            @if (Model != null && Model.Lista != null && Model.Lista.Count > 0)
-            {
-                <table class="tb_data table table-striped table-bordered table-hover">
-                    <tr>
-                        <th>Id</th>
-                        <th>TipoAccion</th>
-                        <th>Descripcion</th>
-                        <th>Fecha</th>
-                        <th>Administrador</th>
-                    </tr>
-                    @foreach (var elemento in Model.Lista)
-                    {
-                        <tr>
-                            <th>@elemento.Id</th>
-                            <th>@elemento.TipoAccion</th>
-                            <th>@elemento.Descripcion</th>
-                            <th>@elemento.Fecha</th>
-                            <th>@elemento.Administrador</th>
-                            <td>
-                                <input type="submit" value="Modificar" asp-page-handler="BtModificar"
-                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
-                                <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal"
-                                       class="btn btn-secondary" asp-route-data="@elemento.Id" />
-                            </td>
-                        </tr>
-                    }
-                </table>
-            }
-        </form>
-    </div>
-</center>
+    </form>
+</div>

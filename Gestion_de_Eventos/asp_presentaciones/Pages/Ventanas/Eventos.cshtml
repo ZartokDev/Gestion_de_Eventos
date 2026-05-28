@@ -11,14 +11,14 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h2 class="text-secondary fw-bold mb-0">🎉 Panel de Gestión de Eventos</h2>
-                <p class="text-muted small">Crea, modifica y realiza el seguimiento de tus eventos institucionales y sociales.</p>
-            </div>
+                <h2 class="text-white fw-bold mb-0">🎉 Panel de Gestión de Eventos</h2>
+                <p class="text-white-50 small">Crea, modifica y realiza el seguimiento de tus eventos institucionales y sociales.</p>
+            </div> 
             <div class="btn-group gap-2 shadow-sm">
                 <button type="submit" asp-page-handler="BtNuevo" class="btn btn-primary px-4 rounded-pill" disabled="@(Model.Evento != null)">
                     ➕ Nuevo Evento
                 </button>
-                <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-secondary px-3 rounded-pill">
+                <button type="submit" asp-page-handler="BtRefrescar" class="btn btn-outline-light px-3 rounded-pill">
                     🔄 Sincronizar
                 </button>
             </div>
@@ -27,7 +27,7 @@
         @if (Model.Evento != null)
         {
             <div class="card card-crud mb-5">
-                <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                <div class="card-header py-3 border-bottom d-flex justify-content-between align-items-center">
                     <h5 class="mb-0 text-primary fw-bold">
                         @(Model.Evento.Id == 0 ? "✨ Registrar Nuevo Evento" : "📝 Modificar Evento ID: " + Model.Evento.Id)
                     </h5>
@@ -64,127 +64,109 @@
                         </div>
 
                         <div class="col-md-4">
-                        <label class="form-label fw-semibold text-indigo">
-                            Lugar
-                        </label>
+                            <label class="form-label fw-semibold">Lugar</label>
                             @if (Model.ListaLugares != null)
                             {
-                                    <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Lugar"
-                                            asp-items="@(new SelectList(Model.ListaLugares, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>  
+                                        asp-items="@(new SelectList(Model.ListaLugares, "Id", "Nombre"))">
+                                    <option value="">-- Seleccione un Lugar --</option>
                                 </select>
                             }
                         </div>
-                       
+
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Cliente
-                            </label>
+                            <label class="form-label fw-semibold">Cliente</label>
                             @if (Model.ListaClientes != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Cliente"
                                         asp-items="@(new SelectList(Model.ListaClientes, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione un Cliente --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Horario
-                            </label>
+                            <label class="form-label fw-semibold">Horario</label>
                             @if (Model.ListaHorarios != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Horario"
-                                        asp-items="@(new SelectList(Model.ListaHorarios, "Id", "HoraInicio","HoraFin"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                        asp-items="@(new SelectList(Model.ListaHorarios, "Id", "HoraInicio", "HoraFin"))">
+                                    <option value="">-- Seleccione un Horario --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Tipo Evento
-                            </label>
+                            <label class="form-label fw-semibold">Tipo Evento</label>
                             @if (Model.ListaTipoEventos != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.TipoEvento"
                                         asp-items="@(new SelectList(Model.ListaTipoEventos, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione un Tipo --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Inventario
-                            </label>
+                            <label class="form-label fw-semibold">Inventario</label>
                             @if (Model.ListaInventarios != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Inventario"
                                         asp-items="@(new SelectList(Model.ListaInventarios, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione un Inventario --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Grupo Trabajador
-                            </label>
+                            <label class="form-label fw-semibold">Grupo Trabajador</label>
                             @if (Model.ListaGrupos != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Grupo"
                                         asp-items="@(new SelectList(Model.ListaGrupos, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione un Grupo --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Patrocinador
-                            </label>
+                            <label class="form-label fw-semibold">Patrocinador</label>
                             @if (Model.ListaPatrocinadores != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Patrocinador"
                                         asp-items="@(new SelectList(Model.ListaPatrocinadores, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione un Patrocinador --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Administrador
-                            </label>
+                            <label class="form-label fw-semibold">Administrador</label>
                             @if (Model.ListaAdministradores != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Administrador"
                                         asp-items="@(new SelectList(Model.ListaAdministradores, "Id", "Nombre"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione un Administrador --</option>
                                 </select>
                             }
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-indigo">
-                                Reserva
-                            </label>
+                            <label class="form-label fw-semibold">Reserva</label>
                             @if (Model.ListaReservas != null)
                             {
-                                <select class="form-select border-primary"
+                                <select class="form-select"
                                         asp-for="@Model.Evento!.Reserva"
                                         asp-items="@(new SelectList(Model.ListaReservas, "Id", "Ubicacion"))">
-                                    <option value="">-- Seleccione un Lugar --</option>
+                                    <option value="">-- Seleccione una Reserva --</option>
                                 </select>
                             }
                         </div>
@@ -192,7 +174,7 @@
                         <div class="col-md-4 d-flex align-items-center mt-4">
                             <div class="form-check form-switch ps-5">
                                 <input class="form-check-input scale-125" type="checkbox" id="estadoSwitch" asp-for="@Model.Evento!.Estado">
-                                <label class="form-check-label fw-semibold ms-2" for="estadoSwitch">Evento Activo / Habilitado</label>
+                                <label class="form-check-label fw-semibold text-muted ms-2" for="estadoSwitch">Evento Activo / Habilitado</label>
                             </div>
                         </div>
 
@@ -204,18 +186,18 @@
         @if (Model.Lista != null && Model.Lista.Count > 0)
         {
             <div class="card card-crud">
-                <div class="card-header bg-white py-3">
-                    <h5 class="mb-0 text-dark fw-bold">📋 Registro General de Eventos</h5>
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-white fw-bold">📋 Registro General de Eventos</h5>
                 </div>
                 <div class="table-responsive table-responsive-custom">
-                    <table class="table table-custom table-hover mb-0">
+                    <table class="tb_data mb-0">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Fecha</th>
                                 <th>Descripción</th>
-                                <th>Aforo</th>
+                                <th>Cantidad de personas</th>
                                 <th>Estado</th>
                                 <th class="text-center">Operaciones</th>
                             </tr>
@@ -224,11 +206,11 @@
                             @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
-                                    <td><strong class="text-muted">#@elemento.Id</strong></td>
-                                    <td class="fw-bold text-dark">@elemento.Nombre</td>
+                                    <td><strong class="">#@elemento.Id</strong></td>
+                                    <td class="fw-bold">@elemento.Nombre</td>
                                     <td>@elemento.Fecha.ToString("dd/MM/yyyy")</td>
-                                    <td class="text-truncate" style="max-width: 200px;">@elemento.Descripcion</td>
-                                    <td><span class="badge bg-light text-dark border px-2 py-1">👥 @elemento.CantPersonas</span></td>
+                                    <td>@elemento.Descripcion</td>
+                                    <td><span class="badge bg-dark text-light border border-secondary px-2 py-1">👥 @elemento.CantPersonas</span></td>
                                     <td>
                                         @if (elemento.Estado)
                                         {
@@ -241,7 +223,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm shadow-sm" role="group">
-                                            <button type="submit" asp-page-handler="BtModificar" asp-route-data="@elemento.Id" class="btn btn-warning text-white">
+                                            <button type="submit" asp-page-handler="BtModificar" asp-route-data="@elemento.Id" class="btn btn-warning text-dark fw-semibold">
                                                 ✏️ Editar
                                             </button>
                                             <button type="submit" asp-page-handler="BtBorrarVal" asp-route-data="@elemento.Id" class="btn btn-danger">
@@ -264,14 +246,14 @@
 
         @if (Model.Evento != null && Model.Borrando)
         {
-            <div class="popup-overlay">
-                <div class="popup-card text-center">
+            <div class="popup">
+                <div class="pp_inner text-center">
                     <div class="text-danger mb-3" style="font-size: 3rem;">⚠️</div>
-                    <h4 class="fw-bold text-dark mb-2">¿Confirmar Eliminación?</h4>
-                    <p class="text-muted mb-4">Está a punto de borrar permanentemente el evento: <br><strong class="text-dark">"@Model.Evento!.Nombre"</strong></p>
+                    <h4 class="fw-bold text-white mb-2">¿Confirmar Eliminación?</h4>
+                    <p class="text-muted mb-4">Está a punto de borrar permanentemente el evento: <br><strong class="text-white">"@Model.Evento!.Nombre"</strong></p>
 
                     <div class="d-flex justify-content-center gap-3">
-                        <button type="submit" asp-page-handler="BtCerrar" class="btn btn-light px-4 rounded-pill border">Cancelar</button>
+                        <button type="submit" asp-page-handler="BtCerrar" class="btn btn-outline-light px-4 rounded-pill">Cancelar</button>
                         <button type="submit" asp-page-handler="BtBorrar" class="btn btn-danger px-4 rounded-pill">Sí, Eliminar</button>
                     </div>
                 </div>

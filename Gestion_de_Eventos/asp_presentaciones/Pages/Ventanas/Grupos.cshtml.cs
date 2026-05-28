@@ -10,14 +10,21 @@ namespace asp_presentaciones.Pages
     public class GruposModel : PageModel
     {
         private IGruposNegocioP iGruposNegocio;
+        private IPersonalApoyosNegocioP iPersonalApoyosNegocio;
+        private ITransportesNegocioP iTransportesNegocio;
         [BindProperty] public List<Grupos>? Lista { get; set; }
         [BindProperty] public Grupos? Grupo { get; set; }
+        [BindProperty] public List<PersonalApoyos>? ListaPersonalApoyos { get; set; }
+        [BindProperty] public List<Transportes>? ListaTransportes { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
         public GruposModel() 
         {
             iGruposNegocio = new GruposNegocioP();
+            iPersonalApoyosNegocio = new PersonalApoyosNegocioP();
+            iTransportesNegocio = new TransportesNegocioP();
         }
+
 
         public void OnGet()
         {
@@ -25,10 +32,17 @@ namespace asp_presentaciones.Pages
           
 
         }
+
+        public void CargarRelaciones()
+        {
+            ListaPersonalApoyos = iPersonalApoyosNegocio.Consultar();
+            ListaTransportes = iTransportesNegocio.Consultar();
+        }   
         public void OnPostBtRefrescar()
         {
             try
             {
+                CargarRelaciones();
                 if (iGruposNegocio == null)
                     return;
                 Lista = iGruposNegocio.Consultar();
@@ -43,7 +57,7 @@ namespace asp_presentaciones.Pages
 
         public void OnPostBtNuevo()
         {
-    
+            CargarRelaciones();
             Borrando = false;
         }
 
@@ -101,6 +115,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
             

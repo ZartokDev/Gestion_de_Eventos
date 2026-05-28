@@ -3,7 +3,7 @@
     public class Ofertas
     {
         public int Id { get; set; }
-        public DateTime? FechaLimite { get; set; }
+        public DateTime FechaLimite { get; set; }
         public int Descuento { get; set; }
         public String? Nombre { get; set; }
         public bool Estado { get; set; }
