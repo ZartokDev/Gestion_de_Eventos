@@ -1,12 +1,17 @@
 /* ==========================================================================
-   1. VARIABLES GLOBALES (Tema moderno para Gestión de Eventos)
+   1. VARIABLES GLOBALES (Tema Oscuro & Azul Eléctrico)
    ========================================================================== */
 :root {
-    --primary-color: #4f46e5; /* Indigo moderno */
-    --primary-hover: #4338ca;
-    --secondary-color: #64748b; /* Slate gris */
-    --bg-light: #f8fafc; /* Fondo suave */
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --primary-color: #3b82f6; /* Azul brillante/eléctrico moderno */
+    --primary-hover: #2563eb; /* Azul más profundo para hovers */
+    --secondary-color: #94a3b8; /* Slate claro para texto secundario */
+    --bg-dark-main: #0f172a; /* Fondo principal (Slate 900) */
+    --bg-dark-card: #1e293b; /* Fondo de tarjetas y contenedores (Slate 800) */
+    --bg-dark-input: #334155; /* Fondo de inputs y campos (Slate 700) */
+    --text-main: #f8fafc; /* Texto principal (Slate 50) */
+    --text-muted: #cbd5e1; /* Texto secundario o deshabilitado */
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --border-color: #334155; /* Bordes sutiles oscuros */
     --transition-fast: all 0.2s ease-in-out;
 }
 
@@ -27,9 +32,9 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: var(--bg-light);
+    background-color: var(--bg-dark-main);
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    color: #1e293b;
+    color: var(--text-main);
 }
 
 a {
@@ -38,28 +43,29 @@ a {
     transition: var(--transition-fast);
 }
 
-    a:hover {
-        color: var(--primary-hover);
-    }
+a:hover {
+    color: var(--primary-hover);
+}
 
-    a.navbar-brand {
-        white-space: normal;
-        text-align: center;
-        word-break: break-all;
-        font-weight: 700;
-    }
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    font-weight: 700;
+    color: var(--text-main);
+}
 
-/* Utilitarios nativos mantenidos */
+/* Utilitarios nativos adaptados a modo oscuro */
 .border-top {
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-color);
 }
 
 .border-bottom {
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .3);
 }
 
 button.accept-policy {
@@ -73,7 +79,9 @@ button.accept-policy {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
-    background-color: #ffffff;
+    background-color: var(--bg-dark-card);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
 }
 
 /* ==========================================================================
@@ -81,8 +89,8 @@ button.accept-policy {
    ========================================================================== */
 /* Tarjeta principal para formularios y tablas */
 .card-crud {
-    background-color: #ffffff;
-    border: none;
+    background-color: var(--bg-dark-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     margin-bottom: 2rem;
@@ -90,20 +98,29 @@ button.accept-policy {
 
 /* Estilo mejorado para inputs y selects */
 .form-control, .form-select {
+    background-color: var(--bg-dark-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
     border-radius: 8px;
-    border: 1px solid #cbd5e1;
     padding: 0.6rem 0.75rem;
     transition: var(--transition-fast);
 }
 
-    .form-control:focus, .form-select:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-    }
+/* Ajuste para que los placeholders se vean correctamente en fondo oscuro */
+.form-control::placeholder {
+    color: #64748b;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--bg-dark-input);
+    color: var(--text-main);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
 
 .form-label {
     margin-bottom: 0.4rem;
-    color: #475569;
+    color: var(--text-muted);
 }
 
 /* Switch de estado más estético */
@@ -121,14 +138,17 @@ button.accept-policy {
    4. TUS CLASES ADAPTADAS (Tablas, Vistas y Contenedores)
    ========================================================================== */
 .card_index {
-    background-color: white;
+    background-color: var(--bg-dark-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
 }
 
 .card-admin {
+    background-color: var(--bg-dark-card);
+    border: 1px solid var(--border-color);
     width: 250px;
-    height 100px;
+    height: 100px;
     padding: 35px;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
@@ -161,7 +181,7 @@ button.accept-policy {
 }
 
 .cl_hidden {
-    display: block; /* Corregido 'normal' que no existe en CSS standard */
+    display: block; 
 }
 
 @media (max-width: 950px) {
@@ -176,21 +196,21 @@ button.accept-policy {
 .table-responsive-custom {
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
 }
 
 /* Tu clase base de tabla con superpoderes visuales */
 .tb_data {
     width: 100%;
     margin-bottom: 0;
-    background-color: #ffffff;
+    background-color: var(--bg-dark-card);
     vertical-align: middle;
 }
 
     .tb_data thead,
     .tb_data tr:first-child {
-        background-color: #0f172a !important; /* Gris oscuro elegante */
-        color: #ffffff !important;
+        background-color: #020617 !important; /* El color más oscuro (Slate 950) para la cabecera */
+        color: var(--text-main) !important;
     }
 
     .tb_data th {
@@ -201,12 +221,12 @@ button.accept-policy {
 
     .tb_data td {
         padding: 12px 16px;
-        color: #334155;
-        border-bottom: 1px solid #f1f5f9;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border-color);
     }
 
     .tb_data tbody tr:hover {
-        background-color: #f8fafc;
+        background-color: rgba(255, 255, 255, 0.03); /* Efecto hover sutil para filas oscuras */
     }
 
 /* ==========================================================================
@@ -222,7 +242,7 @@ button.accept-policy {
     right: 0;
     bottom: 0;
     z-index: 1060;
-    background-color: rgba(15, 23, 42, 0.4);
+    background-color: rgba(2, 6, 17, 0.7); /* Oscurecido más profundo para el fondo */
     backdrop-filter: blur(4px); /* Efecto Glassmorphism */
     display: flex;
     justify-content: center;
@@ -231,14 +251,15 @@ button.accept-policy {
 
 /* Contenedor interno base actualizado */
 .pp_inner, .pp_del_inner, .pp_ms_inner {
-    position: relative; /* Cambiado de absolute a relative para mejor centrado flexible */
-    background: #ffffff;
+    position: relative; 
+    background: var(--bg-dark-card);
+    border: 1px solid var(--border-color);
     padding: 2rem;
     border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 500px;
-    height: auto; /* Permite que el contenido maneje la altura sin desbordarse */
+    height: auto; 
     margin: auto;
     animation: popupScaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
