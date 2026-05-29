@@ -67,6 +67,7 @@ CREATE TABLE TipoPatrocinadores (
 CREATE TABLE Clientes (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(255),
+    Documento NVARCHAR(50),
     Telefono NVARCHAR(50),
     Correo NVARCHAR(255),
     Estado BIT NOT NULL
@@ -309,8 +310,8 @@ VALUES ('Oro', 'Patrocinador premium', 'Alto', 'Publicidad destacada', 1);
 -- =========================
 -- Clientes
 -- =========================
-INSERT INTO Clientes (Nombre, Telefono, Correo, Estado)
-VALUES ('Carlos Gómez', '3111111111', 'carlos@gmail.com', 1);
+INSERT INTO Clientes (Documento,Nombre, Telefono, Correo, Estado)
+VALUES ('123456','Carlos Gómez', '3111111111', 'carlos@gmail.com', 1);
 
 -- =========================
 -- Reservas

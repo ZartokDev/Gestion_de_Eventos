@@ -40,6 +40,7 @@ namespace pruebas_unitarias.conexiones
             {
                 Nombre = "UT-" + DateTime.Now.ToString(),
                 Telefono = "6044567890",
+                Documento = "25873432",
                 Correo = "eventos@empresatec.com",
                 Estado = true,
             };

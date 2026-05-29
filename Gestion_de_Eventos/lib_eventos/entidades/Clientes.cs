@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public String? Nombre { get; set; }
+        public String? Documento { get; set; }
         public String? Telefono { get; set; }
         public String? Correo { get; set; }
         public bool Estado { get; set; }

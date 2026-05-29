@@ -10,4 +10,8 @@
     <ProjectReference Include="..\lib_presentaciones\lib_presentaciones.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\" />
+  </ItemGroup>
+
 </Project>

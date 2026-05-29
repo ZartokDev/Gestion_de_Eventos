@@ -34,31 +34,31 @@
                                 Privacy
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-area=""
-                               asp-page="/Ventanas/Admin">
-                                Eventos
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
 
+            @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+            {
+                    <a class="nav-link rounded-pill px-4"
+                       asp-area=""
+                       asp-page="/Ventanas/Admin">
+                        Admin
+                    </a>  
+            }
+
             @if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                <!-- SI EL USUARIO YA INICIÓ SESIÓN: Muestra su nombre y un botón de Logout -->
                 <div class="dropdown">
-                    <button class="btn btn-outline-light rounded-pill dropdown-toggle px-3" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                        👤 @User.Identity.Name
+                    <button class="nav-link rounded-pill dropdown-toggle px-3" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            @User.Identity.Name
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow border-secondary bg-dark" aria-labelledby="userMenu">
                         <li>
-                            <!-- Formulario sutil para poder disparar el método POST que destruye la cookie -->
                             <form method="post" asp-page="/Ventanas/Login" asp-page-handler="BtCerrarSesion" class="px-2">
                                 @Html.AntiForgeryToken()
                                 <button type="submit" class="dropdown-item text-danger rounded btn-sm fw-semibold">
-                                    🚪 Cerrar Sesión
+                                    Cerrar Sesión
                                 </button>
                             </form>
                         </li>
@@ -66,10 +66,9 @@
                 </div>
             }
             else
-            {
-                <!-- SI NO HA INICIADO SESIÓN: Muestra el botón clásico para ir al Login -->
-                <a asp-page="/Ventanas/Login" class="btn btn-primary rounded-pill px-4">
-                    🔑 Iniciar Sesión
+            {    
+                <a asp-page="/Ventanas/Login" class="nav-link rounded-pill px-4">
+                    Iniciar Sesión
                 </a>
             }
         </nav>
@@ -80,6 +79,9 @@
         </main>
     </div>
 
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
     <footer class="footer text-muted">
         <div class="container">
             &copy; 2026 - Naturaleza - <a asp-area="" asp-page="/Privacy">Privacy</a>

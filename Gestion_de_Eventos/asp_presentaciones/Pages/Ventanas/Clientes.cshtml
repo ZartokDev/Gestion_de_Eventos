@@ -41,6 +41,11 @@
                         <input type="hidden" asp-for="@Model.Cliente!.Id" />
 
                         <div class="col-md-4">
+                            <label class="form-label fw-semibold">Documento</label>
+                            <input class="form-control" asp-for="@Model.Cliente!.Documento" />
+                        </div>
+
+                        <div class="col-md-4">
                             <label class="form-label fw-semibold">Nombre</label>
                             <input class="form-control" asp-for="@Model.Cliente!.Nombre" />
                         </div>
@@ -75,6 +80,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Documento</th>
                                 <th>Nombre</th>
                                 <th>Telefono</th>
                                 <th>Correo</th>
@@ -87,6 +93,7 @@
                             {
                                 <tr>
                                     <td><strong>#@elemento.Id</strong></td>
+                                    <td>@elemento.Documento</td>
                                     <td>@elemento.Nombre</td>
                                     <td>@elemento.Telefono</td>
                                     <td>@elemento.Correo</td>
