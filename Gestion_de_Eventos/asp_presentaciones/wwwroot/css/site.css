@@ -85,6 +85,33 @@ button.accept-policy {
     color: var(--text-muted);
 }
 
+.d-item {
+    height: 500px;
+    position: relative;
+}
+
+.d-img {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+}
+
+.carousel-caption {
+    left: 5%;
+    right: 5%;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6); /* Agrega sombra al texto para que no se pierda si la foto es clara */
+    position: center;
+    display: block;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 850px; /* Ajusta esta altura a lo que mejor le quede a tu diseño */
+    object-fit: cover;
+    object-position: center; /* Centra la imagen para que el recorte sea simétrico */
+}
+
 /* ==========================================================================
    3. CLASES PARA DISEÑO MODERNO (TARJETAS Y CAMPOS)
    ========================================================================== */
