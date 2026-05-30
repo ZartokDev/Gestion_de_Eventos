@@ -37,6 +37,13 @@
                         <li class="nav-item">
                             <a class="nav-link"
                                asp-area=""
+                               asp-page="/Ventanas/MisEventos">
+                                Mis Eventos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
                                asp-page="/Privacy">
                                 Privacy
                             </a>
@@ -45,7 +52,7 @@
                 </div>
             </div>
 
-            @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+            @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Administrador") || User.IsInRole("Moderador") || User.IsInRole("Trabajador"))
             {
                     <a class="nav-link rounded-pill px-4"
                        asp-area=""

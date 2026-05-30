@@ -15,11 +15,11 @@ namespace asp_presentaciones.Pages
         private ITipoAdministradoresNegocioP iTipoAdministradoresNegocio;
 
         [BindProperty] public string Correo { get; set; } = string.Empty;
-        [BindProperty] public string Contraseña { get; set; } = string.Empty; // Mantenemos la Ñ
+        [BindProperty] public string Contraseña { get; set; } = string.Empty;
 
         public LoginModel()
         {
-            iAdministradoresNegocio = new AdministradoresNegocioP(); // O AdministradoresNegocioP() según tu clase
+            iAdministradoresNegocio = new AdministradoresNegocioP();
             iTipoAdministradoresNegocio = new TipoAdministradoresNegocioP();
         }
 
@@ -41,7 +41,6 @@ namespace asp_presentaciones.Pages
                 var listaAdmins = iAdministradoresNegocio.Consultar();
                 var listaTiposAdmins = iTipoAdministradoresNegocio.Consultar();
 
-                // Buscamos comparando estrictamente con 'Contraseña'
                 var adminLogueado = listaAdmins?.FirstOrDefault(x =>
                     x.Correo.Trim().ToLower() == Correo.Trim().ToLower() &&
                     x.Contraseña == Contraseña);
@@ -74,7 +73,7 @@ namespace asp_presentaciones.Pages
                         authProperties
                     );
 
-                    return RedirectToPage("/Index"); // Redirige a la raíz de Pages
+                    return RedirectToPage("/Index");
                 }
                 else
                 {
@@ -93,7 +92,6 @@ namespace asp_presentaciones.Pages
         {
             try
             {
-                // 1. Borra la cookie de autenticación y limpia el contexto de seguridad
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             }
             catch (Exception ex)
@@ -101,7 +99,6 @@ namespace asp_presentaciones.Pages
                 ViewData["Mensaje"] = "Error al cerrar sesión: " + ex.Message;
             }
 
-            // 2. Redirige inmediatamente a la pantalla de Login
             return RedirectToPage("/Ventanas/Login");
         }
     }

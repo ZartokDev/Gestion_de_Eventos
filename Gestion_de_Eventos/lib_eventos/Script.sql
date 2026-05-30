@@ -469,13 +469,7 @@ INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, Tipo
 VALUES ('Moderador', '3005556677', 'Moderador@eventos.com', '123456', 1, 3);
 
 INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, TipoAdministrador)
-VALUES ('Trabajador', '3005556677', 'Moderador@eventos.com', '123456', 1, 4);
-
-
-
-
-USE DBeventosGO;
-GO
+VALUES ('Trabajador', '3005556677', 'Trabajador@eventos.com', '123456', 1, 4);
 
 -- ====================================================================
 -- 1. TABLAS SIN DEPENDENCIAS (MAESTRAS)

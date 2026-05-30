@@ -1,12 +1,14 @@
+using lib_eventos.entidades;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
-using lib_eventos.entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace asp_presentaciones.Pages
 {
+    [Authorize]
     public class TipoAdministradoresModel : PageModel
     {
         private ITipoAdministradoresNegocioP iTipoAdministradoresNegocio;

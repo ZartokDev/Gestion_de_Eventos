@@ -1,6 +1,7 @@
+using lib_eventos.entidades;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
-using lib_eventos.entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -10,14 +11,12 @@ namespace asp_presentaciones.Pages
 {
     public class DisponibilidadModel : PageModel
     {
-        // Interfaces de Negocio de tus tablas maestros
         private ILugaresNegocioP iLugaresNegocio;
         private ITransportesNegocioP iTransportesNegocio;
         private IInventariosNegocioP iInventariosNegocio;
         private IGruposNegocioP iGruposNegocio;
         private IProveedoresNegocioP iProveedoresNegocio;
 
-        // Listas públicas que la vista renderizará en tablas separadas
         public List<Lugares>? ListaLugares { get; set; }
         public List<Transportes>? ListaTransportes { get; set; }
         public List<Inventarios>? ListaInventarios { get; set; }
@@ -37,10 +36,9 @@ namespace asp_presentaciones.Pages
         {
             try
             {
-                // Consultamos y filtramos únicamente lo que esté con Estado = true (Disponible/Activo)
                 ListaLugares = iLugaresNegocio.Consultar()?.Where(x => x.Estado).ToList();
                 ListaTransportes = iTransportesNegocio.Consultar()?.Where(x => x.Estado).ToList();
-                ListaInventarios = iInventariosNegocio.Consultar()?.Where(x => x.EstadoProducto).ToList(); // Usa EstadoProducto según tu SQL
+                ListaInventarios = iInventariosNegocio.Consultar()?.Where(x => x.EstadoProducto).ToList();
                 ListaGrupos = iGruposNegocio.Consultar()?.Where(x => x.Estado).ToList();
                 ListaProveedores = iProveedoresNegocio.Consultar()?.Where(x => x.Estado).ToList();
             }

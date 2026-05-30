@@ -88,7 +88,13 @@ namespace lib_eventos.implementaciones
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
-            this.iConexion.Horarios!.Remove(entidad);
+            var horario = this.iConexion.Eventos!.FirstOrDefault(e => e.Id == entidad.Id);
+
+            if (horario == null)
+                throw new Exception("El evento no existe");
+
+            horario.Estado = false;
+            this.iConexion.Eventos!.Update(horario);
             this.iConexion.SaveChanges();
 
             var auditoria = new Auditorias()

@@ -1,13 +1,15 @@
+using lib_eventos.entidades;
+using lib_eventos.interfaces;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
-using lib_eventos.entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using lib_eventos.interfaces;
 
 namespace asp_presentaciones.Pages
 {
+    [Authorize]
     public class ClientesModel : PageModel
     {
         private IClientesNegocioP iClientesNegocio;
