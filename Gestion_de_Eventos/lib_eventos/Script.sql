@@ -259,204 +259,321 @@ CREATE TABLE Facturas (
     FOREIGN KEY (Evento)   REFERENCES Eventos(Id)
 );
 
-
-USE DBeventos
+USE DBeventos;
 GO
-
--- Tablas base (sin dependencias)
-
--- =========================
--- TipoTrabajadores
--- =========================
-INSERT INTO TipoTrabajadores (Nombre, Salario, Descripcion, Estado)
-VALUES ('Mesero', 1200000, 'Atención de mesas y clientes', 1);
-
--- =========================
--- PersonalApoyos
--- =========================
-INSERT INTO PersonalApoyos (Nombre, Cantidad, Horario, Estado)
-VALUES ('Equipo A', 10, '2026-06-01', 1);
-
--- =========================
--- TipoPagos
--- =========================
-INSERT INTO TipoPagos (Nombre, Descripcion, Comision, Estado)
-VALUES ('Tarjeta Crédito', 'Pago con tarjeta', 5, 1);
-
--- =========================
--- Ofertas
--- =========================
-INSERT INTO Ofertas (FechaLimite, Descuento, Nombre, Estado)
-VALUES ('2026-12-31', 15, 'Oferta Premium', 1);
-
--- =========================
--- Proveedores
--- =========================
-INSERT INTO Proveedores (Nombre, Telefono, Correo, TipoProducto, Estado)
-VALUES ('AudioTech', '3002223344', 'ventas@audiotech.com', 'Sonido', 1);
-
--- =========================
--- Horarios
--- =========================
-INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
-VALUES ('08:00', '12:00', 'Mañana', 'Jornada mañana', 1);
-
--- =========================
--- TipoPatrocinadores
--- =========================
+ 
+-- ============================================================
+--  INSERTS "No Asignado"  
+--  Orden respetando dependencias de FK
+-- ============================================================
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 1. TABLAS TIPO (sin FK)
+-- ─────────────────────────────────────────────────────────────
+ 
+-- TipoAdministradores  →  necesario antes de Administradores
+INSERT INTO TipoAdministradores (Nombre, Descripcion, NivelAcceso, Estado)
+VALUES ('No Asignado', 'Registro por defecto sin asignación', 'N/A', 0);
+ 
+-- TipoInventarios  →  necesario antes de Inventarios
+INSERT INTO TipoInventarios (Nombre, Descripcion, Categoria, Estado)
+VALUES ('No Asignado', 'Registro por defecto sin asignación', 'N/A', 0);
+ 
+-- TipoTransportes  →  necesario antes de Transportes
+INSERT INTO TipoTransportes (Nombre, Capacidad, Descripcion, Estado)
+VALUES ('No Asignado', 0, 'Registro por defecto sin asignación', 0);
+ 
+-- TipoLugares  →  necesario antes de Lugares
+INSERT INTO TipoLugares (Nombre, Capacidad, Descripcion, Estado)
+VALUES ('No Asignado', 0, 'Registro por defecto sin asignación', 0);
+ 
+-- TipoPatrocinadores  →  necesario antes de Patrocinadores
 INSERT INTO TipoPatrocinadores (Nombre, Descripcion, NivelAporte, Beneficios, Estado)
-VALUES ('Oro', 'Patrocinador premium', 'Alto', 'Publicidad destacada', 1);
-
--- =========================
--- Clientes
--- =========================
-INSERT INTO Clientes (Documento,Nombre, Telefono, Correo, Estado)
-VALUES ('123456','Carlos Gómez', '3111111111', 'carlos@gmail.com', 1);
-
--- =========================
--- Reservas
--- =========================
-INSERT INTO Reservas (FechaReserva, Ubicacion, Observaciones, Estado)
-VALUES ('2026-07-01', 'Salón Norte', 'Reserva empresarial', 1);
-
--- =========================
--- TipoEventos
--- =========================
+VALUES ('No Asignado', 'Registro por defecto sin asignación', 'N/A', 'N/A', 0);
+ 
+-- TipoTrabajadores  →  necesario antes de Trabajadores
+INSERT INTO TipoTrabajadores (Nombre, Salario, Descripcion, Estado)
+VALUES ('No Asignado', 0, 'Registro por defecto sin asignación', 0);
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 2. TABLAS INDEPENDIENTES (sin FK)
+-- ─────────────────────────────────────────────────────────────
+ 
+-- PersonalApoyos  →  necesario antes de Grupos
+INSERT INTO PersonalApoyos (Nombre, Cantidad, Horario, Estado)
+VALUES ('No Asignado', 0, '2000-01-01', 0);
+ 
+-- Proveedores  →  necesario antes de Inventarios
+INSERT INTO Proveedores (Nombre, Telefono, Correo, TipoProducto, Estado)
+VALUES ('No Asignado', 'N/A', 'noasignado@na.com', 'N/A', 0);
+ 
+-- Clientes  →  necesario antes de Reservas / Eventos
+INSERT INTO Clientes (Nombre, Telefono, Correo, Estado)
+VALUES ('No Asignado', 'N/A', 'noasignado@na.com', 0);
+ 
+-- Horarios  →  necesario antes de Eventos
+INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
+VALUES ('00:00', '00:00', 'No Asignado', 'Registro por defecto sin asignación', 0);
+ 
+-- TipoEventos  →  necesario antes de Eventos
 INSERT INTO TipoEventos (Nombre, DuracionEstimada, Descripcion, Estado)
-VALUES ('Concierto', '5 horas', 'Evento musical', 1);
+VALUES ('No Asignado', 'N/A', 'Registro por defecto sin asignación', 0);
+ 
+-- TipoPagos  →  necesario antes de Facturas
+INSERT INTO TipoPagos (Nombre, Descripcion, Comision, Estado)
+VALUES ('No Asignado', 'Registro por defecto sin asignación', 0, 0);
+ 
+-- Ofertas  →  necesario antes de Facturas
+INSERT INTO Ofertas (FechaLimite, Descuento, Nombre, Estado)
+VALUES ('2000-01-01', 0, 'No Asignado', 0);
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 3. ADMINISTRADOR  (depende de TipoAdministradores)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, TipoAdministrador)
+VALUES ('No Asignado', 'N/A', 'noasignado@na.com', 'N/A', 0,
+        (SELECT TOP 1 Id FROM TipoAdministradores WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 4. PATROCINADOR  (depende de TipoPatrocinadores)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Patrocinadores (Nombre, Correo, Telefono, Direccion, Estado, TipoPatrocinador)
+VALUES ('No Asignado', 'noasignado@na.com', 'N/A', 'N/A', 0,
+        (SELECT TOP 1 Id FROM TipoPatrocinadores WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 5. TRANSPORTES  (depende de TipoTransportes)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Transportes (Vehiculo, Placa, Capacidad, Estado, TipoTransporte)
+VALUES ('No Asignado', 'N/A', 0, 0,
+        (SELECT TOP 1 Id FROM TipoTransportes WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 6. GRUPO  (depende de PersonalApoyos y Transportes)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Grupos (Nombre, Cantidad, CantEventos, Estado, PersonalApoyo, Transporte)
+VALUES ('No Asignado', 0, 0, 0,
+        (SELECT TOP 1 Id FROM PersonalApoyos WHERE Nombre = 'No Asignado'),
+        (SELECT TOP 1 Id FROM Transportes    WHERE Vehiculo = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 7. INVENTARIO  (depende de Proveedores y TipoInventarios)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Inventarios (Nombre, EstadoProducto, Cantidad, Proveedor, TipoInventario)
+VALUES ('No Asignado', 0, 0,
+        (SELECT TOP 1 Id FROM Proveedores    WHERE Nombre = 'No Asignado'),
+        (SELECT TOP 1 Id FROM TipoInventarios WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 8. LUGARES  (depende de TipoLugares)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Lugares (Nombre, Direccion, Capacidad, Estado, TipoLugar)
+VALUES ('No Asignado', 'N/A', 0, 0,
+        (SELECT TOP 1 Id FROM TipoLugares WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 9. RESERVA  (sin FK directa — tabla independiente)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Reservas (FechaReserva, Ubicacion, Observaciones, Estado)
+VALUES ('2000-01-01', 'No Asignado', 'Registro por defecto sin asignación', 0);
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 10. TRABAJADOR  (depende de TipoTrabajadores)
+--     necesario para GruposTrabajadores
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Trabajadores (Nombre, Telefono, Correo, FechaIngreso, Estado, TipoTrabajador)
+VALUES ('No Asignado', 'N/A', 'noasignado@na.com', '2000-01-01', 0,
+        (SELECT TOP 1 Id FROM TipoTrabajadores WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 11. GRUPOS TRABAJADORES  (depende de Trabajadores y Grupos)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO GruposTrabajadores (Descripcion, Estado, Trabajador, Grupo)
+VALUES ('No Asignado', 0,
+        (SELECT TOP 1 Id FROM Trabajadores WHERE Nombre = 'No Asignado'),
+        (SELECT TOP 1 Id FROM Grupos       WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 12. EVENTO  (depende de GruposTrabajadores, Inventarios,
+--              Horarios, Administradores, TipoEventos,
+--              Patrocinadores, Lugares, Reservas, Clientes)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Eventos (
+    Nombre, Fecha, Descripcion, CantPersonas, Estado,
+    Grupo, Inventario, Horario, Administrador, TipoEvento,
+    Patrocinador, Lugar, Reserva, Cliente
+)
+VALUES (
+    'No Asignado', '2000-01-01', 'Registro por defecto sin asignación', 0, 0,
+    (SELECT TOP 1 Id FROM Grupos            WHERE Nombre    = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Inventarios       WHERE Nombre    = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Horarios          WHERE Turno     = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Administradores   WHERE Nombre    = 'No Asignado'),
+    (SELECT TOP 1 Id FROM TipoEventos       WHERE Nombre    = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Patrocinadores    WHERE Nombre    = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Lugares           WHERE Nombre    = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Reservas          WHERE Ubicacion = 'No Asignado'),
+    (SELECT TOP 1 Id FROM Clientes          WHERE Nombre    = 'No Asignado')
+);
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 13. FACTURA  (depende de TipoPagos, Ofertas, Eventos)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Facturas (NumFactura, FechaEmision, Total, EstadoPago, TipoPago, Oferta, Evento)
+VALUES ('NA-000', '2000-01-01', 0, 0,
+        (SELECT TOP 1 Id FROM TipoPagos WHERE Nombre = 'No Asignado'),
+        (SELECT TOP 1 Id FROM Ofertas   WHERE Nombre = 'No Asignado'),
+        (SELECT TOP 1 Id FROM Eventos   WHERE Nombre = 'No Asignado'));
+ 
+-- ─────────────────────────────────────────────────────────────
+-- 14. AUDITORIA  (depende de Administradores)
+-- ─────────────────────────────────────────────────────────────
+ 
+INSERT INTO Auditorias (TipoAccion, Descripcion, Fecha, Administrador)
+VALUES ('No Asignado', 'Registro por defecto sin asignación', '2000-01-01 00:00:00',
+        (SELECT TOP 1 Id FROM Administradores WHERE Nombre = 'No Asignado'));
+
+use DBeventos
+go
 
 -- =========================
 -- TipoAdministradores
 -- =========================
 INSERT INTO TipoAdministradores (Nombre, Descripcion, NivelAcceso, Estado)
-VALUES ('Super Admin', 'Control total sistema', 'Alto', 1);
+VALUES ('Administrador', 'Control total sistema', 'Alto', 1);
 
--- =========================
--- TipoInventarios
--- =========================
-INSERT INTO TipoInventarios (Nombre, Descripcion, Categoria, Estado)
-VALUES ('Sonido', 'Equipos de sonido', 'Audio', 1);
+INSERT INTO TipoAdministradores (Nombre, Descripcion, NivelAcceso, Estado)
+VALUES ('Moderador', 'solo puede agregar y modificar', 'medio', 1);
 
--- =========================
--- TipoTransportes
--- =========================
-INSERT INTO TipoTransportes (Nombre, Capacidad, Descripcion, Estado)
-VALUES ('Bus', 40, 'Bus de pasajeros', 1);
-
--- =========================
--- TipoLugares
--- =========================
-INSERT INTO TipoLugares (Nombre, Capacidad, Descripcion, Estado)
-VALUES ('Salón', 200, 'Salón cerrado', 1);
-
--- =========================
--- Lugares
--- =========================
-INSERT INTO Lugares (Nombre, Direccion, Capacidad, Estado, TipoLugar)
-VALUES ('Centro Eventos Medellín', 'Calle 10 #20-30', 500, 1, 1);
-
--- =========================
--- Transportes
--- =========================
-INSERT INTO Transportes (Vehiculo, Placa, Capacidad, Estado, TipoTransporte)
-VALUES ('Bus Mercedes', 'ABC123', 40, 1, 1);
+INSERT INTO TipoAdministradores (Nombre, Descripcion, NivelAcceso, Estado)
+VALUES ('Trabajador', 'solo puede modificar', 'bajo', 1);
 
 -- =========================
 -- Administradores
 -- =========================
 INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, TipoAdministrador)
-VALUES ('Admin Principal', '3005556677', 'admin@eventos.com', '123456', 1, 1);
+VALUES ('Admin Principal', '3005556677', 'admin@eventos.com', '123456', 1, 2);
 
--- =========================
--- Auditorias
--- =========================
-INSERT INTO Auditorias (TipoAccion, Descripcion, Fecha, Administrador)
-VALUES ('INSERT', 'Creación de evento', GETDATE(), 1);
+INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, TipoAdministrador)
+VALUES ('Moderador', '3005556677', 'Moderador@eventos.com', '123456', 1, 3);
 
--- =========================
--- Trabajadores
--- =========================
-INSERT INTO Trabajadores (Nombre, Telefono, Correo, FechaIngreso, Estado, TipoTrabajador)
-VALUES ('Juan Pérez', '3201112233', 'juan@correo.com', '2025-01-10', 1, 1);
+INSERT INTO Administradores (Nombre, Telefono, Correo, Contraseña, Estado, TipoAdministrador)
+VALUES ('Trabajador', '3005556677', 'Moderador@eventos.com', '123456', 1, 4);
 
--- =========================
--- Grupos
--- =========================
+
+
+
+USE DBeventosGO;
+GO
+
+-- ====================================================================
+-- 1. TABLAS SIN DEPENDENCIAS (MAESTRAS)
+-- ====================================================================
+
+INSERT INTO PersonalApoyos (Nombre, Cantidad, Horario, Estado)
+VALUES ('Logística y Protocolo Premium', 15, '2026-06-15', 1);
+
+INSERT INTO TipoPagos (Nombre, Descripcion, Comision, Estado)
+VALUES ('Tarjeta de Crédito', 'Pagos mediante pasarela de pago online', 3, 1);
+
+INSERT INTO Ofertas (FechaLimite, Descuento, Nombre, Estado)
+VALUES ('2026-12-31', 15, 'Descuento Fin de Año', 1);
+
+INSERT INTO Proveedores (Nombre, Telefono, Correo, TipoProducto, Estado)
+VALUES ('Sonido & Luces Pro', '555-0192', 'contacto@sonidopro.com', 'Equipos Tecnológicos', 1);
+
+INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
+VALUES ('18:00', '02:00', 'Nocturno', 'Horario estándar para eventos nocturnos', 1);
+
+INSERT INTO TipoPatrocinadores (Nombre, Descripcion, NivelAporte, Beneficios, Estado)
+VALUES ('Patrocinador Oro', 'Aporte financiero mayoritario', 'Alto', 'Logo gigante en banners y 5 entradas VIP', 1);
+
+INSERT INTO Clientes (Nombre, Documento, Telefono, Correo, Estado)
+VALUES ('Carlos Mendoza', '10203040', '555-4321', 'carlos.mendoza@email.com', 1);
+
+INSERT INTO Reservas (FechaReserva, Ubicacion, Observaciones, Estado)
+VALUES ('2026-05-20', 'Zona VIP Norte', 'Requiere acceso para discapacitados', 1);
+
+INSERT INTO TipoEventos (Nombre, DuracionEstimada, Descripcion, Estado)
+VALUES ('Concierto', '4 Horas', 'Eventos musicales masivos en vivo', 1);
+
+INSERT INTO TipoInventarios (Nombre, Descripcion, Categoria, Estado)
+VALUES ('Mobiliario', 'Sillas, mesas y elementos de soporte', 'Logística', 1);
+
+INSERT INTO TipoTransportes (Nombre, Capacidad, Descripcion, Estado)
+VALUES ('Van de Pasajeros', 15, 'Vehículo para transporte de staff o artistas', 1);
+
+INSERT INTO TipoLugares (Nombre, Capacidad, Descripcion, Estado)
+VALUES ('Centro de Convenciones', 500, 'Espacios cerrados de gran capacidad', 1);
+
+
+-- ====================================================================
+-- 2. TABLAS CON UNA FK (DEPENDIENTES DE LAS ANTERIORES)
+-- ====================================================================
+
+INSERT INTO Lugares (Nombre, Direccion, Capacidad, Estado, TipoLugar)
+VALUES ('Gran Salón Real', 'Av. Principal #123', 450, 1, 1); -- TipoLugar = 1 (Centro de Convenciones)
+
+INSERT INTO Transportes (Vehiculo, Placa, Capacidad, Estado, TipoTransporte)
+VALUES ('Toyota Hiace', 'ABC-123', 12, 1, 1); -- TipoTransporte = 1 (Van)
+
 INSERT INTO Grupos (Nombre, Cantidad, CantEventos, Estado, PersonalApoyo, Transporte)
-VALUES ('Grupo Logístico A', 15, 3, 1, 1, 1);
+VALUES ('Staff Técnico A', 10, 5, 1, 1, 1); 
 
--- =========================
--- Inventarios
--- =========================
 INSERT INTO Inventarios (Nombre, EstadoProducto, Cantidad, Proveedor, TipoInventario)
-VALUES ('Luces LED', 1, 20, 1, 1);
+VALUES ('Sillas Cocteleras', 1, 200, 1, 1);
 
--- =========================
--- Patrocinadores
--- =========================
 INSERT INTO Patrocinadores (Nombre, Correo, Telefono, Direccion, Estado, TipoPatrocinador)
-VALUES ('Coca Cola', 'contacto@cocacola.com', '3004445566', 'Bogotá', 1, 1);
+VALUES ('Bebidas del Sur', 'marketing@bebidas.com', '555-9876', 'Zona Industrial Lote 4', 1, 1);
 
--- =========================
--- GruposTrabajadores
--- =========================
-INSERT INTO GruposTrabajadores (Descripcion, Estado, Trabajador, Grupo)
-VALUES ('Equipo principal del evento', 1, 1, 1);
 
--- =========================
--- Eventos
--- =========================
-INSERT INTO Eventos (
-    Nombre,
-    Fecha,
-    Descripcion,
-    CantPersonas,
-    Estado,
-    Grupo,
-    Inventario,
-    Horario,
-    Administrador,
-    TipoEvento,
-    Patrocinador,
-    Lugar,
-    Reserva,
-    Cliente
-)
+-- ====================================================================
+-- 3. TABLA CENTRAL: EVENTOS 
+-- (Nota: Se asume que ya existe un Administrador con Id = 1)
+-- ====================================================================
+
+INSERT INTO Eventos (Nombre, Fecha, Descripcion, CantPersonas, Estado, Grupo, Inventario, Horario, Administrador, TipoEvento, Patrocinador, Lugar, Reserva, Cliente)
 VALUES (
-    'Festival Música',
-    '2026-07-20',
-    'Evento masivo musical',
-    300,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1
+    'Gala Anual de Empresarios', 
+    '2026-07-20', 
+    'Cena y premiación corporativa', 
+    300, 
+    1, 
+    1, -- Grupo
+    1, -- Inventario
+    1, -- Horario
+    1, -- *** ADVERTENCIA: ID del Administrador (Debe existir en tu tabla)
+    1, -- TipoEvento
+    1, -- Patrocinador
+    1, -- Lugar
+    1, -- Reserva
+    1  -- Cliente
 );
 
--- =========================
--- Facturas
--- =========================
-INSERT INTO Facturas (
-    NumFactura,
-    FechaEmision,
-    Total,
-    EstadoPago,
-    TipoPago,
-    Oferta,
-    Evento
-)
-VALUES (
-    'FAC-001',
-    '2026-05-26',
-    5000000,
-    1,
-    1,
-    1,
-    1
-);
+
+-- ====================================================================
+-- 4. TABLA FACTURAS (DEPENDE DE EVENTOS)
+-- ====================================================================
+
+INSERT INTO Facturas (NumFactura, FechaEmision, Total, EstadoPago, TipoPago, Oferta, Evento)
+VALUES ('FAC-2026-0001', '2026-05-25', 1500000, 1, 1, 1, 1);
+
+
+-- ====================================================================
+-- 5. TABLA AUDITORIAS 
+-- (Nota: Se asume que ya existe un Administrador con Id = 1)
+-- ====================================================================
+
+INSERT INTO Auditorias (TipoAccion, Descripcion, Fecha, Administrador)
+VALUES ('CREACIÓN', 'Se registró el evento Gala Anual de Empresarios', GETDATE(), 1); -- *** ID del Administrador

@@ -1,0 +1,88 @@
+﻿@page
+@model RegistroClienteModel
+@{
+    ViewData["Title"] = "Registro de Nuevo Cliente";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card card-crud p-4 w-100" style="max-width: 550px;">
+
+        <div class="text-center mb-4">
+            <h3 class="text-white fw-bold">Crear Cuenta de Cliente</h3>
+            <p class="text-white-50 small">Proporcione sus datos para registrar su perfil en la plataforma de eventos.</p>
+        </div>
+
+        @if (ViewData["Mensaje"] != null)
+        {
+            <div class="alert alert-danger text-center small py-2 mb-3" role="alert">
+                @ViewData["Mensaje"]
+            </div>
+        }
+
+        <form method="POST">
+            @Html.AntiForgeryToken()
+
+            <!-- Campo: Nombre -->
+            <div class="mb-3">
+                <label class="form-label">Nombre Completo / Razón Social</label>
+                <input type="text" id="inNombre" asp-for="Nombre" class="form-control" placeholder="Ej. Juan Pérez o Empresa SAS" required />
+            </div>
+
+            <!-- Campo: Documento -->
+            <div class="mb-3">
+                <label class="form-label">Documento de Identidad (C.C. / NIT / Pasaporte)</label>
+                <input type="text" id="inDocumento" asp-for="Documento" class="form-control" placeholder="Ej. 123456789" required />
+            </div>
+
+            <div class="row">
+                <!-- Campo: Teléfono -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Teléfono de Contacto</label>
+                    <input type="tel" id="inTelefono" asp-for="Telefono" class="form-control" placeholder="Ej. 3001234567" required />
+                </div>
+
+                <!-- Campo: Correo -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Correo Electrónico</label>
+                    <input type="email" id="inCorreo" asp-for="Correo" class="form-control" placeholder="usuario@correo.com" required />
+                </div>
+            </div>
+
+            <!-- Acciones del Formulario -->
+            <div class="d-flex gap-3 mt-4">
+                <a asp-page="/ReservaInicio" class="btn btn-outline-secondary w-50 rounded-pill fw-bold transform-hover">
+                    Cancelar
+                </a>
+                <button type="submit" asp-page-handler="BtRegistrar" id="btnRegistrar" class="btn btn-electric w-50 rounded-pill fw-bold transform-hover" disabled>
+                    Registrarse
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const nombre = document.getElementById('inNombre');
+        const documento = document.getElementById('inDocumento');
+        const telefono = document.getElementById('inTelefono');
+        const correo = document.getElementById('inCorreo');
+        const btn = document.getElementById('btnRegistrar');
+
+        function verificarCampos() {
+            // El botón se habilitará solo cuando todos los campos contengan texto válido
+            const camposVacios = nombre.value.trim() === '' ||
+                                 documento.value.trim() === '' ||
+                                 telefono.value.trim() === '' ||
+                                 correo.value.trim() === '';
+
+            btn.disabled = camposVacios;
+        }
+
+        nombre.addEventListener('input', verificarCampos);
+        documento.addEventListener('input', verificarCampos);
+        telefono.addEventListener('input', verificarCampos);
+        correo.addEventListener('input', verificarCampos);
+    </script>
+}

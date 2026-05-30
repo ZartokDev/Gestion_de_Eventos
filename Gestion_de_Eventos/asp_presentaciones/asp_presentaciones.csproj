@@ -14,4 +14,9 @@
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
+  <ItemGroup>
+        <PackageReference Include="itext7" Version="9.6.0" />
+	    <PackageReference Include="itext.bouncy-castle-adapter" Version="9.6.0" />
+  </ItemGroup>
+
 </Project>

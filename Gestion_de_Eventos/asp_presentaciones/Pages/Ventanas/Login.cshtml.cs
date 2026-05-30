@@ -12,6 +12,7 @@ namespace asp_presentaciones.Pages
     public class LoginModel : PageModel
     {
         private IAdministradoresNegocioP iAdministradoresNegocio;
+        private ITipoAdministradoresNegocioP iTipoAdministradoresNegocio;
 
         [BindProperty] public string Correo { get; set; } = string.Empty;
         [BindProperty] public string Contraseña { get; set; } = string.Empty; // Mantenemos la Ñ
@@ -19,6 +20,7 @@ namespace asp_presentaciones.Pages
         public LoginModel()
         {
             iAdministradoresNegocio = new AdministradoresNegocioP(); // O AdministradoresNegocioP() según tu clase
+            iTipoAdministradoresNegocio = new TipoAdministradoresNegocioP();
         }
 
         public void OnGet()
@@ -37,11 +39,16 @@ namespace asp_presentaciones.Pages
                 }
 
                 var listaAdmins = iAdministradoresNegocio.Consultar();
+                var listaTiposAdmins = iTipoAdministradoresNegocio.Consultar();
 
                 // Buscamos comparando estrictamente con 'Contraseña'
                 var adminLogueado = listaAdmins?.FirstOrDefault(x =>
                     x.Correo.Trim().ToLower() == Correo.Trim().ToLower() &&
                     x.Contraseña == Contraseña);
+
+                var tipoAdmin = adminLogueado != null
+                    ? listaTiposAdmins?.FirstOrDefault(t => t.Id == adminLogueado.TipoAdministrador)?.Nombre
+                    : null;
 
                 if (adminLogueado != null)
                 {
@@ -50,7 +57,7 @@ namespace asp_presentaciones.Pages
                         new Claim(ClaimTypes.NameIdentifier, adminLogueado.Id.ToString()),
                         new Claim(ClaimTypes.Name, adminLogueado.Nombre),
                         new Claim(ClaimTypes.Email, adminLogueado.Correo),
-                        new Claim(ClaimTypes.Role, "Administrador")
+                        new Claim(ClaimTypes.Role, tipoAdmin)
                     };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

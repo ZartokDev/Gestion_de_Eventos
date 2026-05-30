@@ -2,6 +2,7 @@
    1. VARIABLES GLOBALES (Tema Oscuro & Azul Eléctrico)
    ========================================================================== */
 :root {
+    --blue-electric: #00d2ff; /* Tu tono de azul eléctrico */
     --primary-color: #3b82f6; /* Azul brillante/eléctrico moderno */
     --primary-hover: #2563eb; /* Azul más profundo para hovers */
     --secondary-color: #94a3b8; /* Slate claro para texto secundario */
@@ -13,6 +14,7 @@
     --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
     --border-color: #334155; /* Bordes sutiles oscuros */
     --transition-fast: all 0.2s ease-in-out;
+    --transition-smooth: all 0.3s ease-in-out;
 }
 
 /* ==========================================================================
@@ -43,18 +45,17 @@ a {
     transition: var(--transition-fast);
 }
 
+    a:hover {
+        color: var(--primary-hover);
+    }
 
-a:hover {
-    color: var(--primary-hover);
-}
-
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
-    font-weight: 700;
-    color: var(--text-main);
-}
+    a.navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+        font-weight: 700;
+        color: var(--text-main);
+    }
 
 /* Utilitarios nativos adaptados a modo oscuro */
 .border-top {
@@ -85,6 +86,9 @@ button.accept-policy {
     color: var(--text-muted);
 }
 
+/* ==========================================================================
+   3. MULTIMEDIA Y CARRUSEL EN PARALAX (INDEX COMPATIBLE)
+   ========================================================================== */
 .d-item {
     height: 500px;
     position: relative;
@@ -94,26 +98,106 @@ button.accept-policy {
     width: 100vw;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.5);
+    filter: brightness(0.4); /* Ajustado ligeramente para mejorar contraste de textos */
 }
 
 .carousel-caption {
     left: 5%;
     right: 5%;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6); /* Agrega sombra al texto para que no se pierda si la foto es clara */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     position: center;
     display: block;
 }
 
 .carousel-item img {
     width: 100%;
-    height: 850px; /* Ajusta esta altura a lo que mejor le quede a tu diseño */
+    height: 850px;
     object-fit: cover;
-    object-position: center; /* Centra la imagen para que el recorte sea simétrico */
+    object-position: center;
+}
+
+.carrusel-expandido {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    height: 70vh; /* Controla la altura total en la página principal */
+    overflow: hidden;
+}
+
+/* Clases específicas para los componentes visuales de la Landing de Kinetic */
+.bg-overlay {
+    background: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.85));
+}
+
+.text-electric {
+    color: var(--blue-electric) !important;
+}
+
+.bg-electric-soft {
+    background-color: rgba(0, 210, 255, 0.08);
+}
+
+.italic-slogan {
+    font-style: italic;
+    font-family: 'Georgia', serif;
+}
+
+.text-white-75 {
+    color: rgba(248, 250, 252, 0.75) !important;
+}
+
+.text-white-50 {
+    color: rgba(248, 250, 252, 0.5) !important;
+}
+
+/* Diseño de botones de Kinetic */
+.btn-electric {
+    background-color: var(--primary-hover) !important;
+    border: 2px solid var(--blue-electric) !important;
+    color: #f8fafc !important;
+    transition: var(--transition-smooth);
+}
+
+    .btn-electric:hover {
+        background-color: var(--blue-electric) !important;
+        color: #0f172a !important;
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.6) !important;
+    }
+
+/* Efectos de movimiento controlados */
+.transform-hover {
+    transition: var(--transition-fast);
+}
+
+    .transform-hover:hover {
+        transform: scale(1.04);
+    }
+
+.transition-card {
+    transition: var(--transition-smooth);
+}
+
+    .transition-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--blue-electric) !important;
+        box-shadow: 0 12px 24px -10px rgba(0, 210, 255, 0.25) !important;
+    }
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--blue-electric);
+    margin: 12px auto 0 auto;
+    border-radius: 4px;
 }
 
 /* ==========================================================================
-   3. CLASES PARA DISEÑO MODERNO (TARJETAS Y CAMPOS)
+   4. CLASES PARA DISEÑO MODERNO (TARJETAS Y CAMPOS)
    ========================================================================== */
 /* Tarjeta principal para formularios y tablas */
 .card-crud {
@@ -134,17 +218,17 @@ button.accept-policy {
     transition: var(--transition-fast);
 }
 
-/* Ajuste para que los placeholders se vean correctamente en fondo oscuro */
-.form-control::placeholder {
-    color: #64748b;
-}
+    /* Ajuste para que los placeholders se vean correctamente en fondo oscuro */
+    .form-control::placeholder {
+        color: #64748b;
+    }
 
-.form-control:focus, .form-select:focus {
-    background-color: var(--bg-dark-input);
-    color: var(--text-main);
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-}
+    .form-control:focus, .form-select:focus {
+        background-color: var(--bg-dark-input);
+        color: var(--text-main);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
 
 .form-label {
     margin-bottom: 0.4rem;
@@ -163,14 +247,13 @@ button.accept-policy {
 }
 
 /* ==========================================================================
-   4. TUS CLASES ADAPTADAS (Tablas, Vistas y Contenedores)
+   5. TUS CLASES ADAPTADAS (Tablas, Vistas y Contenedores)
    ========================================================================== */
 .card_index {
     background-color: var(--bg-dark-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
-
 }
 
 .card-admin {
@@ -210,7 +293,7 @@ button.accept-policy {
 }
 
 .cl_hidden {
-    display: block; 
+    display: block;
 }
 
 @media (max-width: 950px) {
@@ -220,7 +303,7 @@ button.accept-policy {
 }
 
 /* ==========================================================================
-   5. TABLAS ESTILIZADAS CON TU CLASE (.tb_data)
+   6. TABLAS ESTILIZADAS CON TU CLASE (.tb_data)
    ========================================================================== */
 .table-responsive-custom {
     border-radius: 10px;
@@ -229,11 +312,10 @@ button.accept-policy {
 }
 
 /* Tu clase base de tabla con superpoderes visuales */
-/* Tu clase base de tabla con superpoderes visuales */
 .tb_data {
     width: 100%;
     margin-bottom: 0;
-    background-color: var(--bg-dark-card) !important; /* Forzar fondo oscuro */
+    background-color: var(--bg-dark-card) !important;
     vertical-align: middle;
 }
 
@@ -243,7 +325,7 @@ button.accept-policy {
         color: var(--text-main) !important;
     }
 
-    /* NUEVO: Forzar que las filas y celdas hereden el fondo oscuro */
+    /* Forzar que las filas y celdas hereden el fondo oscuro */
     .tb_data tr,
     .tb_data td {
         background-color: var(--bg-dark-card) !important;
@@ -258,7 +340,7 @@ button.accept-policy {
     }
 
 /* ==========================================================================
-   6. VENTANAS EMERGENTES Y POPUPS (.popup y subtipos)
+   7. VENTANAS EMERGENTES Y POPUPS (.popup y subtipos)
    ========================================================================== */
 /* Fondo translúcido con desenfoque moderno */
 .popup {
@@ -270,7 +352,7 @@ button.accept-policy {
     right: 0;
     bottom: 0;
     z-index: 1060;
-    background-color: rgba(2, 6, 17, 0.7); /* Oscurecido más profundo para el fondo */
+    background-color: rgba(2, 6, 17, 0.7);
     backdrop-filter: blur(4px); /* Efecto Glassmorphism */
     display: flex;
     justify-content: center;
@@ -279,7 +361,7 @@ button.accept-policy {
 
 /* Contenedor interno base actualizado */
 .pp_inner, .pp_del_inner, .pp_ms_inner {
-    position: relative; 
+    position: relative;
     background: var(--bg-dark-card);
     border: 1px solid var(--border-color);
     padding: 2rem;
@@ -287,7 +369,7 @@ button.accept-policy {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 500px;
-    height: auto; 
+    height: auto;
     margin: auto;
     animation: popupScaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
