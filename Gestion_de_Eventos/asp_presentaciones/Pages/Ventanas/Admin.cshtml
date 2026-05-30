@@ -5,22 +5,106 @@
 }
 
 <center>
+    
+    @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+    {
+        <h1 class="display-3 fw-bolder text-white text-shadow mb-2 animate__animated animate__fadeInDown">
+            CONTROLADOR ADMINISTRADOR
+        </h1>
 
-    <div class="card-body p-4">
+        <div "card-body p-4">
+            <button class="card-admin btn btn-primary" type="button">
+                <a class="nav-link "
+                   asp-area=""
+                   asp-page="TipoAdministradores">
+                    Tipos de Administradores
+                </a>
+            </button>
+            <button class="card-admin btn btn-primary" type="button">
+                <a class="nav-link"
+                asp-area=""
+                asp-page="Administradores">
+                    Administradores
+                </a>
+            </button>
+            <button class="card-admin btn btn-primary" type="button">
+                <a class="nav-link "
+                asp-area=""
+                asp-page="Auditorias">
+                    Auditorias
+                </a>
+            </button>
+
+
+        </div>
+
+    }
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Moderador") || User.IsInRole("Administrador"))
+    {
+    <h1 class="display-3 fw-bolder text-white text-shadow mb-2 animate__animated animate__fadeInDown">
+        CONTROLADOR MODERADOR
+    </h1>
+
+    <div "card-body p-4">
         <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link"
+            <a class="nav-link "
                asp-area=""
-               asp-page="Administradores">
-                Administradores
+               asp-page="TipoEventos">
+                Tipos de Eventos
             </a>
         </button>
         <button class="card-admin btn btn-primary" type="button">
             <a class="nav-link "
                asp-area=""
-               asp-page="Auditorias">
-                Auditorias
+               asp-page="TipoInventarios">
+                Tipos de Inventarios
             </a>
         </button>
+        <button class="card-admin btn btn-primary" type="button">
+            <a class="nav-link "
+               asp-area=""
+               asp-page="TipoLugares">
+                Tipos de Lugares
+            </a>
+        </button>
+        <button class="card-admin btn btn-primary" type="button">
+            <a class="nav-link "
+               asp-area=""
+               asp-page="TipoTrabajadores">
+                Tipos de Pagos
+            </a>
+        </button>
+        <button class="card-admin btn btn-primary" type="button">
+            <a class="nav-link "
+               asp-area=""
+               asp-page="TipoPatrocinadores">
+                Tipos de Patrocinadores
+            </a>
+        </button>
+        <button class="card-admin btn btn-primary" type="button">
+            <a class="nav-link "
+               asp-area=""
+               asp-page="TipoTransportes">
+                Tipos de Transportes
+            </a>
+        </button>
+        <button class="card-admin btn btn-primary" type="button">
+            <a class="nav-link "
+               asp-area=""
+               asp-page="TipoTrabajadores">
+                Tipos de Trabajadores
+            </a>
+        </button>
+        </div>
+    }
+
+    <h1 class="display-3 fw-bolder text-white text-shadow mb-2 animate__animated animate__fadeInDown">
+        CONTROLADOR GENERAL
+    </h1>
+
+    <div class="card-body p-4">
+
         <button class="card-admin btn btn-primary" type="button">
             <a class="nav-link "
                asp-area=""
@@ -49,13 +133,7 @@
                 Grupos
             </a>
         </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="GruposTrabajadores">
-                Grupos de Trabajadores
-            </a>
-        </button>
+        
         <button class="card-admin btn btn-primary" type="button">
             <a class="nav-link "
                asp-area=""
@@ -108,64 +186,8 @@
         <button class="card-admin btn btn-primary" type="button">
             <a class="nav-link "
                asp-area=""
-               asp-page="TipoEventos">
-                Tipos de Eventos
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
                asp-page="Ofertas">
                 Ofertas
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoInventarios">
-                Tipos de Inventarios
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoLugares">
-                Tipos de Lugares
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoTrabajadores">
-                Tipos de Pagos
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoPatrocinadores">
-                Tipos de Patrocinadores
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoAdministradores">
-                Tipos de Administradores
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoTransportes">
-                Tipos de Transportes
-            </a>
-        </button>
-        <button class="card-admin btn btn-primary" type="button">
-            <a class="nav-link "
-               asp-area=""
-               asp-page="TipoTrabajadores">
-                Tipos de Trabajadores
             </a>
         </button>
         <button class="card-admin btn btn-primary" type="button">
@@ -182,7 +204,22 @@
                 Transportes
             </a>
         </button>
+        <button class="card-admin btn btn-primary" type="button">
+            <a class="nav-link "
+               asp-area=""
+               asp-page="GruposTrabajadores">
+                Grupos de Trabajadores
+            </a>
+        </button>
         
     </div>
+
+    <button class="card-admin btn btn-primary" type="button">
+        <a class="nav-link "
+           asp-area=""
+           asp-page="Reporte">
+            Reporte
+        </a>
+    </button>
 
 </center>

@@ -1,0 +1,138 @@
+﻿@page
+@model MisEventosModel
+@{
+    ViewData["Title"] = "Consulta de Reservas - Kinetic Eventos";
+}
+
+<div class="container mt-5">
+    <div class="card-crud text-white p-0">
+
+   
+        <div class="p-4 border-bottom d-flex justify-content-between align-items-center flex-wrap gap-3" style="background-color: #020617; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+            <div>
+                <h2 class="fw-bold mb-1 text-uppercase tracking-wider">
+                    <span class="text-electric">KINETIC</span> EVENTOS
+                </h2>
+                <p class="text-white-50 small mb-0 italic-slogan">Portal de Consultas - Consulta tus Eventos Reservados</p>
+            </div>
+        </div>
+
+      
+        <div class="card-body p-4">
+
+            <form method="post" asp-page-handler="Buscar" class="row g-3 align-items-end mb-4">
+                <div class="col-md-8 col-sm-12">
+                    <label for="txtDocumento" class="form-label fw-semibold text-white-75">Ingrese su Número de Documento (Cédula / NIT):</label>
+                    <input type="text" id="txtDocumento" asp-for="DocumentoInput" class="form-control" placeholder="Ej: 1045234XXX" required autocomplete="off" />
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <button type="submit" class="btn btn-electric w-100 fw-semibold">
+                        <i class="bi bi-search me-1"></i> Consultar Agenda
+                    </button>
+                </div>
+            </form>
+
+            <hr class="border-secondary my-4" />
+
+ 
+            @if (Model.BusquedaRealizada)
+            {
+                @if (Model.ClienteEncontrado == null)
+                {
+                   
+                    <div class="text-center py-5 bg-electric-soft rounded-3 p-4">
+                        <i class="bi bi-exclamation-triangle text-electric display-1 mb-3 d-block"></i>
+                        <h4 class="text-electric fw-semibold">Documento no registrado</h4>
+                        <p class="text-white-75 small mx-auto mb-0" style="max-width: 500px;">
+                            No encontramos ninguna reserva asociada al documento <strong>@Model.DocumentoInput</strong>. Por favor, verifica el número o comunícate con tu asesor comercial.
+                        </p>
+                    </div>
+                }
+                else if (!Model.ListaMisEventos.Any())
+                {
+                   
+                    <div class="text-center py-5 bg-electric-soft rounded-3 p-4">
+                        <i class="bi bi-calendar-x text-electric display-1 mb-3 d-block"></i>
+                        <h4 class="text-electric fw-semibold">¡Hola, @Model.ClienteEncontrado.Nombre!</h4>
+                        <p class="text-white-75 small mx-auto mb-0" style="max-width: 500px;">
+                            Tu documento está registrado correctamente, pero actualmente no posees eventos vigentes agendados en el sistema.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                
+                    <div class="mb-3 p-2 bg-electric-soft rounded border border-info border-opacity-25">
+                        <p class="mb-0 small text-white-75">
+                            <i class="bi bi-person-check text-electric me-2"></i> Mostrando eventos para:
+                            <span class="text-electric fw-bold">@Model.ClienteEncontrado.Nombre.ToUpper()</span>
+                        </p>
+                    </div>
+
+                    <div class="table-responsive-custom">
+                        <table class="table tb_data mb-0 align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center text-electric" style="width: 100px; padding: 12px;">Reserva</th>
+                                    <th scope="col" style="padding: 12px;">Especificación del Evento</th>
+                                    <th scope="col" style="width: 180px;">Fecha Programada</th>
+                                    <th scope="col" style="width: 150px;">Aforo Contratado</th>
+                                    <th scope="col">Sede / Locación Asignada</th>
+                                    <th scope="col" class="text-center" style="width: 140px;">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var evento in Model.ListaMisEventos)
+                                {
+                                    var lugarAsignado = Model.ListaLugares.FirstOrDefault(l => l.Id == evento.Lugar);
+
+                                    <tr class="transform-hover">
+                                        <td class="text-center fw-bold text-electric">#@evento.Id</td>
+                                        <td class="fw-semibold text-main">@evento.Nombre</td>
+                                        <td>
+                                            <i class="bi bi-calendar3 text-electric me-2"></i>@evento.Fecha.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            <i class="bi bi-people text-white-50 me-2"></i>@evento.CantPersonas <span class="text-white-50 small">pax</span>
+                                        </td>
+                                        <td>
+                                            <i class="bi bi-geo-alt text-secondary-color me-2"></i>
+                                            @(lugarAsignado != null ? lugarAsignado.Nombre : "Locación Personalizada")
+                                        </td>
+                                        <td class="text-center">
+                                            @if (evento.Estado)
+                                            {
+                                                <span class="badge bg-success bg-opacity-25 text-success border border-success px-2 py-1 w-100">
+                                                    Confirmado
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning bg-opacity-25 text-warning border border-warning px-2 py-1 w-100">
+                                                    En Revisión
+                                                </span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center py-4 text-muted">
+                    <p class="small mb-0"><i class="bi bi-info-circle me-2"></i> Digite su documento de identidad arriba para cargar de manera segura su planificación de eventos.</p>
+                </div>
+            }
+        </div>
+
+        <div class="card-footer border-top p-3 d-flex justify-content-between align-items-center" style="background-color: #020617; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+            <a asp-page="/Index" class="btn btn-outline-secondary btn-sm text-white px-4">
+                <i class="bi bi-arrow-left me-1"></i> Volver al Inicio
+            </a>
+        </div>
+
+    </div>
+</div>

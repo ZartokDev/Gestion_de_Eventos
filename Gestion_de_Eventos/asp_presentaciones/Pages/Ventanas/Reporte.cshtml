@@ -1,0 +1,37 @@
+﻿@page
+@model ReporteModel
+@{
+    ViewData["Title"] = "Centro de Descargas";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+    <div class="card card-crud p-5 text-center w-100" style="max-width: 600px; margin: 40px auto;">
+        
+        <div class="mb-3" style="font-size: 4rem;">📄</div>
+        
+        <h2 class="text-white fw-bold mb-2">Generación de Reportes Oficiles</h2>
+        
+           <p class="text-white-50 small mb-4 px-3">
+        @if (User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value == "Administrador")
+        {
+            <span>Como Administrador central del sistema, se compilará un archivo PDF que contiene las auditorías vigentes de clientes, infraestructura de sedes operativas y la flota vehicular disponible.</span>
+        }
+        else
+        {
+            <span>Estimado cliente, el sistema estructurará un dossier con la agenda de tus eventos contratados junto al estado financiero de tus facturas de liquidación.</span>
+        }
+    </p>
+        
+        <form method="POST">
+            @Html.AntiForgeryToken()
+            
+            <button type="submit"
+                    asp-page-handler="Descargar"
+                    class="btn btn-danger px-5 py-3 rounded-pill fw-bold text-uppercase shadow-sm"
+                    style="font-size: 1.05rem; letter-spacing: 0.5px;">
+                ⬇️ Descargar Documento PDF
+            </button>
+        </form>
+        
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@page
+@model ReservaInicioModel
+@{
+    ViewData["Title"] = "Iniciar Reserva";
+}
+
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 75vh;">
+
+    <!-- Encabezado de la sección de reserva -->
+    <div class="text-center mb-5">
+        <h2 class="text-electric fw-bold section-title d-inline-block">Comenzar con la Reserva</h2>
+        <p class="text-white-75 mt-3 fs-5">Para ofrecerte una atención personalizada, indícanos tu situación actual.</p>
+    </div>
+
+    <!-- Contenedor de las dos opciones -->
+    <div class="row g-4 justify-content-center w-100" style="max-width: 850px;">
+
+        <!-- Opción 1: Cliente Existente -->
+        <div class="col-md-6">
+            <div class="card h-100 card-crud border border-secondary p-4 text-center transition-card d-flex flex-column justify-content-between">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <div class="bg-electric-soft rounded-circle p-4 mb-3 text-electric fs-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                        Id
+                    </div>
+                    <h3 class="card-title text-white fw-bold mb-3">Ya soy Cliente</h3>
+                    <p class="card-text text-white-50 lh-base mb-4">
+                        Si ya has realizado eventos con nosotros o posees una cuenta registrada, ingresa aquí para agilizar tu proceso utilizando tus datos almacenados.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 p-0 mt-auto">
+                    <a asp-page="ReservaCliente" class="btn btn-electric w-100 py-2.5 rounded-pill fw-bold transform-hover">
+                        Ingresar a mi Cuenta
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opción 2: Nuevo Cliente -->
+        <div class="col-md-6">
+            <div class="card h-100 card-crud border border-secondary p-4 text-center transition-card d-flex flex-column justify-content-between">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <div class="bg-electric-soft rounded-circle p-4 mb-3 text-electric fs-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                        +
+                    </div>
+                    <h3 class="card-title text-white fw-bold mb-3">Nuevo Perfil</h3>
+                    <p class="card-text text-white-50 lh-base mb-4">
+                        Si es la primera vez que planeas un evento con nuestra agencia, crea un perfil de cliente en pocos pasos para comenzar con la planificación de tu proyecto.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 p-0 mt-auto">
+                    <a asp-page="RegistroCliente" class="btn btn-outline-light w-100 py-2.5 rounded-pill fw-bold transform-hover" style="border-width: 2px;">
+                        Crear Nuevo Perfil
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

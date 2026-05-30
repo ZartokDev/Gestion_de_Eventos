@@ -1,0 +1,226 @@
+﻿@page
+@model DisponibilidadModel
+@{
+    ViewData["Title"] = "Catálogo de Disponibilidad";
+}
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="text-white fw-bold mb-0">📋 Recursos y Disponibilidad de la Empresa</h2>
+            <p class="text-white-50 small">Consulta los activos fijos, personal y logística listos para asignación en eventos.</p>
+        </div>
+        <a asp-page="Index" class="btn btn-outline-light px-4 rounded-pill">
+            Volver al Inicio
+        </a>
+    </div>
+
+    <div class="card card-crud mb-4">
+        <div class="card-header py-3 bg-dark-main">
+            <h5 class="mb-0 text-white fw-bold">🏢 Sedes y Lugares Operativos</h5>
+        </div>
+        <div class="table-responsive table-responsive-custom">
+            <table class="tb_data mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Lugar</th>
+                        <th>Dirección</th>
+                        <th>Aforo Máximo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaLugares != null && Model.ListaLugares.Count > 0)
+                    {
+                        @foreach (var lugar in Model.ListaLugares)
+                        {
+                            <tr>
+                                <td><strong>#@lugar.Id</strong></td>
+                                <td>@lugar.Nombre</td>
+                                <td>@lugar.Direccion</td>
+                                <td><span class="badge bg-primary px-3 py-1 rounded-pill">@lugar.Capacidad personas</span></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="4" class="text-center text-muted py-3">No hay lugares activos registrados.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr class="border-secondary my-4" />
+
+    <div class="card card-crud mb-4">
+        <div class="card-header py-3 bg-dark-main">
+            <h5 class="mb-0 text-white fw-bold">🚚 Flota de Vehículos y Transportes</h5>
+        </div>
+        <div class="table-responsive table-responsive-custom">
+            <table class="tb_data mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vehículo / Modelo</th>
+                        <th>Placa</th>
+                        <th>Capacidad de Carga/Pasajeros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaTransportes != null && Model.ListaTransportes.Count > 0)
+                    {
+                        @foreach (var trans in Model.ListaTransportes)
+                        {
+                            <tr>
+                                <td><strong>#@trans.Id</strong></td>
+                                <td>@trans.Vehiculo</td>
+                                <td><span class="text-warning fw-bold">@trans.Placa</span></td>
+                                <td>@trans.Capacidad unidades</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="4" class="text-center text-muted py-3">No hay vehículos de transporte activos.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr class="border-secondary my-4" />
+
+    <div class="card card-crud mb-4">
+        <div class="card-header py-3 bg-dark-main">
+            <h5 class="mb-0 text-white fw-bold">📦 Inventario de Artículos y Mobiliario</h5>
+        </div>
+        <div class="table-responsive table-responsive-custom">
+            <table class="tb_data mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Artículo</th>
+                        <th>Cantidad Disponible</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaInventarios != null && Model.ListaInventarios.Count > 0)
+                    {
+                        @foreach (var inv in Model.ListaInventarios)
+                        {
+                            <tr>
+                                <td><strong>#@inv.Id</strong></td>
+                                <td>@inv.Nombre</td>
+                                <td><strong class="text-success">@inv.Cantidad uds</strong></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="3" class="text-center text-muted py-3">Sin stock o productos disponibles en inventario.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr class="border-secondary my-4" />
+
+    <div class="card card-crud mb-4">
+        <div class="card-header py-3 bg-dark-main">
+            <h5 class="mb-0 text-white fw-bold">👥 Grupos de Trabajo Operativos</h5>
+        </div>
+        <div class="table-responsive table-responsive-custom">
+            <table class="tb_data mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Grupo</th>
+                        <th>Cantidad de Integrantes</th>
+                        <th>Eventos Atendidos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaGrupos != null && Model.ListaGrupos.Count > 0)
+                    {
+                        @foreach (var grupo in Model.ListaGrupos)
+                        {
+                            <tr>
+                                <td><strong>#@grupo.Id</strong></td>
+                                <td class="fw-bold text-white">@grupo.Nombre</td>
+                                <td>@grupo.Cantidad colaboradores</td>
+                                <td>
+                                    <span class="badge bg-info-subtle text-info px-3 py-1 rounded-pill">
+                                        @grupo.CantEventos asignados
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="4" class="text-center text-muted py-3">No hay grupos logísticos activos disponibles en este momento.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <hr class="border-secondary my-4" />
+
+    <div class="card card-crud mb-4">
+        <div class="card-header py-3 bg-dark-main">
+            <h5 class="mb-0 text-white fw-bold">🤝 Directorio de Proveedores Activos</h5>
+        </div>
+        <div class="table-responsive table-responsive-custom">
+            <table class="tb_data mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Razón Social / Nombre</th>
+                        <th>Teléfono de Contacto</th>
+                        <th>Correo Electrónico</th>
+                        <th>Especialidad / Insumo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaProveedores != null && Model.ListaProveedores.Count > 0)
+                    {
+                        @foreach (var prov in Model.ListaProveedores)
+                        {
+                            <tr>
+                                <td><strong>#@prov.Id</strong></td>
+                                <td class="fw-bold text-white">@prov.Nombre</td>
+                                <td>@prov.Telefono</td>
+                                <td>@prov.Correo</td>
+                                <td><span class="badge bg-secondary-subtle text-white px-3">@prov.TipoProducto</span></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="5" class="text-center text-muted py-3">No hay proveedores en el registro de activos.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h1 class="display-3 fw-bolder text-white text-shadow mb-2 animate__animated animate__fadeInDown">
+        ya quieres reservar tu evento?
+    </h1>
+    <button class="btn btn-electric px-5 py-3 fs-5 mt-2 shadow-lg rounded-pill fw-bold transform-hover" type="button">
+        <a asp-area="" asp-page="/Ventanas/ReservaInicio" class="">
+            Reservar mi Evento
+        </a>
+    </button>
+
+</div>
+
+@if (ViewData.ContainsKey("Mensaje"))
+{
+    @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+}

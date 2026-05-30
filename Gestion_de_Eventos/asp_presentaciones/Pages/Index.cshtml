@@ -1,54 +1,107 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    
+<div class="text-center bg-dark-main text-white text-start-custom">
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="position-relative carrusel-expandido mb-5">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-overlay" style="z-index: 5;"></div>
 
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div class="position-absolute top-50 start-50 translate-middle text-center w-100" style="z-index: 10;">
+            <h1 class="display-3 fw-bolder text-white text-shadow mb-2 animate__animated animate__fadeInDown">
+                Bienvenidos a <span class="text-electric">Kinetic Eventos</span>
+            </h1>
+            <p class="fs-4 text-white-50 text-shadow mb-4 italic-slogan">
+                "La energía de tus grandes momentos."
+            </p>
+
+           
+            <button class="btn btn-electric px-5 py-3 fs-5 mt-2 shadow-lg rounded-pill fw-bold transform-hover" type="button">
+                    <a asp-area="" asp-page="/Ventanas/ReservaInicio" class="">
+                        Reservar mi Evento
+                    </a>
+            </button>
         </div>
 
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100 d-img" src="~/assets/Carrusel_001.jpg" alt="slider 1">
-                <div class="carousel-caption top-0 mt-4">
-                    <h1 class="display-4 fw-bolder">Bienvenidos a Kinetic Eventos</h1>
-                    <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Reserva tu Evento</button>
-                </div>
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-indicators" style="z-index: 12;">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-item active ">
-                <img class="d-block w-100 d-img" src="~/assets/Carrusel_002.jpg" alt="Second slide">
-                <div class="carousel-caption top-0 mt-4">
-                    <h1 class="display-4 fw-bolder">Bienvenidos a Kinetic Eventos</h1>
-                    <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Reserva tu Evento</button>
+
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100">
+                    <img class="d-block w-100 d-img obj-cover" src="~/assets/Carrusel_001.jpg" alt="Planificación de eventos">
                 </div>
-            </div>
-            <div class="carousel-item active ">
-                <img class="d-block w-100 d-img" src="~/assets/Carrusel_003.jpg" alt="Third slide">
-                <div class="carousel-caption top-0 mt-4">
-                    <h1 class="display-4 fw-bolder">Bienvenidos a Kinetic Eventos</h1>
-                    <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Reserva tu Evento</button>
+                <div class="carousel-item h-100">
+                    <img class="d-block w-100 d-img obj-cover" src="~/assets/Carrusel_002.jpg" alt="Logística y producción">
+                </div>
+                <div class="carousel-item h-100">
+                    <img class="d-block w-100 d-img obj-cover" src="~/assets/Carrusel_003.jpg" alt="Experiencias corporativas">
                 </div>
             </div>
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 
-    <p class="mt-4">Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="container my-5 py-4">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h2 class="text-electric fw-bold mb-4 position-relative d-inline-block section-title">
+                    Transformamos Ideas en Movimiento
+                </h2>
+                <p class="fs-5 lh-lg text-white-75 mx-auto card-crud p-4 rounded-4 shadow border border-secondary" style="max-width: 900px; background-color: var(--bg-dark-card);">
+                    En <span class="fw-bold text-white">Kinetic Eventos</span>, entendemos que un evento no es solo una reunión de personas, sino una fuerza en movimiento capaz de transformar ideas en experiencias memorables. Nacemos con el propósito de fusionar la planificación estratégica y la máxima precisión logística con la energía y creatividad que cada ocasión merece. Guiados por nuestra identidad visual, nos especializamos en diseñar, producir y gestionar eventos que generan impacto, conectan audiencias y dejan una huella imborrable.
+                </p>
+            </div>
+        </div>
+    </div>
 
+    <div class="bg-dark-secondary py-5">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5">
+                    <div class="card h-100 card-crud border border-secondary p-4 text-start transition-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-shape bg-electric-soft rounded-circle p-3 me-3 text-electric fs-3">🎯</div>
+                                <h3 class="card-title text-white fw-bold m-0">Nuestra Misión</h3>
+                            </div>
+                            <p class="card-text text-white-50 lh-base">
+                                "Diseñar, producir y gestionar eventos integrales de alto impacto, transformando las ideas de nuestros clientes en experiencias dinámicas, innovadoras y eficientes. Nos comprometemos a brindar una logística impecable, soluciones creativas de vanguardia y una ejecución rigurosa que impulse el éxito de cada proyecto y supere las expectativas de nuestros asistentes."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="card h-100 card-crud border border-secondary p-4 text-start transition-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-shape bg-electric-soft rounded-circle p-3 me-3 text-electric fs-3">🚀</div>
+                                <h3 class="card-title text-white fw-bold m-0">Nuestra Visión 2031</h3>
+                            </div>
+                            <p class="card-text text-white-50 lh-base">
+                                "Para el año 2031, consolidar a Kinetic Eventos como la agencia líder y referente en gestión de eventos a nivel nacional, reconocida por nuestra capacidad de innovación tecnológica, diseño disruptivo y excelencia operativa. Aspiramos a ser el aliado estratégico indiscutible para marcas y organizaciones que buscan conectar con su público a través de experiencias memorables, enérgicas y de alta calidad."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5 text-center my-4">
+        <h4 class="text-white-50 uppercase tracking-wide fs-6 mb-2">Áreas de Especialidad</h4>
+        <h3 class="text-white fw-bold mb-4">Movemos los hilos de la perfección</h3>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <span class="badge bg-dark-card border border-secondary px-4 py-2 rounded-pill fs-6 text-white-75">Eventos Corporativos</span>
+            <span class="badge bg-dark-card border border-secondary px-4 py-2 rounded-pill fs-6 text-white-75">Activaciones de Marca</span>
+            <span class="badge bg-dark-card border border-secondary px-4 py-2 rounded-pill fs-6 text-white-75">Eventos Institucionales</span>
+            <span class="badge bg-dark-card border border-secondary px-4 py-2 rounded-pill fs-6 text-white-75">Logística y Producción</span>
+        </div>
+    </div>
+
+</div>

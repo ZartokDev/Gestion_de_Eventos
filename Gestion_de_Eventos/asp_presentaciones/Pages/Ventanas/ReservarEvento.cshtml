@@ -1,0 +1,133 @@
+﻿@page "{id:int}"
+@model CrearEventoModel
+@{
+    ViewData["Title"] = "Registrar Evento";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh; py-4;">
+    <div class="card card-crud p-4 w-100" style="max-width: 750px;">
+
+        <div class="text-center mb-4">
+            <h3 class="text-white fw-bold">Especificaciones de la Reserva</h3>
+            <p class="text-white-50 small">Complete los parámetros logísticos y de ubicación para la organización del nuevo evento.</p>
+        </div>
+
+        @if (ViewData["Mensaje"] != null)
+        {
+            <div class="alert alert-danger text-center small py-2 mb-3" role="alert">
+                @ViewData["Mensaje"]
+            </div>
+        }
+
+        <form method="POST">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" asp-for="IdCliente" />
+
+            <div class="mb-3">
+                <label class="form-label">Nombre del Evento</label>
+                <input type="text" id="evNombre" asp-for="NombreEvento" class="form-control" placeholder="Ej. Convención Nacional de Tecnología 2026" required />
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Fecha Programada</label>
+                    <input type="date" id="evFecha" asp-for="FechaEvento" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Cantidad Esperada de Asistentes</label>
+                    <input type="number" id="evCant" asp-for="CantPersonas" class="form-control" placeholder="Ej. 150" min="1" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Tipo de Evento</label>
+                    @if (Model.ListaTipoEventos != null)
+                    {
+                        <select id="evTipo" class="form-select"
+                                asp-for="IdTipoEvento"
+                                asp-items="@(new SelectList(Model.ListaTipoEventos, "Id", "Nombre"))" required>
+                            <option value="">-- Seleccione un Tipo --</option>
+                        </select>
+                    }
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Lugar de Celebración</label>
+                    @if (Model.ListaLugares != null)
+                    {
+                        <select id="evLugar" class="form-select"
+                                asp-for="IdLugar"
+                                asp-items="@(new SelectList(Model.ListaLugares, "Id", "Nombre"))" required>
+                            <option value="">-- Seleccione un Lugar --</option>
+                        </select>
+                    }
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Horario Asignado</label>
+                    @if (Model.ListaHorarios != null)
+                    {
+                        <select id="evHorario" class="form-select"
+                                asp-for="IdHorario"
+                                asp-items="@(new SelectList(Model.ListaHorarios, "Id", "HoraInicio","HoraFin"))" required>
+                            <option value="">-- Seleccione un Horario --</option>
+                        </select>
+                    }
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Descripción General y Requerimientos Particulares</label>
+                <textarea id="evDesc" asp-for="DescripcionEvento" class="form-control" rows="4" placeholder="Detalle los requerimientos específicos de montaje, catering, sonido o agendas..." required></textarea>
+            </div>
+
+            <div class="d-flex gap-3 mt-2">
+                <a asp-page="/ReservaCliente" class="btn btn-outline-secondary w-50 rounded-pill fw-bold transform-hover">
+                    Cambiar Cliente
+                </a>
+                <button type="submit" asp-page-handler="Guardar" id="btnGuardar" class="btn btn-electric w-50 rounded-pill fw-bold transform-hover" disabled>
+                    Confirmar Registro
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Captura de controles de la vista para validaciones en tiempo real
+        const evNombre = document.getElementById('evNombre');
+        const evFecha = document.getElementById('evFecha');
+        const evCant = document.getElementById('evCant');
+        const evTipo = document.getElementById('evTipo');
+        const evLugar = document.getElementById('evLugar');
+        const evHorario = document.getElementById('evHorario');
+        const evDesc = document.getElementById('evDesc');
+        const btnGuardar = document.getElementById('btnGuardar');
+
+        function verificarCamposEvento() {
+            // Desactiva el botón de inserción si falta algún elemento obligatorio
+            const formularioInvalido = evNombre.value.trim() === '' ||
+                                       evFecha.value.trim() === '' ||
+                                       evCant.value.trim() === '' ||
+                                       evTipo.value === '' ||
+                                       evLugar.value === '' ||
+                                       evHorario.value === '' ||
+                                       evDesc.value.trim() === '';
+
+            btnGuardar.disabled = formularioInvalido;
+        }
+
+        // Escuchadores de eventos para procesar el estado dinámicamente
+        evNombre.addEventListener('input', verificarCamposEvento);
+        evFecha.addEventListener('input', verificarCamposEvento);
+        evCant.addEventListener('input', verificarCamposEvento);
+        evTipo.addEventListener('change', verificarCamposEvento);
+        evLugar.addEventListener('change', verificarCamposEvento);
+        evHorario.addEventListener('change', verificarCamposEvento);
+        evDesc.addEventListener('input', verificarCamposEvento);
+    </script>
+}

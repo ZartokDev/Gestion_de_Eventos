@@ -1,11 +1,13 @@
 using lib_eventos.entidades;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace asp_presentaciones.Pages
 {
+    [Authorize]
     public class EventosModel : PageModel
     {
         private IEventosNegocioP iEventosNegocio;
@@ -18,10 +20,6 @@ namespace asp_presentaciones.Pages
         private IPatrocinadoresNegocioP iPatrocinadoresNegocio;
         private IAdministradoresNegocioP iAdministradoresNegocio;
         private IReservasNegocioP iReservasNegocio;
-
-        // TODO: Inyectar o instanciar tus capas de negocio para las relaciones
-        // Ejemplo: private ILugaresNegocio iLugaresNegocio = new LugaresNegocio();
-
         [BindProperty] public List<Eventos>? Lista { get; set; }
         [BindProperty] public Eventos? Evento { get; set; }
         [BindProperty] public List<Lugares>? ListaLugares { get; set; }
@@ -135,7 +133,7 @@ namespace asp_presentaciones.Pages
             }
             catch (Exception ex)
             {
-                CargarRelaciones(); // Evita perder los combos si hay error de validación
+                CargarRelaciones();
                 ViewData["Mensaje"] = ex.Message;
             }
         }
