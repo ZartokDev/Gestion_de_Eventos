@@ -1,4 +1,5 @@
 using lib_eventos.entidades;
+using lib_eventos.interfaces;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -65,6 +66,64 @@ namespace asp_presentaciones.Pages
             }
             
         }
+
+        public void OnPostBtBorrar()
+        {
+            try
+            {
+                if (TipoLugar == null)
+                    return;
+                TipoLugar.Estado = false;
+                TipoLugar = iTipoLugaresNegocio!.Modificar(TipoLugar!);
+                OnPostBtRefrescar();
+
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
+        public void OnPostBtGuardar()
+        {
+            try
+            {
+                if (TipoLugar == null)
+                    return;
+                if (TipoLugar.Id == 0)
+                    TipoLugar = iTipoLugaresNegocio!.Guardar(TipoLugar!);
+                else
+                {
+                    TipoLugar = iTipoLugaresNegocio!.Modificar(TipoLugar!);
+                }
+                if (TipoLugar.Id == 0)
+                    return;
+                OnPostBtRefrescar();
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
+        public void OnPostBtModificar(int data)
+        {
+            try
+            {
+                OnPostBtRefrescar();
+                TipoLugar = Lista!.FirstOrDefault(x => x.Id == data);
+                Lista = null;
+                Borrando = false;
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
 
         public void OnPostBtCerrar() 
         {

@@ -1,4 +1,6 @@
 using lib_eventos.entidades;
+using lib_eventos.implementaciones;
+using lib_eventos.interfaces;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -64,6 +66,56 @@ namespace asp_presentaciones.Pages
                 ViewData["Mensaje"] = ex.Message;
             }
             
+        }
+
+        public void OnPostBtBorrar()
+        {
+            try
+            {
+                if (TipoAdministrador == null) return;
+                TipoAdministrador.Estado = false;
+                TipoAdministrador = iTipoAdministradoresNegocio!.Modificar(TipoAdministrador!);
+                OnPostBtRefrescar();
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+        }
+
+        public void OnPostBtGuardar()
+        {
+            try
+            {
+                if (TipoAdministrador == null) return;
+                if (TipoAdministrador.Id == 0)
+                    TipoAdministrador = iTipoAdministradoresNegocio!.Guardar(TipoAdministrador!);
+                else
+                    TipoAdministrador = iTipoAdministradoresNegocio!.Modificar(TipoAdministrador!);
+
+                if (TipoAdministrador.Id == 0) return;
+                OnPostBtRefrescar();
+            }
+            catch (Exception ex)
+            {
+              
+                ViewData["Mensaje"] = ex.Message;
+            }
+        }
+
+        public void OnPostBtModificar(int data)
+        {
+            try
+            {
+                OnPostBtRefrescar();
+                TipoAdministrador = Lista!.FirstOrDefault(x => x.Id == data);
+                Lista = null;
+                Borrando = false;
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
         }
 
         public void OnPostBtCerrar() 

@@ -1,4 +1,5 @@
 using lib_eventos.entidades;
+using lib_eventos.interfaces;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -43,7 +44,87 @@ namespace asp_presentaciones.Pages
            
         }
 
-      
+        public void OnPostBtNuevo()
+        {
+            Borrando = false;
+        }
+
+        public void OnPostBtBorrarVal(int data)
+        {
+
+            try
+            {
+                OnPostBtRefrescar();
+                TipoPago = Lista!.FirstOrDefault(x => x.Id == data);
+                Lista = null;
+                Borrando = true;
+
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
+        public void OnPostBtBorrar()
+        {
+            try
+            {
+                if (TipoPago == null)
+                    return;
+                TipoPago.Estado = false;
+                TipoPago = iTipoPagosNegocio!.Modificar(TipoPago!);
+                OnPostBtRefrescar();
+
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
+        public void OnPostBtGuardar()
+        {
+            try
+            {
+                if (TipoPago == null)
+                    return;
+                if (TipoPago.Id == 0)
+                    TipoPago = iTipoPagosNegocio!.Guardar(TipoPago!);
+                else
+                {
+                    TipoPago = iTipoPagosNegocio!.Modificar(TipoPago!);
+                }
+                if (TipoPago.Id == 0)
+                    return;
+                OnPostBtRefrescar();
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
+        public void OnPostBtModificar(int data)
+        {
+            try
+            {
+                OnPostBtRefrescar();
+                TipoPago = Lista!.FirstOrDefault(x => x.Id == data);
+                Lista = null;
+                Borrando = false;
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+
+        }
+
+
         public void OnPostBtCerrar() 
         {
             OnPostBtRefrescar();

@@ -1,4 +1,5 @@
 using lib_eventos.entidades;
+using lib_eventos.interfaces;
 using lib_presentaciones.Implementaciones;
 using lib_presentaciones.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -14,12 +15,14 @@ namespace asp_presentaciones.Pages
         private IFacturasNegocioP iFacturasNegocio;
         private ITipoPagosNegocioP iTipoPagosNegocio;
         private IOfertasNegocioP iOfertasNegocioP;
+        private IFacturasNegocioP iFacturasNegocioP;
         private IEventosNegocioP iEventosNegocioP;
 
         [BindProperty] public List<Facturas>? Lista { get; set; }
         [BindProperty] public Facturas? Factura { get; set; }
         [BindProperty] public List<TipoPagos>? ListaTipoPagos { get; set; }
         [BindProperty] public List<Ofertas>? ListaOfertas { get; set; }
+        [BindProperty] public List<Facturas>? ListaFacturas { get; set; }
         [BindProperty] public List<Eventos>? ListaEventos { get; set; }
         [BindProperty] public bool Borrando { get; set; }
  
@@ -28,6 +31,7 @@ namespace asp_presentaciones.Pages
             iFacturasNegocio = new FacturasNegocioP();
             iTipoPagosNegocio = new TipoPagosNegocioP();
             iOfertasNegocioP = new OfertasNegocioP();
+            iFacturasNegocioP = new FacturasNegocioP();
             iEventosNegocioP = new EventosNegocioP();
         }
 
@@ -42,6 +46,7 @@ namespace asp_presentaciones.Pages
         {
             ListaTipoPagos = iTipoPagosNegocio.Consultar();
             ListaOfertas = iOfertasNegocioP.Consultar();
+            ListaFacturas = iFacturasNegocioP.Consultar();
             ListaEventos = iEventosNegocioP.Consultar();
         }
         public void OnPostBtRefrescar()
@@ -90,7 +95,57 @@ namespace asp_presentaciones.Pages
             
         }
 
-        
+        public void OnPostBtBorrar()
+        {
+            try
+            {
+                if (Factura == null) return;
+                Factura.EstadoPago = false;
+                Factura = iFacturasNegocio!.Modificar(Factura!);
+                OnPostBtRefrescar();
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+        }
+
+        public void OnPostBtGuardar()
+        {
+            try
+            {
+                if (Factura == null) return;
+                if (Factura.Id == 0)
+                    Factura = iFacturasNegocio!.Guardar(Factura!);
+                else
+                    Factura = iFacturasNegocio!.Modificar(Factura!);
+
+                if (Factura.Id == 0) return;
+                OnPostBtRefrescar();
+            }
+            catch (Exception ex)
+            {
+                CargarRelaciones();
+                ViewData["Mensaje"] = ex.Message;
+            }
+        }
+
+        public void OnPostBtModificar(int data)
+        {
+            try
+            {
+                OnPostBtRefrescar();
+                Factura = Lista!.FirstOrDefault(x => x.Id == data);
+                Lista = null;
+                Borrando = false;
+            }
+            catch (Exception ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+            }
+        }
+
+
         public void OnPostBtCerrar() 
         {
             OnPostBtRefrescar();

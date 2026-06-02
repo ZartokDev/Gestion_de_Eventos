@@ -82,8 +82,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Trabajador == null)
                     return;
-
-                Trabajador = iTrabajadoresNegocio!.Eliminar(Trabajador!);
+                Trabajador.Estado = false;
+                Trabajador = iTrabajadoresNegocio!.Modificar(Trabajador!);
                 OnPostBtRefrescar();
 
             }

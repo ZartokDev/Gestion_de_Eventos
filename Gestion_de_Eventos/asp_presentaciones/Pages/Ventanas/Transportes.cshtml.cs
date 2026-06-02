@@ -82,8 +82,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Transporte == null)
                     return;
-
-                Transporte = iTransportesNegocio!.Eliminar(Transporte!);
+                Transporte.Estado = false;
+                Transporte = iTransportesNegocio!.Modificar(Transporte!);
                 OnPostBtRefrescar();
 
             }

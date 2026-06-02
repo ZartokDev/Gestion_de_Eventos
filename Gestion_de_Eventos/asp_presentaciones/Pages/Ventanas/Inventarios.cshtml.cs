@@ -87,8 +87,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Inventario == null)
                     return;
-
-                Inventario = iInventariosNegocio!.Eliminar(Inventario!);
+                Inventario.EstadoProducto = false;
+                Inventario = iInventariosNegocio!.Modificar(Inventario!);
                 OnPostBtRefrescar();
 
             }

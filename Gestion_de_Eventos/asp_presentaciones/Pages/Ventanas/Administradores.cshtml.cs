@@ -84,8 +84,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Administrador == null)
                     return;
-
-                Administrador = iAdministradoresNegocio!.Eliminar(Administrador!);
+                Administrador.Estado = false;
+                Administrador = iAdministradoresNegocio!.Modificar(Administrador!);
                 OnPostBtRefrescar();
 
             }

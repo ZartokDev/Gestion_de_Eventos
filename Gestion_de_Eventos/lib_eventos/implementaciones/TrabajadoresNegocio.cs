@@ -88,13 +88,7 @@ namespace lib_eventos.implementaciones
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.Obtener("StringConexion");
 
-            var trabajador = this.iConexion.Eventos!.FirstOrDefault(e => e.Id == entidad.Id);
-
-            if (trabajador == null)
-                throw new Exception("El evento no existe");
-
-            trabajador.Estado = false;
-            this.iConexion.Eventos!.Update(trabajador);
+            this.iConexion.Trabajadores!.Remove(entidad);
             this.iConexion.SaveChanges();
 
             var auditoria = new Auditorias()

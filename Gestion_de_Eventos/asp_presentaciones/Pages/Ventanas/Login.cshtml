@@ -30,6 +30,13 @@
     </div>
 </div>
 
+@if (ViewData["Mensaje"] != null)
+{
+    <div class="alert alert-danger" style="color: red; padding: 10px; margin-bottom: 15px; border: 1px solid red; background-color: #fdd;">
+        @ViewData["Mensaje"]
+    </div>
+}
+
 @section Scripts {
     <script>
         const correo = document.getElementById('inCorreo');

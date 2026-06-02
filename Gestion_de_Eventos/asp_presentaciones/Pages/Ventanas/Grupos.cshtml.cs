@@ -87,8 +87,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Grupo == null)
                     return;
-
-                Grupo = iGruposNegocio!.Eliminar(Grupo!);
+                Grupo.Estado = false;
+                Grupo = iGruposNegocio!.Modificar(Grupo!);
                 OnPostBtRefrescar();
 
             }

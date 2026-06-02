@@ -50,9 +50,9 @@ namespace asp_presentaciones.Pages
 
         private void CargarRelaciones()
         {
-            ListaTipoEventos = iTipoEventosNegocio.Consultar();
-            ListaLugares = iLugaresNegocio.Consultar();
-            ListaHorarios = iHorariosNegocio.Consultar();
+            ListaTipoEventos = iTipoEventosNegocio.Consultar()?.Where(x => x.Estado).ToList(); ;
+            ListaLugares = iLugaresNegocio.Consultar()?.Where(x => x.Estado).ToList(); ;
+            ListaHorarios = iHorariosNegocio.Consultar()?.Where(x => x.Estado).ToList(); ;
         }
 
         public IActionResult OnPostGuardar()
@@ -66,7 +66,21 @@ namespace asp_presentaciones.Pages
                     return Page();
                 }
 
-                // Instanciación basada estrictamente en tu diseño de base de datos
+                var todosEventos = iEventosNegocio.Consultar() ?? new List<Eventos>();
+
+                bool salaOcupada = todosEventos.Any(e =>
+                    e.Lugar == IdLugar &&
+                    e.Fecha == FechaEvento &&
+                    e.Estado == true
+                );
+
+                if (salaOcupada)
+                {
+                    ViewData["Mensaje"] = "🚨 Conflicto de Agenda: La sala o locación seleccionada ya se encuentra reservada para esa fecha y hora específica.";
+                    CargarRelaciones();
+                    return Page();
+                }
+
                 Eventos nuevoEvento = new Eventos()
                 {
                     Nombre = NombreEvento,
@@ -77,9 +91,8 @@ namespace asp_presentaciones.Pages
                     TipoEvento = IdTipoEvento,
                     Lugar = IdLugar,
                     Horario = IdHorario,
-                    Cliente = IdCliente, // Llave foránea asociada al cliente recuperado
+                    Cliente = IdCliente, 
 
-                    // Valores iniciales nulos que gestionará el administrador posteriormente
                     Grupo = 1,
                     Inventario = 1,
                     Administrador = 1,
@@ -87,15 +100,12 @@ namespace asp_presentaciones.Pages
                     Reserva = 1
                 };
 
-                // 1. Se guarda en la base de datos (aquí se genera el fallo del ID en 0)
                 iEventosNegocio!.Guardar(nuevoEvento);
 
-                // 2. SOLUCIÓN: Consultamos el ID real directamente a la base de datos
-                // Buscamos el evento más reciente de este cliente para asegurarnos de tener el ID verdadero
                 var listaEventos = iEventosNegocio.Consultar();
                 var eventoRecientementeCreado = listaEventos?
                     .Where(x => x.Cliente == nuevoEvento.Cliente)
-                    .OrderByDescending(x => x.Id) // Ordenamos de mayor a menor (el último creado)
+                    .OrderByDescending(x => x.Id) 
                     .FirstOrDefault();
 
                 if (eventoRecientementeCreado == null || eventoRecientementeCreado.Id == 0)
@@ -105,7 +115,6 @@ namespace asp_presentaciones.Pages
                     return Page();
                 }
 
-                // 3. Redireccionamos con el ID real recuperado
                 return RedirectToPage("RegistrarPago", new { id = eventoRecientementeCreado.Id });
             }
             catch (Exception ex)

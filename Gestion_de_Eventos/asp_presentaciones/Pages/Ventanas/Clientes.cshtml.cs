@@ -73,8 +73,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Cliente == null)
                     return;
-
-                Cliente = iClientesNegocio!.Eliminar(Cliente!);
+                Cliente.Estado= false;
+                Cliente = iClientesNegocio!.Modificar(Cliente!);
                 OnPostBtRefrescar();
 
             }

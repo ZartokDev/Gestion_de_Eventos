@@ -72,8 +72,8 @@ namespace asp_presentaciones.Pages
             {
                 if (PersonalApoyo == null)
                     return;
-
-                PersonalApoyo = iPersonalApoyosNegocio!.Eliminar(PersonalApoyo!);
+                PersonalApoyo.Estado = false;
+                PersonalApoyo = iPersonalApoyosNegocio!.Modificar(PersonalApoyo!);
                 OnPostBtRefrescar();
 
             }

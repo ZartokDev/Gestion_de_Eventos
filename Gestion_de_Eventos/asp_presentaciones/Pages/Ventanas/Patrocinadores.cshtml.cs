@@ -82,8 +82,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Patrocinador == null)
                     return;
-
-                Patrocinador = iPatrocinadoresNegocio!.Eliminar(Patrocinador!);
+                Patrocinador.Estado = false;
+                Patrocinador = iPatrocinadoresNegocio!.Modificar(Patrocinador!);
                 OnPostBtRefrescar();
 
             }
