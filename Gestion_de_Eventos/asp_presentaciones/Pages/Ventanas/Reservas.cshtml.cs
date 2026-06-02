@@ -70,8 +70,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Reserva == null)
                     return;
-
-                Reserva = iReservasNegocio!.Eliminar(Reserva!);
+                Reserva.Estado = false;
+                Reserva = iReservasNegocio!.Modificar(Reserva!);
                 OnPostBtRefrescar();
 
             }

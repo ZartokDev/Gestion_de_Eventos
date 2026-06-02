@@ -74,8 +74,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Oferta == null)
                     return;
-
-                Oferta = iOfertasNegocio!.Eliminar(Oferta!);
+                Oferta.Estado = false;
+                Oferta = iOfertasNegocio!.Modificar(Oferta!);
                 OnPostBtRefrescar();
 
             }

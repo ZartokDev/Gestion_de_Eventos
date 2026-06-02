@@ -84,8 +84,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Lugar == null)
                     return;
-
-                Lugar = iLugaresNegocio!.Eliminar(Lugar!);
+                Lugar.Estado = false; 
+                Lugar = iLugaresNegocio!.Modificar(Lugar!);
                 OnPostBtRefrescar();
 
             }

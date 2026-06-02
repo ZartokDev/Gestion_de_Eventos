@@ -72,8 +72,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Horario == null)
                     return;
-
-                Horario = iHorariosNegocio!.Eliminar(Horario!);
+                Horario.Estado = false;
+                Horario = iHorariosNegocio!.Modificar(Horario!);
                 OnPostBtRefrescar();
 
             }

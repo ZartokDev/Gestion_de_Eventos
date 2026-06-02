@@ -72,8 +72,8 @@ namespace asp_presentaciones.Pages
             {
                 if (Proveedor == null)
                     return;
-
-                Proveedor = iProveedoresNegocio!.Eliminar(Proveedor!);
+                Proveedor.Estado = false;
+                Proveedor = iProveedoresNegocio!.Modificar(Proveedor!);
                 OnPostBtRefrescar();
 
             }

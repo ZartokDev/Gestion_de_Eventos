@@ -109,7 +109,8 @@ namespace asp_presentaciones.Pages
             try
             {
                 if (Evento == null) return;
-                Evento = iEventosNegocio!.Eliminar(Evento!);
+                Evento.Estado = false;
+                Evento = iEventosNegocio!.Modificar(Evento!);
                 OnPostBtRefrescar();
             }
             catch (Exception ex)
@@ -123,6 +124,21 @@ namespace asp_presentaciones.Pages
             try
             {
                 if (Evento == null) return;
+
+                var todosEventos = iEventosNegocio!.Consultar() ?? new List<Eventos>();
+
+                bool salaOcupada = todosEventos.Any(e =>
+                    e.Lugar == Evento.Lugar &&
+                    e.Fecha == Evento.Fecha &&
+                    e.Estado == true &&
+                    e.Id != Evento.Id // Si se está modificando, no chocará con el registro original
+                );
+
+                if (salaOcupada)
+                {
+                    throw new Exception(" Conflicto de Disponibilidad: El lugar seleccionado ya se encuentra reservado para esa fecha y hora específica.");
+                }
+
                 if (Evento.Id == 0)
                     Evento = iEventosNegocio!.Guardar(Evento!);
                 else

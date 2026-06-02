@@ -43,9 +43,9 @@ namespace asp_presentaciones.Pages
             {
                 return;
             }
-
-            var todosClientes = iClientes.Consultar() ?? new List<Clientes>();
-            ClienteEncontrado = todosClientes.FirstOrDefault(c => c.Documento == DocumentoInput.Trim());
+            
+            var todosClientes = iClientes.Consultar()?.Where(x => x.Estado).ToList() ?? new List<Clientes>();
+                ClienteEncontrado = todosClientes.FirstOrDefault(c => c.Documento == DocumentoInput.Trim());
 
             if (ClienteEncontrado != null)
             {
