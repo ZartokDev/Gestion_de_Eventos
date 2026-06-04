@@ -43,16 +43,17 @@ namespace asp_presentaciones.Pages
             {
                 return;
             }
-            
-            var todosClientes = iClientes.Consultar()?.Where(x => x.Estado).ToList() ?? new List<Clientes>();
-                ClienteEncontrado = todosClientes.FirstOrDefault(c => c.Documento == DocumentoInput.Trim());
+
+            // 1. Buscar al cliente por su número de documento
+            var todosClientes = iClientes.Consultar() ?? new List<Clientes>();
+            ClienteEncontrado = todosClientes.FirstOrDefault(c => c.Documento == DocumentoInput.Trim());
 
             if (ClienteEncontrado != null)
             {
                 ListaLugares = iLugares.Consultar() ?? new List<Lugares>();
 
                 ListaMisEventos = (iEventos.Consultar() ?? new List<Eventos>())
-                    .Where(e => e.Cliente == ClienteEncontrado.Id)
+                    .Where(e => e.Cliente == ClienteEncontrado.Id && e.Estado == true)
                     .OrderBy(e => e.Fecha)
                     .ToList();
             }

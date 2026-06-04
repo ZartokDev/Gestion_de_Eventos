@@ -125,31 +125,39 @@ namespace asp_presentaciones.Pages
             {
                 if (Evento == null) return;
 
+                ModelState.Clear();
+
                 var todosEventos = iEventosNegocio!.Consultar() ?? new List<Eventos>();
 
-                bool salaOcupada = todosEventos.Any(e =>
+                bool horarioOcupado = todosEventos.Any(e =>
                     e.Lugar == Evento.Lugar &&
-                    e.Fecha == Evento.Fecha &&
+                    e.Fecha.Date == Evento.Fecha.Date &&
+                    e.Horario == Evento.Horario &&
                     e.Estado == true &&
-                    e.Id != Evento.Id // Si se está modificando, no chocará con el registro original
+                    e.Id != Evento.Id 
                 );
 
-                if (salaOcupada)
+                if (horarioOcupado)
                 {
-                    throw new Exception(" Conflicto de Disponibilidad: El lugar seleccionado ya se encuentra reservado para esa fecha y hora específica.");
+                    throw new Exception("🚨 Conflicto de Agenda: La sede seleccionada ya está ocupada en esa fecha y bloque de horario.");
                 }
 
                 if (Evento.Id == 0)
+                {
                     Evento = iEventosNegocio!.Guardar(Evento!);
+                }
                 else
+                {
                     Evento = iEventosNegocio!.Modificar(Evento!);
+                }
 
                 if (Evento.Id == 0) return;
+
                 OnPostBtRefrescar();
             }
             catch (Exception ex)
             {
-                CargarRelaciones();
+                CargarRelaciones(); 
                 ViewData["Mensaje"] = ex.Message;
             }
         }

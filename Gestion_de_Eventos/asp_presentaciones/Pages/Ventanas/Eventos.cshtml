@@ -39,6 +39,17 @@
                     <div class="row g-3">
                         <input type="hidden" asp-for="@Model.Evento!.Id" />
 
+                        @if (Model.Evento.Id != 0)
+                        {
+                            <input type="hidden" asp-for="Evento.Estado" />
+                            <input type="hidden" asp-for="Evento.Cliente" />
+                            <input type="hidden" asp-for="Evento.Grupo" />
+                            <input type="hidden" asp-for="Evento.Inventario" />
+                            <input type="hidden" asp-for="Evento.Administrador" />
+                            <input type="hidden" asp-for="Evento.Patrocinador" />
+                            <input type="hidden" asp-for="Evento.Reserva" />
+                        }
+
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Nombre del Evento</label>
                             <input class="form-control" placeholder="Ej. Boda Corporativa" asp-for="@Model.Evento!.Nombre" required />
@@ -193,7 +204,6 @@
                     <table class="tb_data mb-0">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Fecha</th>
                                 <th>Descripción</th>
@@ -206,7 +216,6 @@
                             @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
-                                    <td><strong class="">#@elemento.Id</strong></td>
                                     <td class="fw-bold">@elemento.Nombre</td>
                                     <td>@elemento.Fecha.ToString("dd/MM/yyyy")</td>
                                     <td>@elemento.Descripcion</td>

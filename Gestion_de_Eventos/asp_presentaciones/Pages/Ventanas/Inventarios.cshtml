@@ -93,7 +93,6 @@
                     <table class="tb_data mb-0">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Estado Producto</th>
                                 <th>Cantidad</th>
@@ -106,7 +105,6 @@
                             @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
-                                    <td><strong>#@elemento.Id</strong></td>
                                     <td>@elemento.Nombre</td>
                                     <td>@if (elemento.EstadoProducto)
                                 {
