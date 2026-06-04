@@ -62,7 +62,6 @@
             <table class="tb_data mb-0">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Vehículo / Modelo</th>
                         <th>Placa</th>
                         <th>Capacidad de Carga/Pasajeros</th>
@@ -74,7 +73,6 @@
                         @foreach (var trans in Model.ListaTransportes)
                         {
                             <tr>
-                                <td><strong>#@trans.Id</strong></td>
                                 <td>@trans.Vehiculo</td>
                                 <td><span class="text-warning fw-bold">@trans.Placa</span></td>
                                 <td>@trans.Capacidad unidades</td>

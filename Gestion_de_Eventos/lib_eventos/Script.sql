@@ -490,6 +490,12 @@ VALUES ('Sonido & Luces Pro', '555-0192', 'contacto@sonidopro.com', 'Equipos Tec
 INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
 VALUES ('18:00', '02:00', 'Nocturno', 'Horario estándar para eventos nocturnos', 1);
 
+INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
+VALUES ('14:00', '02:00', 'MedioDia', 'Horario estándar para eventos en medio Dia', 1);
+
+INSERT INTO Horarios (HoraInicio, HoraFin, Turno, Descripcion, Estado)
+VALUES ('10:00', '02:00', 'Mañana', 'Horario estándar para eventos Mañaneros', 1);
+
 INSERT INTO TipoPatrocinadores (Nombre, Descripcion, NivelAporte, Beneficios, Estado)
 VALUES ('Patrocinador Oro', 'Aporte financiero mayoritario', 'Alto', 'Logo gigante en banners y 5 entradas VIP', 1);
 
@@ -501,6 +507,12 @@ VALUES ('2026-05-20', 'Zona VIP Norte', 'Requiere acceso para discapacitados', 1
 
 INSERT INTO TipoEventos (Nombre, DuracionEstimada, Descripcion, Estado)
 VALUES ('Concierto', '4 Horas', 'Eventos musicales masivos en vivo', 1);
+
+INSERT INTO TipoEventos (Nombre, DuracionEstimada, Descripcion, Estado)
+VALUES ('Cumpleaños', '4 Horas', 'Cumpleaños para todos', 1);
+
+INSERT INTO TipoEventos (Nombre, DuracionEstimada, Descripcion, Estado)
+VALUES ('Fiesta', '4 Horas', 'Fiesta con dj incluido', 1);
 
 INSERT INTO TipoInventarios (Nombre, Descripcion, Categoria, Estado)
 VALUES ('Mobiliario', 'Sillas, mesas y elementos de soporte', 'Logística', 1);

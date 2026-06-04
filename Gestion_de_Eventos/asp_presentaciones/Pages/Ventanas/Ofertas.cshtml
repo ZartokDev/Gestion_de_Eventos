@@ -74,7 +74,6 @@
                     <table class="tb_data mb-0">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Fecha Limite</th>
                                 <th>Descuento</th>
                                 <th>Nombre</th>
@@ -86,7 +85,6 @@
                             @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
-                                    <td><strong>#@elemento.Id</strong></td>
                                     <td>@elemento.FechaLimite.ToString("dd/MM/yyyy")</td>
                                     <td>@elemento.Descuento</td>
                                     <td>@elemento.Nombre</td>

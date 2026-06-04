@@ -81,7 +81,6 @@
                     <table class="tb_data mb-0">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Tipo Accion</th>
                                 <th>Descripcion</th>
                                 <th>Fecha</th>
@@ -93,7 +92,6 @@
                             @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
-                                    <td><strong>#@elemento.Id</strong></td>
                                     <td>@elemento.TipoAccion</td>
                                     <td>@elemento.Descripcion</td>
                                     <td>@elemento.Fecha.ToString("dd/MM/yyyy")</td>

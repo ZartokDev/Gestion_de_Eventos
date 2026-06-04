@@ -1,0 +1,156 @@
+﻿@page
+@model CalendarioModel
+@{
+    ViewData["Title"] = "Calendario de Reservas - Kinetic Eventos";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@@6.1.8/index.global.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    .fc {
+        background-color: #0b1329;
+        color: #f8fafc;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #1e293b;
+    }
+
+    .fc-theme-standard td, .fc-theme-standard th {
+        border: 1px solid #1e293b !important;
+    }
+
+    .fc-col-header-cell {
+        background-color: #020617;
+        color: #3b82f6 !important; 
+        padding: 10px 0 !important;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+    }
+
+    .fc-daygrid-day:hover {
+        background-color: #1e293b !important;
+        cursor: pointer;
+    }
+    .fc .fc-button-primary {
+        background-color: #2563eb !important;
+        border-color: #3b82f6 !important;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+        .fc .fc-button-primary:hover {
+            background-color: #1d4ed8 !important;
+        }
+
+        .fc .fc-button-primary:disabled {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+    .fc .fc-toolbar-title {
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+    .fc-event {
+        cursor: pointer;
+        padding: 2px 5px;
+        font-size: 0.85rem;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .fc-day-today {
+        background-color: rgba(59, 130, 246, 0.05) !important;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card-crud text-white p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <div>
+                <h2 class="fw-bold mb-1 text-uppercase tracking-wider">
+                    <span class="text-electric">📅 Agenda Global</span> de Eventos
+                </h2>
+                <p class="text-white-50 small mb-0">Vista de organización y control de salas en tiempo real</p>
+            </div>
+            <a asp-page="/Eventos" class="btn btn-outline-secondary btn-sm text-white">
+                <i class="bi bi-list-task me-1"></i> Volver a la Lista
+            </a>
+        </div>
+
+        <div id="calendar"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="eventoModal" tabindex="-1" aria-labelledby="eventoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-secondary">
+            <div class="modal-header" style="background-color: #020617;">
+                <h5 class="modal-title text-electric fw-bold" id="lblModalTitulo">Detalle del Evento</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>📍 Lugar / Sala:</strong> <span id="lblModalLugar"></span></p>
+                <p><strong>⏰ Fecha y Hora:</strong> <span id="lblModalFecha"></span></p>
+                <p><strong>👥 Capacidad:</strong> <span id="lblModalPersonas"></span> invitados</p>
+                <p><strong>📝 Descripción:</strong></p>
+                <div class="p-3 bg-secondary bg-opacity-25 rounded small" id="lblModalDescripcion"></div>
+            </div>
+            <div class="modal-footer" style="background-color: #020617;">
+                <button type="button" class="btn btn-outline-light btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                <a id="btnEditarEvento" href="#" class="btn btn-electric btn-sm fw-semibold">
+                    <i class="bi bi-pencil-square me-1"></i> Gestionar Evento
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@@6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@@6.1.8/locales/es.global.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth', 
+    locale: 'es', 
+    editable: false,
+    selectable: true,
+    headerToolbar: {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay' 
+    },
+
+    events: '?handler=EventosJson',
+
+    eventClick: function(info) {
+    var esUsuarioAdmin = info.event.extendedProps.esAdmin;
+
+    if (!esUsuarioAdmin) {
+    alert("Este bloque horario ya se encuentra reservado.");
+    return;
+    }
+
+    var miModal = new bootstrap.Modal(document.getElementById('eventoModal'));
+
+    document.getElementById('lblModalTitulo').innerText = info.event.title;
+    document.getElementById('lblModalLugar').innerText = info.event.extendedProps.lugar;
+    document.getElementById('lblModalPersonas').innerText = info.event.extendedProps.personas;
+    document.getElementById('lblModalDescripcion').innerText = info.event.extendedProps.description;
+
+    var fechaEvent = new Date(info.event.start);
+    document.getElementById('lblModalFecha').innerText = fechaEvent.toLocaleString();
+
+    document.getElementById('btnEditarEvento').href = 'Eventos?data=' +info.event.id+ '&handler=BtModificar'
+    miModal.show();
+    }
+    });
+
+    calendar.render();
+    });
+</script>
